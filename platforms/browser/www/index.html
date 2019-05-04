@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <title>Android</title>
+    <title>Mesaj Gönder !</title>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="cookie.js"></script>
@@ -371,12 +371,10 @@
 			
 //UYARİ FONKSİYONU
 $.uyari=function(uyari){
-$('.uyari').click(function(){
-		$(this).hide();
-		});
-			$('.uyari').html(uyari).slideDown().delay(4000).slideUp();
+$('.uyari').html(uyari).slideDown().delay(4000).slideUp();
+$('.uyari').click(function(){$(this).hide();});
+};		
 	
-	};			
 //----PANEL KAPAT
 $.geri=function(){
 	 $('.geri').click(function(){
@@ -392,7 +390,7 @@ $.alt_kapat();
 
 //------- GÜNLÜK BLOK YOKLAMALARI GETİR ALANI
 $.gunluk_yoklama=function(){
-$('#sms_panel').fadeOut();	
+$('#sms_panel').fadeOut();
 $('.yoklama').css("background-color","#106b80").css("color","#FFF");	
 var okul_id=$('.kul').attr('okul_id');	
 $.ajax({
@@ -439,8 +437,8 @@ $('.kutu').hide();
 $('#yoklama').html(cevap.veri).show();	
 $('#gonder').attr('yoklama_id',yoklama_id);
 var yok_index=Cookies.get(yoklama_id);
-yok_index=yok_index++;
-alert('son sms giden:'+yok_index);
+yok_index++;
+alert('Son sms++: '+yok_index);
 $('.y_ogrenci:lt('+yok_index+')').css('background-color','#0F6');
 $.geri();
 //---YEREL YOKLAMA İPTALİ
@@ -468,7 +466,8 @@ $('.panel,.orta').css('height',yuksekx);
 
 //-----STATİK YOKLAMA GUNLUK BLOK GİRİŞİ
 $('.yoklama').click(function(){
-$('#sms_panel').fadeOut();		
+$('#sms_panel').hide();
+$('.alt_panel').hide();	
 $(this).css("background-color","#106b80").css("color","#FFF");
 $('.sinif').css("background-color","#FFF").css("color","#06F");	
 $.gunluk_yoklama();});//statik son
@@ -557,6 +556,8 @@ $('.orta').slideDown();
 }});//ajax ve cevap	
 
 });//kaydet son	
+//SİSTEM DIŞI STATİK SMS
+
 
 //-------DÖNGÜLERDEN ETKİLENMEYEN BAŞLA FONKSİYONU
 $('#basla').click(function(){
@@ -571,14 +572,13 @@ var yoklama_id=$(this).attr('yoklama_id');
 var yok_index=Cookies.get(yoklama_id);
 //alert('Okunan: '+yok_index);
 //yokluğu boşluğa çevirdik
-$.uyari(yok_index);
-// orjinal $('.uyari').html(yok_index);
+$('.uyari').html(yok_index);
 var list=$('.uyari').html();
 $('.uyari').html('');
-
+//liste boş ilk defa sms gidiyor ! index=0
 //-----SMS DÖNGÜSÜ
 $.sms_gonder=function(index){
-alert('Gelen İndex: '+index);	
+$.uyari('gelen: '+index);
 var ogr_sayi=$('.y_ogrenci').length;
 if(index<ogr_sayi){
 var telefon=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
@@ -590,40 +590,29 @@ var mesajx=isim+zaman+mesaj;
 SMS.sendSMS(telefon,mesajx,function(){
 //işlem başarılı
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6');
-var c_index=index++;
-Cookies.set(yoklama_id,c_index);
-y_index=index+parseInt(1);
-if(y_index<ogr_sayi){
-$.uyari(y_index+' Sms Gönderilecek');
-$.sms_gonder(y_index); 
-}
-}, function (str) {
-//hata oluştu
-//alert(str); 
+Cookies.set(yoklama_id,index);
+index++;
+$.uyari('Yeni: '+index);
+$.sms_gonder(index);
+},function (str){
+//hata oluştu alert(str); 
 $('.y_ogrenci:eq('+index+')').css('background-color','#F03');
-y_index=index+parseInt(1);
-if(y_index<ogr_sayi){
-$.uyari(y_index+' Sms Gönderilemedi !');
-$.sms_gonder(y_index); 
-}
-});//---SMS PLUGIN SON
+});//---SMS PLUGIN SON	
 }else{
-$.uyari('Görev Tamamlandı!');
-var c_index=index++;
-Cookies.set(yoklama_id,c_index);
-$('#sms_panel').fadeOut();}	
-};//sms gonder son	
-//liste boş ilk defa sms gidiyor ! index=0
-if(list==""){$.uyari('Sistem Göreve Başladı !');$.sms_gonder(0);}
+$.uyari('Görev Tamamlandı!'+index);
+Cookies.set(yoklama_id,index);
+$('#sms_panel').fadeOut();}
+}//sms_gonder_son
+
+if(list==""){$.uyari('Sistem Göreve Başladı !'); 
+$.sms_gonder(0);}
 //liste boş değil işlem yarım kalmış index=cookies.get('index');
 if(list>0){
-var devam_index=yok_index++;
-$.uyari('Sistem '+devam_index+'. Kişiden Devam Edecek !');
-$('.y_ogrenci:eq('+devam_index+')').css('background-color','#0F6');
-$.sms_gonder(devam_index);	
-	}
-
-//bekle fonksiyonu yazılmalı
+yok_index++;
+$.uyari('Sistem '+yok_index+'. Kişiden Devam Edecek !');
+$('.y_ogrenci:eq('+yok_index+')').css('background-color','#0F6');
+$.sms_gonder(yok_index);	
+}
 });//basla son
  
        
