@@ -95,6 +95,16 @@
 	float: left;
 	
 }
+.b_daire{
+	height:70px;
+	width: 70px;
+	border-radius: 50%;
+	float: left;
+	margin-left:10px;
+	margin-top:15px;
+	margin-bottom: 15px;
+	
+}
 .daire {
 	height: 90px;
 	width: 90px;
@@ -116,10 +126,27 @@
 	margin-top: -18px;
 	background-image: url(icon/profil.jpg);
 }
+.dairey {
+	height: 90px;
+	width: 90px;
+	border-radius: 50%;
+	border: 1px solid #999;
+	float: left;
+	margin-top: -18px;
+	background-image: url(icon/profil.jpg);
+}
     .panel {
 	display: none;
 	width: 100%;
 	overflow: scroll;
+	margin-top: 50px;
+	height: 560px;
+}
+    .tam_panel {
+	display: none;
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	margin-top: 50px;
 	height: 560px;
 }
@@ -128,6 +155,22 @@
 	width: 70px;
 	margin-top: 30px;
 	margin-left: 10px;
+	border-radius: 50%;
+	border: 1px solid #999;
+	float: left;
+	color: #06F;
+}
+.ogrencix {
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	border: 1px solid #999;
+	float: left;
+	color: #06F;
+}
+.listey {
+	height: 70px;
+	width: 70px;
 	border-radius: 50%;
 	border: 1px solid #999;
 	float: left;
@@ -169,6 +212,53 @@
 	background-position: center center;
 	margin-right: -7px;
 }
+.silg {
+	height: 15px;
+	width: 15px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	border-radius: 50%;
+	background-image: url(icon/x.png);
+	background-position: center center;
+	margin-right: -7px;
+}
+.sily {
+	height: 15px;
+	width: 15px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	border-radius: 50%;
+	background-image: url(icon/x.png);
+	background-position: center center;
+	margin-right: -7px;
+}
+.sil_ogr {
+	height: 15px;
+	width: 15px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	border-radius: 50%;
+	background-image: url(icon/x.png);
+	background-position: center center;
+	margin-right: -7px;
+	margin-bottom:-10px;
+}
+.sil_liste {
+	height: 15px;
+	width: 15px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	border-radius: 50%;
+	background-image: url(icon/x.png);
+	background-position: center center;
+	margin-right: -7px;
+	margin-bottom:-10px;
+}
+
     .taban {
 	width: 100%;
 	height: 35px;
@@ -185,6 +275,20 @@
 	position: fixed;
 }
 .geri {
+	width: 35%;
+	border: 1px solid #00CC00;
+	color: #00CC00;
+	float: left;
+	margin-left: 10%;
+	margin-top: 5px;
+	margin-bottom: 3px;
+	padding-top: 3px;
+	height: 22px;
+	border-radius: 10px;
+	background-color: #FFFFFF;
+}
+
+.geri_a {
 	width: 35%;
 	border: 1px solid #00CC00;
 	color: #00CC00;
@@ -277,6 +381,25 @@
 	border-right-style: solid;
 	border-right-color: #3399FF;
 	margin-top: 3px;
+}	
+.ekle_liste {
+	float: left;
+	height: 25px;
+	width: 120px;
+	margin-right: 6px;
+	text-align: center;
+	padding-top: 4px;
+	color: #000000;
+	margin-bottom: 3px;
+	padding-bottom: 3px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #3399FF;
+	margin-top: 3px;
+	background-image: url(icon/arti.png);
+	border-radius: 25%;
+	background-repeat: no-repeat;
+	background-position: center center;
 }		
     .yoklama {
 	width: 25%;
@@ -303,6 +426,20 @@
 	overflow: scroll;
 }
 .alt_panel {
+	width: 100%;
+	position: absolute;
+	z-index: 3;
+	left: 0px;
+	overflow: scroll;
+	visibility: visible;
+	background-image: url(icon/byz.png);
+	background-repeat: repeat;
+	background-position: center;
+	margin-top: 92%;
+	display: none;
+	height: 260px;
+}
+.ap_x {
 	width: 100%;
 	position: absolute;
 	z-index: 3;
@@ -360,12 +497,176 @@
 	box-shadow: 0 0 10px 2px white;
 	border: 1px solid #FFFFFF;
 }
+.sol_panel {
+	width: 100%;
+	position: fixed;
+	z-index: 8;
+	top: 46px;
+	left: 0px;
+	display: none;
+	overflow: scroll;
+	visibility: inherit;
+	background-image: url(icon/blck.png);
+	background-repeat: repeat;
+	background-position: center;
+	height: 100%;
+	margin-bottom: 81px;
+}
+.ut {
+	height: 89%;
+	width: 100%;
+	margin-bottom: 80px;
+	display: none;
+	overflow: scroll;
+	padding-bottom: 50px;
+	visibility: visible;
+	padding-top: 10px;
+}
+.alti {
+	height: 30px;
+	width: 100%;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	position: fixed;
+	z-index: 6;
+	overflow: scroll;
+	padding-top: 3px;
+	bottom: 0px;
+	visibility: visible;
+	background-image: url(blck.png);
+	background-repeat: repeat;
+}
+.ux {
+	float: left;
+	height: 22px;
+	width: 120px;
+	text-align: center;
+	padding-top: 4px;
+	color: #FFFFFF;
+	padding-bottom: 3px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #FFFFFF;
+	margin-left: 2px;
+	font-family: verdana;
+	font-size: 12px;
+}.uzun2 {
+	width: 850px;
+}
+.ust {
+	width: 79%;
+	height: 70px;
+	padding-left: 5%;
+}.px{
+    float: left;
+    height: 20px;
+    width: 20px;
+    box-shadow: 0 0 10px 2px white;
+    border-radius: 50%;
+}
+.profil {
+    float: left;
+    height: 60px;
+    width: 60px;
+    box-shadow: 0 0 10px 2px white;
+    border-radius: 50%;
+}
+.y_panel {
+	height: auto;
+	width: 90px;
+	float: left;
+	margin-left: 20px;
+	display: none;
+}
+.kul {
+    height: 20px;
+    padding-top: 20px;
+    color: #FFFFFF;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    padding-bottom: 20px;
+    width: 50%;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+}
+    .yazi {
+	color: #0CC;
+	width: 90px;
+	clear: left;
+	text-align: center;
+	margin-bottom: 8px;
+}
+    .kaydet {
+	color: #0F0;
+	text-align: center;
+	width: 90px;
+	border: 1px solid #0F0;
+	margin-top: 35px;
+	background-color: #FFF;
+	box-shadow: 0 0 10px 2px white;
+	margin-left: -1px;
+	font-weight: bold;
+}
+ .guncelle {
+	    color: #0F0;
+    text-align: center;
+    width: 65px;
+    border: 1px solid #0F0;
+    margin-top: 45px;
+    box-shadow: 0 0 10px 2px white;
+    margin-left: 2px;
+    position: absolute;
+    border-radius: 25%;
+}
     </style>
 </head>
 <body onload="onLoad()">
 <script>
         function onLoad() {
             //Jquery yazım alanı
+//ux ut işlemleri
+$('.ux').click(function(){
+$('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
+	$('.ut').slideUp();
+	$(this).css('border-color','#00CCFF').css('color','#00CCFF');
+	var xc=$(this).index();
+	$('.ut:eq('+xc+')').slideDown();
+	
+});				
+//MENU ALANI 
+$('.menu').click(function(){
+var v=$(this).attr('v');
+if(v==0){
+$(this).attr('v',1);	
+$(this).css('background-image','url(icon/x.jpg)');
+$('.sol_panel,.ut:first').show();
+}
+if(v==1){
+$(this).attr('v',0);	
+$(this).css('background-image','url(icon/y.jpg)');
+$('.sol_panel').slideUp();
+	}	
+});	
+
+//yoklama sil fonksiyonu
+$.y_sil=function(){
+$('.sil').click(function(){
+var yok_id=$(this).attr('id');	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"yok_id":yok_id}),
+			dataType: "json",
+			success: function(cevap){
+$('.d_daire[id='+yok_id+']').slideUp();	
+$('.b_daire[id='+yok_id+']').slideUp();	
+$.uyari(cevap.veri);			
+}});//ajax ve cevap
+});//yoklama sil son
+};		
 			
 //UYARİ FONKSİYONU
 $.uyari=function(uyari){
@@ -376,7 +677,7 @@ $('.uyari').click(function(){$(this).hide();});
 //----PANEL KAPAT
 $.geri=function(){
 	 $('.geri').click(function(){
-	 $('.panel,.alt_panel').hide();
+	 $('.panel,.alt_panel,.y_panel').hide();
 	 $('.orta').slideDown();
 	});};			
 $.geri();
@@ -388,6 +689,7 @@ $.alt_kapat();
 
 //------- GÜNLÜK BLOK YOKLAMALARI GETİR ALANI
 $.gunluk_yoklama=function(){
+var geri_div='<div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>';	
 $('#sms_panel').fadeOut();
 $('.yoklama').css("background-color","#106b80").css("color","#FFF");	
 var okul_id=$('.kul').attr('okul_id');	
@@ -397,32 +699,21 @@ $.ajax({
 			data:({"bugun":okul_id}),
 			dataType: "json",
 			success: function(cevap){
-if(cevap.veri=='Henüz Yoklama Alınmamış !'){$.uyari(cevap.veri);}			
-$('.kutu').hide();				
+if(cevap.hata=='Henüz Yoklama Alınmamış !'){$.uyari(cevap.hata);
+$('#yoklama').html('<div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>');
+}			
+$('.kutu').hide();		
 $('#yoklama').html(cevap.veri).show();	
 $.geri();
 
-//yoklama sil komple
-$('.sil').click(function(){
-var yok_id=$(this).attr('id');	
-$.ajax({
-			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
-			data:({"yok_id":yok_id}),
-			dataType: "json",
-			success: function(cevap){
-$('.d_daire[id='+yok_id+']').slideUp();	
-$.uyari('Yoklama Silindi !');			
-}});//ajax ve cevap
-});//yoklama sil son
-
-//-------YOKLAMA ALANI
+$.y_sil();
+//-------YOKLAMAdaki öğrencileri görme
 $('.dairex').click(function(){
 var yoklama_id=$(this).attr('id');	
 $('#basla').attr('yoklama_id',yoklama_id);
-	$(this).css("background-color","#106b80").css("color","#FFF");
-	$('.sinif').css("background-color","#FFF").css("color","#06F");
-	$('.kutu,.alt_panel').hide();
+$(this).css("background-color","#106b80").css("color","#FFF");
+$('.sinif').css("background-color","#FFF").css("color","#06F");
+$('.kutu,.alt_panel').hide();
 var kul_id=$('.kul').attr('id');
 var okul_id=$('.kul').attr('okul_id');	
 $.ajax({
@@ -474,19 +765,19 @@ $('.daire').click(function(){
                 $('.panel').slideUp();
 			    $('.orta').hide();
                 $('.panel:eq('+index+')').show();
+var okul_id=$('.kul').attr('okul_id');
 
 //-----SINIFLARIN GELMESİ VE YOK YAZMA
 if(index==0){
 $('#yoklama').html('');	
 $.gunluk_yoklama();	
-var okul_id=$('.kul').attr('okul_id');
-
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"s_getir":okul_id}),
 			dataType: "json",
 			success: function(cevap){
+		
 $('#siniflar').html(cevap.veri);
 $.geri();
 //---siniflara tıklama 
@@ -507,20 +798,28 @@ $.ajax({
 			data:({"sinif_id":sinif_id}),
 			dataType: "json",
 			success: function(cevap){
+if(cevap.hata=="Sınıfa Öğrenci Eklenmemiş !")				
+{$.uyari(cevap.hata);}
 $('#sinif').html(cevap.veri).slideDown();
-$.geri();
 //-----ÖĞRENCİLERE TIKLA 
 $('.ogrenci').click(function(){
 var isaret=$(this).attr('isaret');
-if(isaret==0){
+switch (isaret){
+
+case "0":
 $(this).attr('isaret',1);
-//öğrencileri klonlama yeri
-$(this).appendTo(".listex");}
-if(isaret==1){
+//öğrencileri klonlama yeri ilk tık
+$(this).appendTo("#liste");
+break;
+case "1":
+//tıkiptal
 $(this).attr('isaret',0);
-$(this).appendTo(".kutu");	
-	}	
+$(this).appendTo("#sinif");	
+break;	
+	}
 });//ogrenci click son	
+$.geri();
+
 //yoklama kaydet
 
 }});//ajax ve cevap
@@ -528,8 +827,331 @@ $(this).appendTo(".kutu");
 });//??? sinif click				
 }});//ajax ve cevap
 }//-----sınıfların gelmesi son
+
+//SINIF VE ÖĞRENCİ İŞLEMLERİ İŞLEMLERİ İNDEX==1
+if(index==1){
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"siniflar":okul_id}),
+			dataType: "json",
+			success: function(cevap){
+			$('#sinifim').html(cevap.veri);
+$('.silg').click(function(){$('.y_panel').slideUp();});	
+// SINIF EKLE
+$('#s_ekle').click(function(){
+$('.y_panel').slideDown();
+$('#kaydet_sinif').click(function(){
+var s_isim=$('#sinif_adi').val();
+if(s_isim==''){
+$.uyari('Sınıf adı olmadan kayıt yapılamaz !');
+}else{
+var o_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"ss_isim":s_isim,
+			       "ox_id":o_id}),
+			dataType: "json",
+			success: function(cevap){
+				$.uyari(cevap.veri);
 				
-});//--------DAİRELER SONU
+				
+}});//ajax son	
+}//sınıf adi kontrol	
+});//sınıf kaydet
+
+});//sınıf ekle son			
+$.geri();	
+//SINIFI KOMPLE SİLME
+$('.sily').click(function(){
+var sil_sinif=$(this).attr('id');	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"sil_sinif":sil_sinif}),
+			dataType: "json",
+			success: function(cevap){
+$('.d_daire[id='+sil_sinif+']').slideUp();	
+$.uyari('Sınıf Silindi !');			
+}});//ajax ve cevap
+});//sınıf sil
+
+//SINIF ÖĞRENCİLERİ GETİR	
+$('.dairey').click(function(){
+var si_isim=$(this).attr('adi');
+var getir_ogr=$(this).attr('id');		
+var sg_id=getir_ogr;
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"getir_ogr":getir_ogr}),
+			dataType: "json",
+			success: function(cevap){
+	$('.panel').hide();
+	$('#ogrenciler').html(cevap.veri).slideDown();	
+	$('#s_tabela').attr('placeholder',si_isim);
+$('.silg').click(function(){$('.y_panel').slideUp();});	
+//Yeni Öğrenci Ekleme
+$('#ogrenci_ekle').click(function(){
+$('#ogrenci_guncelle').attr('id','kaydet_ogrenci');
+$('.y_panel').slideDown();
+$('#kaydet_ogrenci').click(function(){
+var ogr_isim=$('#ogrenci_isim').val();
+var okul_no=$('#okul_numarasi').val();
+var veli_tel=$('#veli_telefonu').val();
+if(ogr_isim=='' || okul_no=='' || veli_tel==''){
+$.uyari('Tüm verileri girmelisiniz !');
+}else{
+var oxx_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"ogr_isim":ogr_isim,
+			       "okul_no":okul_no,
+				   "veli_tel":veli_tel,
+				    "sx_id":sg_id,
+					"oxx_id":oxx_id}),
+			dataType: "json",
+			success: function(cevap){
+				$.uyari(cevap.veri);
+				
+}});//ajax son	
+}//ogrenci veri kontrol	
+});//ogrenci kayet
+});//ogrenci ekle son
+
+
+//ÖĞRENCİ SİLME
+$('.sil_ogr').click(function(){
+var sil_ogr=$(this).attr('id');	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"sil_ogr":sil_ogr}),
+			dataType: "json",
+			success: function(cevap){
+$('.b_daire[id='+sil_ogr+']').slideUp();	
+$.uyari(cevap.veri);			
+}});//ajax ve cevap
+});//ÖĞRENCİ SİL son
+//-----------------------ÖĞRENCİ BİLGİLERİNİ GÜNCELLEME
+$('.guncelle').click(function(){
+$('.y_panel').slideDown();	
+$('#kaydet_ogrenci').attr('id','ogrenci_guncelle');	
+var isim=$(this).attr('isim');
+var okul_no=$(this).attr('okul_no');
+var veli_tel=$(this).attr('veli_tel');
+var up_ogr=$(this).attr('id');
+$('#ogrenci_isim').val(isim);
+$('#okul_numarasi').val(okul_no);
+$('#veli_telefonu').val(veli_tel);
+
+$('#ogrenci_guncelle').click(function(){
+var up_isim=$('#ogrenci_isim').val();
+var up_okul=$('#okul_numarasi').val();
+var up_veli=$('#veli_telefonu').val();
+alert(up_isim+up_okul)
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"up_isim":up_isim,
+			       "up_ogr":up_ogr,
+			       "up_okul":up_okul,
+				   "up_veli":up_veli}),
+			dataType: "json",
+			success: function(cevap){
+$.uyari(cevap.veri);				
+}});//ajax son	
+});//kaydet son
+});//ögrenci güncelle son
+//sınıf adını güncelleme		
+$('#s_tabela').change(function(){	
+var yeni_isim=$('#s_tabela').val();
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"yeni_isim":yeni_isim,
+			       "sg_id":sg_id}),
+			dataType: "json",
+			success: function(cevap){
+$.uyari('Sınıf İsmi Değiştirildi !');				
+}});//ajax son
+});//Sınıf ismi değiştir
+
+$('#bigeri').click(function(){
+$('#ogrenciler').hide();
+$('.panel:eq(1)').slideDown();	
+})//bigeri click
+}});//ajax ve cevap	
+});//dairey son	
+}});//sınıflar Ajaxı son
+
+}//index 1 son				
+
+//LİSTE OLUŞTURMA LİSTELERE MESAJ İŞLEMLERİ İNDEX==2
+if(index==2){
+var okul_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"liste_id":okul_id}),
+			dataType: "json",
+			success: function(cevap){
+				
+//------YENİ LİSTE OLUŞTUR
+$('#ekle_liste').click(function(){
+$('#liste_ekle').fadeIn();
+//kaydetme işlemi
+$('#kaydet_liste').click(function(){
+var liste_adi=$('#liste_adi').val();
+var okul_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"liste_adi":liste_adi,
+			       "oxo_id":okul_id}),
+			dataType: "json",
+			success: function(cevap){
+location.reload();
+
+}});//liste ajax son
+});//kaydet sonu
+});//ekle liste sonu
+$('#liste_panel').show();
+$('#liste_div').html(cevap.veri);	
+$.geri();	
+
+//LİSTELERE TIKLA DÜZNLE VEYA MESAJ GÖNDERMEYE BAŞLA
+$('.listey').click(function(){
+var li_id=$(this).attr('id');	
+var adi=$(this).attr('adi');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"li_id":li_id}),
+			dataType: "json",
+			success: function(cevap){
+$('#liste_panel').hide();				
+$('#lis_ogr').html(cevap.veri).slideDown();
+$('#liste_ici').show();
+$('.yoklama[adi=li_adi]').html(adi).attr('id',li_id);
+
+$('.geri_a').click(function(){
+	 $('#liste_ici').hide();
+	 $('#liste_panel').show();
+	});
+}});//listey sonu		
+});//listey içerik tıkla son
+$.y_sil();
+}});//liste ajax son
+}//liste işlemleri son index2 son
+ 
+//TOPLU SMS İŞLEMLERİ
+if(index==3){
+$('#sinif_sec').show();	
+var okul_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"toplu_id":okul_id}),
+			dataType: "json",
+			success: function(cevap){
+$('#sinif_sec').html(cevap.veri);
+$.geri();	
+
+//TOPLU SMS GÖNDERİLECEK SINIFLARI SEÇME
+$('.dairey').click(function(){
+var isaret=$(this).attr('isaret');
+switch (isaret){
+case "0":
+//ilk defa tıklama
+$(this).attr('isaret',1);
+$(this).css('border-color','#0F9');
+break;
+case "1":
+//tıklama iptal
+$(this).attr('isaret',0);
+$(this).css('border-color','#999');	
+break;	
+	}	
+});//dairey son	
+//DEVAM TIKLAMA 
+$('#devam').click(function(){
+$('#sinif_sec').hide();
+$('#toplu_kutu').show();
+
+var yoklama='';	
+var yok_ogr=$('.dairey[isaret=1]').length;
+for(index=0;index<yok_ogr; index++){
+var id=$('.dairey[isaret=1]:eq('+index+')').attr('id');
+yoklama+=',\"'+id+'\"';	}
+yoklama=yoklama.slice(1);
+var ofset=0;
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"t_list":yoklama,
+			        "ofset":ofset}),
+			dataType: "json",
+			success: function(cevap){
+$('#kisiler').html(cevap.veri);	
+$('#toplu_basla').attr('toplam',cevap.toplam);
+
+//TOPLU SMS GÖNDERMEYE BAŞLAYALIM ---- toplu_basla.click
+$('#toplu_basla').click(function(){
+
+//TOPLU SMS DÖNGÜ FONKSSİYONU
+$.simdi_sms=function(){
+	
+var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek	
+var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes	
+
+if(simdi<toplam){//sahnede toplam kadar kişi hatası	
+$.sms_dng=function(index){
+var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler	
+if(isaret>index){
+//----SMS PLUGIN
+var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
+var mesaj="toplu mesej denemesi :"+index;
+SMS.sendSMS(telefon,mesaj,function(){
+//işlem başarılı
+$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
+$('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
+index++;
+if(index!=toplam){$.sms_dng(index);}//son kişiye gelmedik ise
+if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
+},function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
+}//sms gönder
+if(isaret<=index){
+	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"t_list":yoklama,
+			        "ofset":index}),
+			dataType: "json",
+			success: function(cevap){
+$('.ogrenci:eq(:last)').prepend(cevap.veri);
+$.sms_dng(index);
+}});//ajax
+
+}//ajaxla yeni kişileri getir,$.sms_dng
+}//sms_dongu son
+$.sms_dng(0);
+}//if simdi<toplam son
+if(simdi==toplam){$.uyari('Görev Tamamlandı !');}//if simdi==toplam son
+};//simdi_sms son
+$.simdi_sms();
+});//toplu_basla son
+
+}});//ajax ve cevap		
+});//devam tıklama son
+}});//ajax ve cevap		
+}//index==3 sonu
+
+
+});//----------------------------------------DAİRELER TIKLAMA SONU
 $('#kaydet').click(function(){
 var yoklama='';	
 var yok_ogr=$('.ogrenci[isaret=1]').length;
@@ -723,31 +1345,33 @@ $.sms_gonder(yok_index);
 <div class="uyari" style="display:none;"></div>   
 <div class="alt_panel" id="liste">
 <div class="baslik">Yoklama Listesi</div>
-<div class="listex"></div>
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div>
 <div class="onayla" id="kaydet">Kaydet</div>
-</div>
-</div> 
+</div></div> 
+
 <div class="alt_panel" id="sms_panel">
  <div class="alt_kapat" id="alt_kapat">Kapat</div>
 <textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj">yok yazıldı, M.Yard Adem ÇALHAN,İBNİ SİNA MTAL</textarea>
 <div class="basla" id="basla">Başla</div>
 </div>         
-<div class="markabar"><div class="menu"></div><div class="marka">SMS PLUS</div></div>
-<div class="kul" okul_id="1" pers="1" id="1" style="display:none;"> Adem ÇALHAN</div>
+<div class="markabar"><div class="menu" v="0"></div>
+<div class="marka">SMS PLUS</div></div>
 <div class="orta">
       <div class="daire">
       <div class="d_yazi">Günlük Yoklama</div></div>
-      <div class="daire">
-      <div class="d_yazi">Öğrenci İşleri</div></div>
-      <div class="daire">
-      <div class="d_yazi">Personel</div></div> 
-      <div class="daire">
-      <div class="d_yazi">Toplu Mesaj</div></div>
-      <div class="daire">
+  <div class="daire">
       <div class="d_yazi">Sınıflar</div></div>
       <div class="daire">
+      <div class="d_yazi">Listeler</div></div> 
+      <div class="daire">
+      <div class="d_yazi">
+        <p>Toplu Sms  </p>
+      </div>
+  </div>
+      <div class="daire">
+      <div class="d_yazi">Personel</div></div>
+  <div class="daire">
       <div class="d_yazi">Aylık Yoklama</div></div>
       <div class="daire">
       <div class="d_yazi">Okul Bilgileri</div></div>
@@ -763,15 +1387,65 @@ $.sms_gonder(yok_index);
 <div class="panel">
 <div class="yoklama">Yoklama</div>
 <div class="yatay" id="siniflar"></div>
-<div class="kutu" id="yoklama" style="display:block;">
-
-</div>
+<div class="kutu" id="yoklama" style="display:block;"></div>
 <div class="kutu" id="sinif" style="overflow-y:scroll; height:270px;">
-<div class="panel">Personel <div class="p_kapat">Kapat</div></div>
-
 </div>                             
 </div>
-<div class="panel">Öğrenci İşleri <div class="p_kapat">Kapat	</div></div>
+<div class="panel" id="sinifim"></div>
+<div class="panel" id="liste_panel">
+<div class="yoklama">Listeler</div>
+<div class="yatay" id="siniflar"><div class="ekle_liste" id="ekle_liste"></div></div>
+<div class="kutu" id="liste_div" style="display:block;">
+<div class="taban">
+<div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
+</div>
+</div>
+<div class="panel">
+<div class="kutu" id="sinif_sec" style="display:block; margin-top:5px;">
+<div class="taban">
+<div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div></div>
+<div class="kutu" id="toplu_kutu" style="margin-top:5px;">
+<div class="kutu" id="kisiler" style="display:block; margin-top:5px; height:320px;"></div>
+<div class="alt_panel" id="sms_panel" style="display:block; margin-top:5px; ">
+<div class="alt_kapat" id="alt_kapat">Kapat</div>
+<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj">yok yazıldı, M.Yard Adem ÇALHAN,İBNİ SİNA MTAL</textarea>
+<div class="basla" id="toplu_basla" toplam="0">Başla</div>
+</div>    
+</div>
+</div>
 
+<div class="sol_panel">
+<div class="ut">
+<div class="ust">
+        <div class="px" id="p_sil" name="" style="background-image:url(icon/eksix.png);"></div>
+        <img class="profil" src="icon/profil.jpg" id="profilim" name="">
+        <div class="px" id="p_degistir" style="background-image:url(icon/artix.png);" p_img=""></div>
+         <div class="kul"  okul_id="1" pers="1" id="1"  mesaj="0">KLC974</div></div></div>
+<div class="ut">Hesap Ekle</div>
+<div class="ut">Şifre</div>
+<div class="ut">Yardım</div>
+<div class="alti" id="style-3">
+<div class="uzun2">
+<div class="ux" style="color:cyan; width:90px; border-color:cyan;">Hesabım</div>
+<div class="ux" style="width:90px;">Hesap Ekle</div>
+<div class="ux">Şifremi Unuttum</div>
+<div class="ux"  style="width:85px;">Yardım</div>
+</div>
+</div>
+</div>
+<div class="tam_panel" id="ogrenciler"></div>
+<div class="tam_panel" id="liste_ici">
+<div class="yoklama" id="" adi="li_adi">Liste Adı</div>
+<div class="yatay" id="siniflar"><div class="ekle_liste" id="ek_ogr"></div></div>
+<div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px;">
+</div> 
+<div class="ap_x" style="display:block;" id="k_liste">
+<div class="baslik">Yeni Liste</div>
+<div class="taban">
+<div class="geri_a"  style="color:#F00; border-color:#F00;">Geri</div>
+<div class="onayla" id="l_kaydet">Kaydet</div>
+</div>
+</div> 
+</div>
 </body>
 </html>
