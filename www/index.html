@@ -1120,7 +1120,7 @@ SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-var index=index++;
+index++;
 $.uyari(index);
 if(index!=toplam){$.sms_dng(index);
 var don='<a> bitmedi yeni index: '+index+'</a>';	
@@ -1217,7 +1217,8 @@ SMS.sendSMS(telefon,mesajx,function(){
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6');
 Cookies.set(yoklama_id,index);
 index++;
-$.uyari('Yeni: '+index);
+var don='<a>  yeni index: '+index+'</a>';	
+$('#mesaj').prepend(don);
 $.sms_gonder(index);
 },function (str){
 //hata oluştu alert(str); 
