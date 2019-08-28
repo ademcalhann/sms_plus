@@ -1120,7 +1120,7 @@ SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-index=index++;
+var index=index++;
 $.uyari(index);
 if(index!=toplam){$.sms_dng(index);
 var don='<a> bitmedi yeni index: '+index+'</a>';	
