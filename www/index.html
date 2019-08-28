@@ -1115,7 +1115,7 @@ var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler
 if(isaret>index){
 //----SMS PLUGIN
 var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
-var mesaj="toplu mesej denemesi :"+index;
+var mesaj="toplu mesaj denemesi :"+index;
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
