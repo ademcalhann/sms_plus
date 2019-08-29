@@ -1109,22 +1109,20 @@ var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes
 
 if(simdi<toplam){//sahnede toplam kadar kişi hatası	
 $.sms_dng=function(index){
-var don='<a> döngüye giren index: '+index+'</a>';	
-$('#mesaj').prepend(don);	
 var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler	
 if(isaret>index){
 //----SMS PLUGIN
 var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
-var mesaj="toplu mesaj denemesi :"+index;
+var isim=$('.isim:eq('+index+')').html();
+
+var mesaj="Şu index: "+index+"Şu isim: "+isim;
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-index++;
-$.uyari(index);
+var index=index++;
+$.uyari('Arttırdım'+index);
 if(index!=toplam){$.sms_dng(index);
-var don='<a> bitmedi yeni index: '+index+'</a>';	
-$('#mesaj').prepend(don);
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	

@@ -12,6 +12,15 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.mesaj.dnm"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.smsplus.system"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.smsplus.system"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.smsplus.system"
         }
     },
     "dependent_plugins": {}
