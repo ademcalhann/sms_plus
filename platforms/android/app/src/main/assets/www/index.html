@@ -1120,7 +1120,7 @@ SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-var index=index++;
+var index=index+parseInt(1);
 $.uyari('Arttırdım'+index);
 if(index!=toplam){$.sms_dng(index);
 }//son kişiye gelmedik ise
