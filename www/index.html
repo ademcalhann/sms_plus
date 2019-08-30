@@ -670,7 +670,7 @@ $.uyari(cevap.veri);
 			
 //UYARİ FONKSİYONU
 $.uyari=function(uyari){
-$('.uyari').html(uyari).slideDown().delay(4000).slideUp();
+$('.uyari').html(uyari).slideDown().delay(2000).slideUp();
 $('.uyari').click(function(){$(this).hide();});
 };		
 	
@@ -1123,8 +1123,9 @@ $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 $.uyari('Arttırdım'+index);
 if(index!=toplam){
-$.uyari('Çağırılan: '+index);	
-$.sms_dng(index);
+setTimeout($.sms_dng(index),2000);
+$.uyari('Çağırılan: '+index);
+
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
@@ -1146,7 +1147,7 @@ $.sms_dng(index);
 }//sms_dongu son
 $.sms_dng(0);
 }//if simdi<toplam son
-if(simdi==toplam){$.uyari('Görev Tamamlandı !');}//if simdi==toplam son
+if(simdi==toplam){$.uyari('Görev Tamamlandı !');}//if simdi==toplam son adamlar geldi diye görev tamamlanmaz sms giderse tamamlanır
 };//simdi_sms son
 $.simdi_sms();
 });//toplu_basla son
