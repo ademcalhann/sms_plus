@@ -1123,9 +1123,10 @@ $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 $.uyari('Arttırdım'+index);
 if(index!=toplam){
-setTimeout($.sms_dng(index),2000);
-$.uyari('Çağırılan: '+index);
-
+var a=$('#mesaj').val();
+var b=a+'<p>Yeni index: '+index+'</p>';	
+$('#mesaj').val(b);
+$.sms_dng(index);
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
