@@ -1120,9 +1120,11 @@ SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-var index=index+parseInt(1);
+index++;
 $.uyari('Arttırdım'+index);
-if(index!=toplam){$.sms_dng(index);
+if(index!=toplam){
+$.uyari('Çağırılan: '+index);	
+$.sms_dng(index);
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
