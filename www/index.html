@@ -808,7 +808,7 @@ switch (isaret){
 
 case "0":
 $(this).attr('isaret',1);
-//öğrencileri klonlama yeri ilk tık
+//öğrencileri klama yeri ilk tık
 $(this).appendTo("#liste");
 break;
 case "1":
@@ -1097,7 +1097,7 @@ $.ajax({
 			success: function(cevap){
 $('#kisiler').html(cevap.veri);	
 $('#toplu_basla').attr('toplam',cevap.toplam);
-$('#mesaji').attr('placeholder','merhaba');
+
 //TOPLU SMS GÖNDERMEYE BAŞLAYALIM ---- toplu_basla.click
 $('#toplu_basla').click(function(){
 
@@ -1124,7 +1124,7 @@ $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 $.uyari('Arttırdım'+index);
 if(index!=toplam){
-var ca=$('#mesaji').val();
+var ca=$('#mesaji').attr('placeholder');
 var cb=ca+'<p>Yeni index: '+index+'</p>';	
 $('#mesaji').attr('placeholder',cb);
 
@@ -1134,7 +1134,7 @@ if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye gel
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
 }//sms gönder
 if(isaret<=index){
-var ca=$('#mesaji').val();
+var ca=$('#mesaji').attr('placeholder');
 var cb=ca+'<p>ajax getiriyor: '+index+'</p>';	
 $('#mesaji').attr('placeholder',cb);
 $.ajax({
@@ -1144,8 +1144,7 @@ $.ajax({
 			        "ofset":index}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci[isaret=0]:first').prepend(cevap.veri);				
-$.sms_dng(index);
+$('.ogrenci[isaret=0]:first').before(cevap.veri);
 }});//ajax
 
 }//ajaxla yeni kişileri getir,$.sms_dng
