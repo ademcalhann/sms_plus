@@ -1108,6 +1108,7 @@ var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes	
 
 if(simdi<toplam){//sahnede toplam kadar kişi hatası	
+
 $.sms_dng=function(index){
 var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler	
 if(isaret>index){
@@ -1123,16 +1124,17 @@ $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 $.uyari('Arttırdım'+index);
 if(index!=toplam){
-var a=$('#mesaj').val();
-var b=a+'<p>Yeni index: '+index+'</p>';	
-$('#mesaj').val(b);
+var ca=$('#mesaj').val();
+var cb=ca+'<p>Yeni index: '+index+'</p>';	
+$('#mesaj').val(cb);
+alert(cb)
 $.sms_dng(index);
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
 }//sms gönder
 if(isaret<=index){
-	
+	alert('ajax var');
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
@@ -1148,7 +1150,7 @@ $.sms_dng(index);
 }//sms_dongu son
 $.sms_dng(0);
 }//if simdi<toplam son
-if(simdi==toplam){$.uyari('Görev Tamamlandı !');}//if simdi==toplam son adamlar geldi diye görev tamamlanmaz sms giderse tamamlanır
+if(simdi==toplam){$.uyari('Görev Tamamlandı !');}//if simdi==toplam son küçük sayı hatası şimdilik 
 };//simdi_sms son
 $.simdi_sms();
 });//toplu_basla son
@@ -1219,8 +1221,6 @@ SMS.sendSMS(telefon,mesajx,function(){
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6');
 Cookies.set(yoklama_id,index);
 index++;
-var don='<a>  yeni index: '+index+'</a>';	
-$('#mesaj').prepend(don);
 $.sms_gonder(index);
 },function (str){
 //hata oluştu alert(str); 
