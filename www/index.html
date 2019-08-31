@@ -1097,7 +1097,7 @@ $.ajax({
 			success: function(cevap){
 $('#kisiler').html(cevap.veri);	
 $('#toplu_basla').attr('toplam',cevap.toplam);
-
+$('#mesaji').attr('placeholder','merhaba');
 //TOPLU SMS GÖNDERMEYE BAŞLAYALIM ---- toplu_basla.click
 $('#toplu_basla').click(function(){
 
@@ -1124,9 +1124,9 @@ $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 $.uyari('Arttırdım'+index);
 if(index!=toplam){
-var ca=$('#mesaj').val();
+var ca=$('#mesaji').val();
 var cb=ca+'<p>Yeni index: '+index+'</p>';	
-$('#mesaj').html(cb);
+$('#mesaji').attr('placeholder',cb);
 
 $.sms_dng(index);
 }//son kişiye gelmedik ise
@@ -1134,7 +1134,9 @@ if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye gel
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
 }//sms gönder
 if(isaret<=index){
-	alert('ajax var');
+var ca=$('#mesaji').val();
+var cb=ca+'<p>ajax getiriyor: '+index+'</p>';	
+$('#mesaji').attr('placeholder',cb);
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
@@ -1142,7 +1144,7 @@ $.ajax({
 			        "ofset":index}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci').prepend(cevap.veri);
+$('.ogrenci[isaret=0]:first').prepend(cevap.veri);				
 $.sms_dng(index);
 }});//ajax
 
@@ -1417,7 +1419,7 @@ $.sms_gonder(yok_index);
 <div class="kutu" id="kisiler" style="display:block; margin-top:5px; height:320px;"></div>
 <div class="alt_panel" id="sms_panel" style="display:block; margin-top:5px; ">
 <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj"></textarea>
+<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaji"  class="mesaj"></textarea>
 <div class="basla" id="toplu_basla" toplam="0">Başla</div>
 </div>    
 </div>
