@@ -1126,8 +1126,8 @@ $.uyari('Arttırdım'+index);
 if(index!=toplam){
 var ca=$('#mesaj').val();
 var cb=ca+'<p>Yeni index: '+index+'</p>';	
-$('#mesaj').val(cb);
-alert(cb)
+$('#mesaj').html(cb);
+
 $.sms_dng(index);
 }//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
@@ -1142,7 +1142,7 @@ $.ajax({
 			        "ofset":index}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci:eq(:last)').prepend(cevap.veri);
+$('.ogrenci').prepend(cevap.veri);
 $.sms_dng(index);
 }});//ajax
 
@@ -1361,7 +1361,7 @@ $.sms_gonder(yok_index);
 
 <div class="alt_panel" id="sms_panel">
  <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj">yok yazıldı, M.Yard Adem ÇALHAN,İBNİ SİNA MTAL</textarea>
+<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj"></textarea>
 <div class="basla" id="basla">Başla</div>
 </div>         
 <div class="markabar"><div class="menu" v="0"></div>
@@ -1417,7 +1417,7 @@ $.sms_gonder(yok_index);
 <div class="kutu" id="kisiler" style="display:block; margin-top:5px; height:320px;"></div>
 <div class="alt_panel" id="sms_panel" style="display:block; margin-top:5px; ">
 <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj">yok yazıldı, M.Yard Adem ÇALHAN,İBNİ SİNA MTAL</textarea>
+<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj"></textarea>
 <div class="basla" id="toplu_basla" toplam="0">Başla</div>
 </div>    
 </div>
