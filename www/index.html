@@ -1109,32 +1109,32 @@ var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes
 if(simdi<toplam){//sahnede toplam kadar kişi hatası	
 
 $.sms_dng=function(index){
+var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes		
 var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler	
 if(isaret>index){
 //----SMS PLUGIN
 var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
 
-var mesaj="Şu index: "+index+"Şu isim: "+isim;
+var mesaj="Şu index: "+index+" Şu isim: "+isim;
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-var indexi=index+parseInt(1);
+index++;
 
-if(indexi!=toplam){
+if(index!=toplam){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'<p>Yeni index: '+indexi+'</p>';	
+var cb=ca+'----Devam index: '+index+'----';	
 $('#mesaji').attr('placeholder',cb);
 
-$.sms_dng(indexi);
-}//son kişiye gelmedik ise
-if(indexi==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
-},function (str){$('.ogrenci[isaret=1]:eq('+indexi+')').css('background-color','#F03');var indexi=index+parseInt(1);});//---SMS PLUGIN SON	
+$.sms_dng(index);}//son kişiye gelmedik ise
+if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
+},function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); /*index++; şimdilik */});//---SMS PLUGIN SON	
 }//sms gönder
-if(isaret<=index){
+if(simdi<toplam){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'<p>ajax getiriyor: '+index+'</p>';	
+var cb=ca+'----ajax getiriyor: '+index+'----';	
 $('#mesaji').attr('placeholder',cb);
 $.ajax({
 			type: "POST",
@@ -1144,11 +1144,7 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 $('.ogrenci:first').before(cevap.veri);
-$('.ogrenci').click(function(){
-var index=$(this).index();
-alert(index)	
 
-	})
 $.sms_dng(0);
 }});//ajax
 
