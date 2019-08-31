@@ -1145,10 +1145,11 @@ $.ajax({
 			success: function(cevap){
 $('.ogrenci:first').before(cevap.veri);
 $('.ogrenci').click(function(){
-var index=$(this).attr('index');
+var index=$(this).index();
 alert(index)	
-$.sms_dng(0);
+
 	})
+	$.sms_dng(0);
 }});//ajax
 
 }//ajaxla yeni kişileri getir,$.sms_dng
