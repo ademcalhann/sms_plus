@@ -1120,17 +1120,17 @@ SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
-index++;
+var indexi=index+parseInt(1);
 
-if(index!=toplam){
+if(indexi!=toplam){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'<p>Yeni index: '+index+'</p>';	
+var cb=ca+'<p>Yeni index: '+indexi+'</p>';	
 $('#mesaji').attr('placeholder',cb);
 
-$.sms_dng(index);
+$.sms_dng(indexi);
 }//son kişiye gelmedik ise
-if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
-},function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); index++;});//---SMS PLUGIN SON	
+if(indexi==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
+},function (str){$('.ogrenci[isaret=1]:eq('+indexi+')').css('background-color','#F03');var indexi=index+parseInt(1);});//---SMS PLUGIN SON	
 }//sms gönder
 if(isaret<=index){
 var ca=$('#mesaji').attr('placeholder');
@@ -1149,7 +1149,7 @@ var index=$(this).index();
 alert(index)	
 
 	})
-	$.sms_dng(0);
+$.sms_dng(0);
 }});//ajax
 
 }//ajaxla yeni kişileri getir,$.sms_dng
