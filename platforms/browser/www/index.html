@@ -1111,7 +1111,7 @@ if(simdi<toplam){//sahnede toplam kadar kişi hatası
 $.sms_dng=function(index){
 var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes		
 var isaret=$('.ogrenci[isaret=1]').length;//sms gönderilmeyenler	
-if(isaret>index){
+if(simdi<=toplam){
 //----SMS PLUGIN
 var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
@@ -1131,8 +1131,9 @@ $('#mesaji').attr('placeholder',cb);
 $.sms_dng(index);}//son kişiye gelmedik ise
 if(index==toplam){$.uyari('Son Kişiye de sms gönderildi !');}//son kişiye geldik !
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); /*index++; şimdilik */});//---SMS PLUGIN SON	
-}//sms gönder
-if(simdi<toplam){
+}//sms_dng son
+
+if(simdi<toplam && simdi!=toplam){
 var ca=$('#mesaji').attr('placeholder');
 var cb=ca+'----ajax getiriyor: '+index+'----';	
 $('#mesaji').attr('placeholder',cb);
@@ -1363,7 +1364,7 @@ $.sms_gonder(yok_index);
 
 <div class="alt_panel" id="sms_panel">
  <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaj"  class="mesaj"></textarea>
+<textarea rows="9"  placeholder="" id="mesaj"  class="mesaj"></textarea>
 <div class="basla" id="basla">Başla</div>
 </div>         
 <div class="markabar"><div class="menu" v="0"></div>
@@ -1419,7 +1420,7 @@ $.sms_gonder(yok_index);
 <div class="kutu" id="kisiler" style="display:block; margin-top:5px; height:320px;"></div>
 <div class="alt_panel" id="sms_panel" style="display:block; margin-top:5px; ">
 <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<textarea rows="9"  placeholder="Mesaj yaz !" id="mesaji"  class="mesaj"></textarea>
+<textarea rows="9"  placeholder="" id="mesaji"  class="mesaj"></textarea>
 <div class="basla" id="toplu_basla" toplam="0">Başla</div>
 </div>    
 </div>
