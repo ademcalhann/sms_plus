@@ -1097,7 +1097,6 @@ $.ajax({
 			success: function(cevap){
 $('#kisiler').html(cevap.veri);	
 $('#toplu_basla').attr('toplam',cevap.toplam);
-
 //TOPLU SMS GÖNDERMEYE BAŞLAYALIM ---- toplu_basla.click
 $('#toplu_basla').click(function(){
 
@@ -1122,7 +1121,7 @@ SMS.sendSMS(telefon,mesaj,function(){
 $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
-$.uyari('Arttırdım'+index);
+
 if(index!=toplam){
 var ca=$('#mesaji').attr('placeholder');
 var cb=ca+'<p>Yeni index: '+index+'</p>';	
@@ -1144,7 +1143,12 @@ $.ajax({
 			        "ofset":index}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci[isaret=0]:first').before(cevap.veri);
+$('.ogrenci:first').before(cevap.veri);
+$('.ogrenci').click(function(){
+var index=$(this).attr('index');
+alert(index)	
+$.sms_dng(0);
+	})
 }});//ajax
 
 }//ajaxla yeni kişileri getir,$.sms_dng
