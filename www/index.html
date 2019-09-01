@@ -1233,12 +1233,16 @@ $('.uyari').html('');
 //liste boş ilk defa sms gidiyor ! index=0
 //-----SMS DÖNGÜSÜ
 $.sms_gonder=function(index){
-$.uyari('gelen: '+index);
+	
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======  sms_gonder gelen: '+index;
+$('#mesaj').attr('placeholder',cb);
+
 var ogr_sayi=$('.y_ogrenci').length;
 if(index<ogr_sayi){
 var telefon=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
-//alert(telefon+' '+isim);
+
 var mesaj=$('#mesaj').val();
 var mesajx=isim+zaman+mesaj;
 //----SMS PLUGIN
@@ -1247,12 +1251,26 @@ SMS.sendSMS(telefon,mesajx,function(){
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6');
 Cookies.set(yoklama_id,index);
 index++;
+
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======  sonraki: '+index;
+$('#mesaj').attr('placeholder',cb);
+
 $.sms_gonder(index);
 },function (str){
 //hata oluştu alert(str); 
 $('.y_ogrenci:eq('+index+')').css('background-color','#F03');
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ====== başarısız: '+index;
+$('#mesaj').attr('placeholder',cb);
+index++;
+$.sms_gonder(index);
 });//---SMS PLUGIN SON	
-}else{
+}
+if(index==ogr_sayi){
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======  Görev tamam: '+index;
+$('#mesaj').attr('placeholder',cb);
 $.uyari('Görev Tamamlandı!'+index);
 Cookies.set(yoklama_id,index);
 $('#sms_panel').fadeOut();}
