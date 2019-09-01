@@ -1095,44 +1095,41 @@ $.ajax({
 			        "ofset":ofset}),
 			dataType: "json",
 			success: function(cevap){
-$('#kisiler').html(cevap.veri);	
+//$('#kisiler').html(cevap.veri);	
 $('#toplu_basla').attr('toplam',cevap.toplam);
 //TOPLU SMS GÖNDERMEYE BAŞLAYALIM ---- toplu_basla.click
 $('#toplu_basla').click(function(){
 var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
-var sahne=$('.ogrenci[simdi=1]').length;//sahnede ki herkes
+var sahne=$('.ogrenci').length;//sahnede ki herkes
 
 $.sms_dng=function(index){
 var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 
 if(index<toplam){
 
-
 var ca=$('#mesaji').attr('placeholder');
 var cb=ca+' ======  sms_dng gelen: '+index;
 $('#mesaji').attr('placeholder',cb);	
 //----SMS PLUGIN
-var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
+var telefon=$('.ogrenci:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
 
-var mesaj="Şu index: "+index+" Şu isim: "+isim;
+var mesaj="Şu index: "+index+" Şu isim: "+telefon;
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
-$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
-$('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
+$('.ogrenci:eq('+index+')').css('background-color','#0F6');
 index++;
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+' ======  Sıradaki index: '+index;
+var cb=ca+' ======  Sıradaki index: '+index+mesaj;
 $('#mesaji').attr('placeholder',cb);	
 $.sms_dng(index);
-},function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); 
-$('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
+},function (str){$('.ogrenci:eq('+index+')').css('background-color','#F03'); 
 index++;
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+' ======  Bir Hata var: '+index;
+var cb=ca+' ======  Bir Hata var: '+index+mesaj;
 $('#mesaji').attr('placeholder',cb);	
 //buraya sorun var cookisi yazılsın
-$.sms_dng(index);//indexin son halini kontrol etmesi için g_contu çağırdık
+$.sms_dng(index);
 });//---SMS PLUGIN SON
 }//sms gönderecek kişi var son
 if(index==toplam){
@@ -1142,22 +1139,24 @@ var cb=ca+' ======  Görev Tamamlandı '+index;
 $('#mesaji').attr('placeholder',cb);	}//Herkes tamamlandı		
 };//sms_dng son
 
-$.sahne=function(){
-	var last=$('.ogrenci').length;
+$.sahne=function(son){
 
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"t_list":yoklama,
-			        "ofset":last}),
+			        "ofset":son}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci:first').before(cevap.veri);
-var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
-var sahne=$('.ogrenci[simdi=1]').length;//sahnede ki herkes
+		
+if(son=='0'){
+	$('#kisiler').html(cevap.veri)
+	}else{$('.ogrenci:last').after(cevap.veri);}				
 
-if(sahne<toplam){
-	
+var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
+var sahne=$('.ogrenci').length;//sahnede ki herkes
+
+if(sahne<toplam){	
 var last=$('.ogrenci').length;
 var ca=$('#mesaji').attr('placeholder');
 var cb=ca+' ======  Son Gelen: '+last
@@ -1174,14 +1173,10 @@ $.sms_dng(0);// ilk kişiden başla
 
 }});//ajax	
 
-};
+
+};//sahne func son
 	
-
-if(sahne<toplam){
-var last=$('.ogrenci').length;
-$.sahne(last);
-}//gelmeyenler var ajax getirsin
-
+$.sahne(0);
 
 
 });//toplu_basla son
