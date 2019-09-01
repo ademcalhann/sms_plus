@@ -1154,7 +1154,7 @@ $.ajax({
 			        "ofset":index}),
 			dataType: "json",
 			success: function(cevap){
-$('.ogrenci:first').after(cevap.veri);
+$('.ogrenci:last').after(cevap.veri);
 $.g_cont(index);
 }});//ajax
 	
