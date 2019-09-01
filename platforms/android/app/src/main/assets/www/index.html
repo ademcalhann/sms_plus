@@ -1103,7 +1103,7 @@ var index=0;
 //Kişi kontrol sürekli index yönlendir ve çalıştır
 $.g_cont=function(index){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== g_cont gelen '+index;
+var cb=ca+' ======  g_cont gelen '+index;
 $('#mesaji').attr('placeholder',cb);	
 	
 var simdi=$('.ogrenci[simdi=1]').length;//sahnede ki herkes	
@@ -1111,7 +1111,7 @@ var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 
 $.sms_dng=function(index){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== sms_dng gelen: '+index;
+var cb=ca+' ======  sms_dng gelen: '+index;
 $('#mesaji').attr('placeholder',cb);	
 //----SMS PLUGIN
 var telefon=$('.ogrenci[isaret=1]:eq('+index+')').attr('veli_tel');	
@@ -1124,13 +1124,14 @@ $('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#0F6');
 $('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== Sıradaki index: '+index;
+var cb=ca+' ======  Sıradaki index: '+index;
 $('#mesaji').attr('placeholder',cb);	
 $.g_cont(index);//indexin son halini kontrol etmesi için g_contu çağırdık
 },function (str){$('.ogrenci[isaret=1]:eq('+index+')').css('background-color','#F03'); 
+$('.ogrenci[isaret=1]:eq('+index+')').attr('isaret',0);
 index++;
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== Bir Hata var: '+index;
+var cb=ca+' ======  Bir Hata var: '+index;
 $('#mesaji').attr('placeholder',cb);	
 //buraya sorun var cookisi yazılsın
 $.g_cont(index);//indexin son halini kontrol etmesi için g_contu çağırdık
@@ -1139,13 +1140,13 @@ $.g_cont(index);//indexin son halini kontrol etmesi için g_contu çağırdık
 
 if(index<toplam && index<simdi){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== Sahnede Kişi var '+index;
+var cb=ca+' ======  Sahnede Kişi var '+index;
 $('#mesaji').attr('placeholder',cb);	
 
 $.sms_dng(index);}//sahnede kişi var 
 if(index<toplam && index==simdi){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== ajax getiriyor: '+index;
+var cb=ca+' ======  Ajax Getiriyor: '+index;
 $('#mesaji').attr('placeholder',cb);	
 $.ajax({
 			type: "POST",
@@ -1161,14 +1162,14 @@ $.g_cont(index);
 }//kişi bitti ajax ile getir
 if(index==toplam){$.uyari('Görev Tamamlandı: '+index);
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== Görev Tamamlandı '+index;
+var cb=ca+' ======  Görev Tamamlandı '+index;
 $('#mesaji').attr('placeholder',cb);	
 }	//index toplandan 1 eksik olur eşitse görev bitti demektir
 
 };//g_cont son
 if(index==0){
 var ca=$('#mesaji').attr('placeholder');
-var cb=ca+'====== İlk başlama: '+index;
+var cb=ca+' ======  İlk başlama: '+index;
 $('#mesaji').attr('placeholder',cb);	
 $.g_cont(0);}//kendiliğinden ilk başla 
 });//toplu_basla son
