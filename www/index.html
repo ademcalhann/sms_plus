@@ -261,6 +261,18 @@
 	background-image: url(icon/x.png);
 	background-position: center center;
 }
+.sil_box {
+	height: 15px;
+	width: 15px;
+	margin-top: -25px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	margin-right: 2px;
+	border-radius: 50%;
+	background-image: url(icon/x.png);
+	background-position: center center;
+}
 .silg {
 	height: 15px;
 	width: 15px;
@@ -625,7 +637,7 @@
 	font-family: calibri;
 	font-size: 14px;
 }.uzun2 {
-	width: 500px;
+	width: 570px;
 }
 .ust {
 	width: 79%;
@@ -978,7 +990,20 @@ $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
 	$('.ut:eq('+xc+')').slideDown();
 	
 });
-
+//TABDAN ETKİLENMEYEN GELEN KUTUSU
+$('#g_box').click(function(){
+var box_id=$('.kul').attr('id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/sohbet.php",
+			data:({"box_id":box_id}),
+			dataType: "json",
+			success: function(cevap){
+			$('.ut:eq(2)').html(cevap.veri).slideDown();
+			$.sil_box();
+            $.yan_menu();				
+}});//ajax ve cevap
+});//g_box
 
 //Cookies Kullanıcı Giriş Kontrol
 $.sil=function(){Cookies.remove('kek');};
@@ -989,7 +1014,7 @@ var uye_ol_div=$('.ust').html();
 $('.ust').html(kekim).show();
 //Fotoğraf hatası Düzelt
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	 
-  var harf = $('.ust').html();
+ // null ile deneriz var harf = $('.ust').html();
 
 //PROFİL İŞLEMELERİ  
 //--------PROFİL FOTOĞRAFI DEĞİŞTİRME
@@ -1117,9 +1142,7 @@ $.ajax({
 			data:({"p_sil":url}),
 			dataType: "json",
 			success: function(cevap){
-				if (cevap.hata){
-				alert(cevap.hata);
-				} else {
+				if (cevap.hata){alert(cevap.hata);} else {
 					$('.uyari').html(cevap.olumlu);
 					$.uyari();
 					
@@ -1155,8 +1178,14 @@ $.uyari('Başarıyla Çıkış Yapıldı !');
 	$.sil();
 location.reload();	
 	});
-//burası gerçek kullanıcı yok demek öyleyse misafir oturumu yapalım
-if(harf=="undefined"){$('.ust').html(uye_ol_div).show();};
+//kullanıcı yok üye ol gösterelim
+if(kek==null){$('.ust').html(uye_ol_div).show();}else{
+$('.ux:eq(1)').html('Güncelle');
+$('#giris').html('Güncelle');
+var isim=$('.kul').html();
+$('#g_tel').attr('placeholder','İsmini düzenle yada Boş Bırak...').val(isim);
+$('#g_sifre').attr('placeholder','Yeni Şifre Girin yada Boş Bırak...');
+}
 //UYE_OL_DİV TAKİP FONKSİYONU
 $.uye_ol_div=function(){
 $('.uye_ol_div').click(function(){
@@ -1211,9 +1240,7 @@ $.ajax({
 			       "url":url}),
 			dataType: "json",
 			success: function(cevap){
-				if (cevap.hata){
-				alert(cevap.hata);
-				} else {
+				if (cevap.hata){alert(cevap.hata);} else {
 					$('.uyari').html(cevap.olumlu);
 					$.uyari();
 
@@ -1224,6 +1251,33 @@ $('.m_box[id='+mesaj_id+']').slideUp();
 });//AJAX		
 });//click
 };
+
+//*********TOPLU MESAJ VE FOTOĞRAF SİL
+$.sil_box=function(){
+//----BENİM MESAJLARI SİL GÖRME					
+var kul_id=$('.kul').attr('id');
+$('.sil_box').click(function(){
+var gonderen=$(this).attr('gonderen');
+
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/sohbet.php",
+			data:({"alan":kul_id,
+				   "sil_box":gonderen}),
+			dataType: "json",
+			success: function(cevap){
+				if (cevap.hata){alert(cevap.hata);} else {
+					$('.uyari').html(cevap.olumlu);
+					$.uyari();
+
+$('.m_box[m_alan='+gonderen+']').slideUp();
+
+}//ELSE
+}//CEVAP
+});//AJAX		
+});//click
+};
+
 
 //sil_vt SİLME
 $.sil_vt=function(){
@@ -1369,10 +1423,9 @@ $.mesaj_sender();
 
 //MESAJLAŞMA PANELİ AÇ
 $.yan_menu=function(){
-$('.kullanici').click(function(){
-	
-var m_alan=$(this).attr('id');
-var m_gonderen=$('.kul').attr('id');
+$('.kullanici,.m_box,.profil,.isimx').click(function(){	
+var m_alan=$(this).attr('m_alan');//alan=m_alan
+var m_gonderen=$('.kul').attr('id');//zaten ben
 $('#send').attr('tur',1);
 $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
@@ -1381,6 +1434,7 @@ $('#m_baslik').html('Özel Mesajlar');
 
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
 $.mesaj_sender();
+$.yan_menu();
 $('#y_kapat').click(function () { $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 
@@ -1454,19 +1508,19 @@ $.alt_kapat();
 
 //ÜYELERİN GİRİŞ YAPMA ALANI
 $('#giris').click(function(){
+
 var g_tel=$('#g_tel').val();
 var g_sifre=$('#g_sifre').val();
-
+var durum=$(this).html();
+if(durum=='Giriş'){
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"g_tel":g_tel,
-			"g_sifre":g_sifre}),
+			       "g_sifre":g_sifre}),
 			dataType: "json",
 			success: function(cevap){
-if(cevap.hata){
-$.uyari(cevap.hata);	
-	}
+if(cevap.hata){$.uyari(cevap.hata);}
 if(cevap.veri){
 $('.ust').html(cevap.veri).show();
 //Fotoğraf hatası Düzelt
@@ -1478,9 +1532,34 @@ $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
 $('.ux:eq('+0+')').css('border-color','#00CCFF').css('color','#00CCFF');
 $.uyari('Hoş Geldiniz !');	
 Cookies.set('kek', kayit);}
-
 }});//ajax cevap son 
+}//giriş yapmason
+if(durum=='Güncelle'){	
+	var kul_id=$('.kul').attr('id');
 
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"kim_isim":g_tel,
+			       "yeni_sifre":g_sifre,
+				   "kim":kul_id}),
+			dataType: "json",
+			success: function(cevap){
+if(cevap.hata){$.uyari(cevap.hata);}
+if(cevap.veri){
+$('.ust').html(cevap.veri).show();
+//Fotoğraf hatası Düzelt
+$(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	 
+var kayit = $('.ust').html();
+$('.ut').slideUp();
+$('.ut:eq('+0+')').show();
+$('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
+$('.ux:eq('+0+')').css('border-color','#00CCFF').css('color','#00CCFF');
+$.uyari('Güncelleme Başarılı...');	
+Cookies.set('kek', kayit);}
+}});//ajax cevap son 	
+
+}	
 });//üye giris son
 
 //------- GÜNLÜK BLOK YOKLAMALARI GETİR ALANI
@@ -2132,10 +2211,7 @@ var zaman =' '+saat+'.'+dakika+' de ';
 var yoklama_id=$(this).attr('yoklama_id');
 if(Cookies.get(yoklama_id)== null){ var list="";}else{ var list=Cookies.get(yoklama_id);}
 var yok_index=Cookies.get(yoklama_id);
-//alert('Okunan: '+yok_index);
-//yokluğu boşluğa çevirdik
-//$('.uyari').html(yok_index);
-//var list=$('.uyari').html();
+
 $('.uyari').html('');
 //liste boş ilk defa sms gidiyor ! index=0
 //-----SMS DÖNGÜSÜ
@@ -2452,7 +2528,7 @@ $('#mesaj').attr('placeholder',cb);
         <input type="password" class="metin" placeholder="Şifre" id='g_sifre'>
         <div class="basla" id="giris">Giriş</div>
 </div>
-
+<div class="ut"></div>
 <div class="ut">
         <input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
@@ -2462,6 +2538,7 @@ $('#mesaj').attr('placeholder',cb);
 <div class="uzun2">
 <div class="ux" style="color:cyan; width:90px; border-color:cyan;">Hesabım</div>
 <div class="ux" style="width:90px;">Giriş Yap</div>
+<div class="ux" style="width:120px;"  id="g_box">Gelen Kutusu</div>
 <div class="ux" style="width:120px;">Şifremi Unuttum</div>
 <div class="ux">Yardım</div>
 
@@ -2485,7 +2562,7 @@ $('#mesaj').attr('placeholder',cb);
 <div class="ic_kapat" id="yayiny_kapat">Kapat</div></div>
 
 <div class="yan_menu">
-<div class="baslik" id="m_baslik">Kime Mesaj</div>
+<div class="baslik" id="m_baslik"></div>
 <div class="m_div" id="mesaj"></div>
 
 </div>
