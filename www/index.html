@@ -272,6 +272,9 @@
 	border-radius: 50%;
 	background-image: url(icon/x.png);
 	background-position: center center;
+	position: absolute;
+	z-index: 5;
+	margin-left: 90%;
 }
 .silg {
 	height: 15px;
@@ -651,11 +654,11 @@
     border-radius: 50%;
 }
 .profil {
-    float: left;
-    height: 60px;
-    width: 60px;
-    box-shadow: 0 0 10px 2px white;
-    border-radius: 50%;
+	float: left;
+	height: 60px;
+	width: 60px;
+	box-shadow: 0 0 10px 2px #297929;
+	border-radius: 50%;
 }
 .y_panel {
 	height: auto;
@@ -778,7 +781,7 @@
 	float: left;
 	height: 60px;
 	width: 60px;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 10px 2px #297929;
 	border-radius: 50%;
 }
 .ic_kapat {
@@ -823,7 +826,7 @@
 	margin-left: 1%;
 }
         #bar {
-	background-color: #3399FF;
+	background-color: #33FF66;
 	width: 0%;
 	height: 20px;
 	border-radius: 3px;
@@ -862,11 +865,11 @@
 	width: 100%;
 	position: fixed;
 	z-index: 8;
-	top: 45px;
+	top: 0px;
 	left: 0px;
 	overflow: scroll;
 	visibility: inherit;
-	background-image: url(icon/blck.png);
+	background-image: url(icon/byz.png);
 	background-repeat: repeat;
 	background-position: center;
 	height: 100%;
@@ -874,15 +877,14 @@
 	display: none;
 }
 .m_box{
-	color: #FFFFFF;
-    height: auto;
-    padding-top: 10px;
-    padding-right: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    margin-left: 5px;
-    font-size: 14px;
-	
+	color: #000000;
+	height: auto;
+	padding-top: 10px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+	margin-left: 5px;
+	font-size: 14px;	
 }
 
 .m_gonder {
@@ -927,7 +929,7 @@
 	margin-bottom: 8px;
 	padding-left: 4px;
 	padding-bottom: 5px;
-	height: 78%;
+	height: 85%;
 	padding-right: 4px;
 	color: #FFFFFF;
 	padding-top: 3px;
@@ -935,7 +937,7 @@
 }
 
 .y_y {
-	color: #FFFFFF;
+	color: #000000;
 	height: auto;
 	padding-top: 10px;
 	padding-right: 3px;
@@ -945,7 +947,7 @@
 	font-size: 14px;
 }
 .isimx {
-	color: #00CCFF;
+	color: #0099FF;
 	height: 19px;
 	width: 45%;
 	padding-top: 3px;
@@ -955,7 +957,7 @@
 	padding-left: 5px;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: #00CCFF;
+	border-bottom-color: #0099FF;
 	font-size: 12px;
 	padding-right: 5px;
 }
@@ -971,16 +973,23 @@
 	margin-top: 15px;
 	margin-left: 24%;
 	font-family: Verdana;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 5px 2px #00CCFF;
 	border: 1px solid #FFFFFF;
 	margin-bottom: 5px;
 }
+.resim {
+	margin-top: 10px;
+    box-shadow: 0 0 5px 2px #297929;
+    border-radius: 15px;
+    height: 280px;
+	}
     </style>
 </head>
 <body onload="onLoad()">
 <script>
         function onLoad() {
             //Jquery yazım alanı
+
 //ux ut işlemleri
 $('.ux').click(function(){
 $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
@@ -1089,7 +1098,10 @@ $("#profilx").ajaxForm(options);//---dosya yükleme son
 //BUNLARI BELKİDE SİLMELİYİZ
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeIn();});
-$('#y_kapat').click(function () { $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
+$('#y_kapat').click(function () {
+	 
+  
+$('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 //---------DOSYA YÜKLEME 
 $("#dosyayukle").ajaxForm({
@@ -1306,15 +1318,20 @@ $('#sms_panel').slideDown();
 //smsm islemi basla
 });};
 
+
 //MESAJ GONDERİCİ
 $.mesaj_sender=function(){
-$('#y_kapat').click(function () { $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
+$('#y_kapat').click(function(){  
+$('.yan_menu').fadeOut();
+$('#send').attr('tur',0); 
+$('#send').attr('m_alan','');
+$('#send').attr('m_gonderen','');});
 $('#send').click(function(){
 var m_alan=$(this).attr('m_alan');
 var m_gonderen=$(this).attr('m_gonderen');
 var tur=$(this).attr('tur');
+var sson_id=$(this).attr('son_id');
 var mesaj=$('.m_veri').val();
-$('.m_veri').val('');
 if(mesaj!=''){
 $.ajax({
 			type: "POST",
@@ -1322,16 +1339,43 @@ $.ajax({
 			data:({"kaydet_alan":m_alan,
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
-				   "mesaj":mesaj }),
+				   "mesaj":mesaj,
+				   "sson_id":sson_id }),
 			dataType: "json",
 			success: function(cevap){
 	$('.m_box:last').after(cevap.veri);	
-$('.m_veri').val('');
-
+	var son_id=$('.m_box:last').attr('id');
+    $('#send').attr('son_id',son_id);
+    $('.m_veri').val('');
+$.fotograf();
+$.yan_menu();
+$.mesaj_sil();
 }});//ajax ve cevap
 }else{$.uyari('Boş mesaj gönderemezsiniz...');}//doluboş kontrol
 });//click	
 };//mesaj_gonder_son
+
+//m_kontrolü yan mennu içinden çağırıp clear ayapacaz önce
+/*son id den fazlası varsa mesaj getir ile 6 tane getir m_dive yaz bunu da 10 sny de bir yap*/
+$.mesaj_kontrol=function(m_alan,m_gonderen,tur,ofset,kalan){
+var son_id=$('.m_box').attr('id');	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/sohbet.php",
+			data:({"k_alan":m_alan,
+			       "m_gonderen":m_gonderen,
+				   "tur":tur,
+				   "ofset":ofset,
+				   "son_id":son_id}),
+			dataType: "json",
+			success: function(cevap){
+$('.m_div').html(cevap.veri);
+if(cevap.yok){$.uyari(cevap.yok);}
+$.mesaj_sil();
+$.yan_menu();	
+}});//ajax ve cevap
+};//mesaj_kontrol
+
 
 
 //MESAJ GETİR BAŞALNGIÇ
@@ -1348,15 +1392,25 @@ $.ajax({
 			success: function(cevap){
 		$('.yan_menu').slideDown();
 //ilk mesaj alma		
-if(ofset=='ilk'){$('.m_div').html(cevap.veri); }else{$('.eski').after(cevap.veri)}//daha fazla yükle	
+if(ofset=='ilk'){$('.m_div').html(cevap.veri);
+//$('.m_div').after(cevap.gonder);
+var son_id=$('.m_box:last').attr('id');
+$('#send').attr('son_id',son_id);
+}else{$('.eski').after(cevap.veri)}//daha fazla yükle	
 $.mesaj_sender();
 $.mesaj_sil();
+$.yan_menu();
+$.fotograf();
+$('#y_kapat').click(function() { 
+if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
+
+$('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
+
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeToggle();
 $('.metin[name=m_alan]').val(m_alan);
 $('.metin[name=m_gonderen]').val(m_gonderen);
-$('.metin[name=m_tur]').val(tur);
-
+$('.metin[name=m_tur]').val(tur).attr('placeholder',tur);
 
 var options={
 	    target:'#mesaj_dosya',
@@ -1385,13 +1439,14 @@ var options={
 },
         complete: function(response) 
         {
-        $('.uyari').html('Fotoğraf Yüklendi !');
+        $('.uyari').html('Dosya Yüklendi !');
 		$.uyari();
 		$('#dv_ekle').slideUp();	
 		$('.buton[name="dosya"]').val('');
         $("#bar").width('100%');
         $("#yuzde").html('100%');
-      $('.m_box:last').after('Dosya başarıyla yüklendi...');
+        $('.m_box:last').after('Dosya başarıyla yüklendi...');
+	  $('.d_gonder').slideDown();
 	   
 	   // $('.m_box:eq('+index+')').after(cevap.veri);       		 
 },
@@ -1423,19 +1478,23 @@ $.mesaj_sender();
 
 //MESAJLAŞMA PANELİ AÇ
 $.yan_menu=function(){
-$('.kullanici,.m_box,.profil,.isimx').click(function(){	
+$('.kullanici,.profil,.isimx').click(function(){		
 var m_alan=$(this).attr('m_alan');//alan=m_alan
 var m_gonderen=$('.kul').attr('id');//zaten ben
 $('#send').attr('tur',1);
 $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
 $('#m_baslik').html('Özel Mesajlar');	
-//$('#m_baslik').html();
-
+//$('#m_baslik').html(); HALA BİR BAŞLIK SORUNUMUZ VAR 
+//yan_menu açılınca duruma uygun mesajları getir
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
+//senin burada olman şart mı acaba ?
 $.mesaj_sender();
-$.yan_menu();
-$('#y_kapat').click(function () { $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
+//önceki dongu varsa sil
+//clearInterval(mesaj_dongu);
+var m_alan=$(this).attr('m_alan');
+var m_gonderen=$(this).attr('m_gonderen');
+var tur=$(this).attr('tur');
 
 
 });};//MESAJLAŞMA PANELSON
@@ -1453,7 +1512,8 @@ ac++;
 if(ac>sayim){ac=0;}	
 	$('.slayt:eq('+ac+')').slideDown();
 	};
-setInterval('$.slayt()',8000);	
+//Şimdilik iptal
+//setInterval('$.slayt()',8000);	
 			
 //MENU ALANI 
 $('.menu').click(function(){
@@ -1523,6 +1583,8 @@ $.ajax({
 if(cevap.hata){$.uyari(cevap.hata);}
 if(cevap.veri){
 $('.ust').html(cevap.veri).show();
+$('.ux:eq(1)').html('Güncelle');
+$('#giris').html('Güncelle');
 //Fotoğraf hatası Düzelt
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	 
 var kayit = $('.ust').html();
@@ -2063,15 +2125,18 @@ $.ajax({
 	$.geri();
 $('.okul').click(function(){
 var okul_id=$(this).attr('id');	
+var kul_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"p_kullanici":okul_id,
-			       "ne_icin":1}),
+			       "ne_icin":1,
+				   "pers_id":kul_id}),
 			dataType: "json",
 			success: function(cevap){
 		$('#okullar').hide();		
 		$('#okul_personel').html(cevap.veri).slideDown();
+		$.yan_menu();
 $('#bigeri').click(function(){
 $('#okullar').show();
 $('#okul_personel').hide();
@@ -2104,11 +2169,13 @@ $('.tab').css('background-color','#FFF').css('color','#3CF');
 $(this).css('background-color','#3CF').css('color','#FFF');	
 if(tab_ac==0){$('#p_ekle').hide();	$('#p_kullanici').show();
 var okul_id=$('.kul').attr('okul_id');
+var kul_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"p_kullanici":okul_id,
-			       "ne_icin":0}),
+			       "ne_icin":0,
+				   "pers_id":kul_id}),
 			dataType: "json",
 			success: function(cevap){
 		$('#p_kullanici').html(cevap.veri);
@@ -2478,7 +2545,7 @@ $('#mesaj').attr('placeholder',cb);
 </div>
 
 </div>
-<div class="panel" id="ankor"></div>
+<div class="panel"></div>
 <div class="panel"> Aylık yoklama2</div>
 <div class="panel">
 <div class="tab" id="kullanicilar" style="margin-left:10%; border-bottom-left-radius:15px;">Kullanıcılar</div><div class="tab" style="color:#FFF; background-color:#3CF; border-bottom-right-radius :15px;"> Ekle</div>
@@ -2561,7 +2628,7 @@ $('#mesaj').attr('placeholder',cb);
 <p  style="color:#FFFFFF; font-family:Verdana; font-size:10px; text-align:center;">Telefonu yatay konumda kullanabilirsiniz</p>
 <div class="ic_kapat" id="yayiny_kapat">Kapat</div></div>
 
-<div class="yan_menu">
+<div class="yan_menu" value="kapali">
 <div class="baslik" id="m_baslik"></div>
 <div class="m_div" id="mesaj"></div>
 
