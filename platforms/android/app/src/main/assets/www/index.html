@@ -939,7 +939,7 @@
 }
 
 .y_y {
-	color: #000000;
+	color: #FFFFFF;
 	height: auto;
 	padding-top: 10px;
 	padding-right: 3px;
@@ -991,6 +991,28 @@
 <script>
         function onLoad() {
             //Jquery yazım alanı
+
+//GELEN KUTUSU SETINTERVAL			
+$.c_box=function(){		
+var box_id=$('.kul').attr('id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/sohbet.php",
+			data:({"c_box":box_id}),
+			dataType: "json",
+			success: function(cevap){
+				if(cevap.veri>0){$('.menu').css("background-image",'url(icon/k.gif)');
+				$('#g_box').css('background-image','url(icon/1.jpg)');
+				}
+				if(cevap.veri==0){
+					$('#g_box').css('background-image','url()');
+var v=$('.menu').attr('v');
+if(v==0){$('.menu').css('background-image','url(icon/y.jpg)');}
+if(v==1){$('.menu').css('background-image','url(icon/x.jpg)');}	
+					}
+}});//ajax ve cevap
+};//son c_box
+setInterval('$.c_box()',8000);		
 
 //ux ut işlemleri
 $('.ux').click(function(){
@@ -1335,6 +1357,55 @@ var tur=$(this).attr('tur');
 var sson_id=$(this).attr('son_id');
 var mesaj=$('.m_veri').val();
 if(mesaj!=''){
+	
+var a=new Date();
+var saat1=a.getHours();
+var dk1=a.getMinutes();
+var ay=a.getMonth();
+var gun=a.getUTCDate();
+
+switch(ay){
+	case 0:
+	ay='Ocak';
+	break;
+	case 1:
+	ay='Şubat';
+	break;
+	case 2:
+	ay='Mart';
+	break;
+	case 3:
+	ay='Nisan';
+	break;
+	case 4:
+	ay='Mayıs';
+	break;
+	case 5:
+	ay='Haziran';
+	break;
+	case 6:
+	ay='Temmuz';
+	break;
+	case 7:
+	ay='Ağustos';
+	break;
+	case 8:
+	ay='Eylül';
+	break;
+	case 9:
+	ay='Ekim';
+	break;
+	case 10:
+	ay='Kasım';
+	break;
+	case 11:
+	ay='Aralık';
+	break;
+	};
+if(saat1<10){saat1='0'+saat1;}
+if(dk1<10){dk1='0'+dk1;}
+var zmnx=gun+' '+ay+' '+saat1+':'+dk1;		
+
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1342,7 +1413,8 @@ $.ajax({
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
 				   "mesaj":mesaj,
-				   "sson_id":sson_id }),
+				   "sson_id":sson_id,
+				   "zaman":zmnx}),
 			dataType: "json",
 			success: function(cevap){
 	$('.m_box:last').after(cevap.veri);	
@@ -1360,7 +1432,8 @@ $.mesaj_sil();
 //m_kontrolü yan mennu içinden çağırıp clear ayapacaz önce
 /*son id den fazlası varsa mesaj getir ile 6 tane getir m_dive yaz bunu da 10 sny de bir yap*/
 $.mesaj_kontrol=function(m_alan,m_gonderen,tur,ofset,kalan){
-var son_id=$('.m_box').attr('id');	
+var son_id=$('.m_box').attr('id');
+alert(m_alan+m_gonderen+tur+son_id+ofset)
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1371,7 +1444,7 @@ $.ajax({
 				   "son_id":son_id}),
 			dataType: "json",
 			success: function(cevap){
-$('.m_div').html(cevap.veri);
+alert('veri: '+cevap.veri);
 if(cevap.yok){$.uyari(cevap.yok);}
 $.mesaj_sil();
 $.yan_menu();	
@@ -1382,6 +1455,8 @@ $.yan_menu();
 
 //MESAJ GETİR BAŞALNGIÇ
 $.mesaj_getir=function(m_alan,m_gonderen,tur,ofset,kalan){
+	//4 KASIM 2019 HATADA KALDIK MESAJ KAYDET İLE DAHA KOLAY OLACAĞINA KARAR VERDİK
+setInterval('$.mesaj_kontrol('+m_alan+','+m_gonderen+','+tur+',ilk,'+kalan+')',8000);	
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1403,6 +1478,7 @@ $.mesaj_sender();
 $.mesaj_sil();
 $.yan_menu();
 $.fotograf();
+
 $('#y_kapat').click(function() { 
 if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
 
@@ -1524,6 +1600,8 @@ if(v==0){
 $(this).attr('v',1);	
 $(this).css('background-image','url(icon/x.jpg)');
 $('.sol_panel,.ut:first').show();
+$('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
+$('.ux:eq('+0+')').css('border-color','#00CCFF').css('color','#00CCFF');
 }
 if(v==1){
 $(this).attr('v',0);	
