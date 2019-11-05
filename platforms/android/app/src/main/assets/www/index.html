@@ -1012,7 +1012,7 @@ if(v==1){$('.menu').css('background-image','url(icon/x.jpg)');}
 					}
 }});//ajax ve cevap
 };//son c_box
-setInterval('$.c_box()',8000);		
+c_boxx=setInterval('$.c_box()',8000);		
 
 //ux ut işlemleri
 $('.ux').click(function(){
@@ -1124,7 +1124,7 @@ $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeIn();});
 $('#y_kapat').click(function () {
 	 
-  
+  clearInterval(mesaj_dongu);
 $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 //---------DOSYA YÜKLEME 
@@ -1345,7 +1345,8 @@ $('#sms_panel').slideDown();
 
 //MESAJ GONDERİCİ
 $.mesaj_sender=function(){
-$('#y_kapat').click(function(){  
+$('#y_kapat').click(function(){ 
+clearInterval(mesaj_dongu); 
 $('.yan_menu').fadeOut();
 $('#send').attr('tur',0); 
 $('#send').attr('m_alan','');
@@ -1354,7 +1355,8 @@ $('#send').click(function(){
 var m_alan=$(this).attr('m_alan');
 var m_gonderen=$(this).attr('m_gonderen');
 var tur=$(this).attr('tur');
-var sson_id=$(this).attr('son_id');
+//var sson_id=$(this).attr('son_id');
+var sson_id=$('.m_box:last').attr('id');
 var mesaj=$('.m_veri').val();
 if(mesaj!=''){
 	
@@ -1418,8 +1420,6 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 	$('.m_box:last').after(cevap.veri);	
-	var son_id=$('.m_box:last').attr('id');
-    $('#send').attr('son_id',son_id);
     $('.m_veri').val('');
 $.fotograf();
 $.yan_menu();
@@ -1431,21 +1431,23 @@ $.mesaj_sil();
 
 //m_kontrolü yan mennu içinden çağırıp clear ayapacaz önce
 /*son id den fazlası varsa mesaj getir ile 6 tane getir m_dive yaz bunu da 10 sny de bir yap*/
-$.mesaj_kontrol=function(m_alan,m_gonderen,tur,ofset,kalan){
-var son_id=$('.m_box').attr('id');
-alert(m_alan+m_gonderen+tur+son_id+ofset)
+$.mesaj_kontrol=function(){
+var m_alan=$('#send').attr('m_alan');
+var m_gonderen=$('#send').attr('m_gonderen');
+var tur=$('#send').attr('tur');
+var son_id=$('.m_box:last').attr('id');
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
 			data:({"k_alan":m_alan,
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
-				   "ofset":ofset,
 				   "son_id":son_id}),
 			dataType: "json",
 			success: function(cevap){
-alert('veri: '+cevap.veri);
-if(cevap.yok){$.uyari(cevap.yok);}
+if(cevap.yok){/*Buraya belki güncelleme gifi yaparız*/ $.uyari(cevap.yok);}
+if(cevap.veri){$('.m_box:last').after(cevap.veri);}
+
 $.mesaj_sil();
 $.yan_menu();	
 }});//ajax ve cevap
@@ -1455,8 +1457,7 @@ $.yan_menu();
 
 //MESAJ GETİR BAŞALNGIÇ
 $.mesaj_getir=function(m_alan,m_gonderen,tur,ofset,kalan){
-	//4 KASIM 2019 HATADA KALDIK MESAJ KAYDET İLE DAHA KOLAY OLACAĞINA KARAR VERDİK
-setInterval('$.mesaj_kontrol('+m_alan+','+m_gonderen+','+tur+',ilk,'+kalan+')',8000);	
+mesaj_dongu=setInterval('$.mesaj_kontrol()',8000);	
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1480,6 +1481,7 @@ $.yan_menu();
 $.fotograf();
 
 $('#y_kapat').click(function() { 
+clearInterval(mesaj_dongu);
 if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
 
 $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
@@ -1563,6 +1565,7 @@ $('#send').attr('tur',1);
 $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
 $('#m_baslik').html('Özel Mesajlar');	
+
 //$('#m_baslik').html(); HALA BİR BAŞLIK SORUNUMUZ VAR 
 //yan_menu açılınca duruma uygun mesajları getir
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
@@ -1573,7 +1576,6 @@ $.mesaj_sender();
 var m_alan=$(this).attr('m_alan');
 var m_gonderen=$(this).attr('m_gonderen');
 var tur=$(this).attr('tur');
-
 
 });};//MESAJLAŞMA PANELSON
 
