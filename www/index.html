@@ -34,6 +34,46 @@
 	font-size: 15px;
 	bottom: 10%;
 }	
+.ay {
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	height: 25px;
+	position: absolute;
+	margin-left: px;
+	width: 92px;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-top: 17px;
+	background-image: url(icon/ayx.png);
+	font-family: calibri;
+	}
+	.merhaba {
+	font-size: 17px;
+	font-weight: bold;
+	color: #ffffff;
+	height: 24px;
+	position: absolute;
+	margin-top: 30px;
+	width: 90px;
+	text-align: center;
+	background-color: #00FF66;
+	border-radius: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	}
+
+.gun {  font-size: 32px;
+    font-weight: bold;
+    color: #085b70;
+    height: 20px;
+    width: 80px;
+    position: absolute;
+   margin-left: 28px;
+    margin-top: 44px;
+}
+
       .markabar{
 	height: 40px;
 	text-align: center;
@@ -58,6 +98,7 @@
 	background-image: url(icon/y.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-size: cover;
 }
 .marka {float: left;
 	margin-left: 18%;
@@ -72,11 +113,11 @@
 .d_yazi {
 	font-family: calibri;
 	font-size: 12px;
-	color: #06F;
+	color: #085b70;
 	text-align: center;
 	margin-left: 10px;
 	margin-top: 90px;
-	width:72px;
+	width: 72px;
 }
 .isim {
 	font-family: calibri;
@@ -187,7 +228,7 @@
 	float: left;
 	color: #06F;
 	background-image: url(icon/okul.png);
-	background-position: center center;
+	background-size:cover;
 }
 .ogrencix {
 	height: 70px;
@@ -548,7 +589,6 @@
 }
 .baslik {
 	color: #ffffff;
-	background-color: #33CCFF;
 	font-family: calibri;
 	font-size: 14px;
 	text-align: center;
@@ -557,9 +597,11 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-left: 10%;
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
 	font-weight: bold;
+	background-color: #085B70;
+	margin-top: -5px;
 }
 
 .mesaj {
@@ -577,12 +619,12 @@
 	padding-top: 5px;
 	padding-bottom: 2px;
 	text-align: center;
-	font-size: 13px;
+	font-size: 15px;
 	color: #FFFFFF;
 	background-image: url(icon/mavi.png);
 	margin-top: 10px;
 	margin-left: 24%;
-	font-family: Verdana;
+	font-family: calibri;
 	box-shadow: 0 0 10px 2px white;
 	border: 1px solid #FFFFFF;
 }
@@ -659,7 +701,7 @@
 	float: left;
 	height: 60px;
 	width: 60px;
-	box-shadow: 0 0 10px 2px #297929;
+	box-shadow: 0 0 5px 2px #FFFFFF;
 	border-radius: 50%;
 }
 .y_panel {
@@ -783,24 +825,25 @@
 	float: left;
 	height: 60px;
 	width: 60px;
-	box-shadow: 0 0 10px 2px #297929;
+	box-shadow: 0 0 10px 2px #FFFFFF;
 	border-radius: 50%;
 }
 .ic_kapat {
 	background-color: #FFFFFF;
 	height: 21px;
-	width: 80%;
+	width: 40%;
 	position: absolute;
-	z-index: 8;
+	z-index: 4;
 	border: 1px solid #FF0000;
 	color: #FF0000;
 	visibility: visible;
 	text-align: center;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 10%;
+	margin-top: 38px;
+	margin-left: 30%;
 	font-size: 18px;
 	padding-bottom: 3px;
+	font-family: calibri;
+	box-shadow: 0 0 5px 2px red;
 }
 .buton {
 	float: left;
@@ -814,8 +857,8 @@
 	border: 1px solid #FFFFFF;
 	margin-left: 2%;
 	background-image: url(icon/mavi.png);
-	font-family: Verdana;
-	font-size: 15px;
+	font-family: calibri;
+	font-size: 16px;
 	margin-right: 2%;
 }
         #progress {
@@ -871,22 +914,25 @@
 	left: 0px;
 	overflow: scroll;
 	visibility: inherit;
-	background-image: url(icon/byz.png);
+	background-image: url(icon/blck.png);
 	background-repeat: repeat;
 	background-position: center;
 	height: 100%;
 	margin-bottom: 81px;
 	display: none;
+	background-size: cover;
 }
-.m_box{
-	color: #000000;
+.m_box {
+	color: #FFFFFF;
 	height: auto;
-	padding-top: 10px;
+	padding-top: 5px;
 	padding-right: 3px;
 	padding-bottom: 3px;
-	padding-left: 3px;
-	margin-left: 5px;
-	font-size: 14px;	
+	padding-left: 5px;
+	font-size: 13px;
+	border-radius: 15px;
+	width: 98%;
+	margin-bottom: 10px;
 }
 
 .m_gonder {
@@ -897,44 +943,43 @@
 	position: fixed;
 }
 .d_gonder {
+	padding-top:10px;
 	width: 100%;
 	height: 70px;
 	float: left;
 	position: fixed;
 	bottom: 50px;
-	display:none;
+	display: none;
+	background-image: url(icon/blck.png);
 }
     .yuvarlak {
 	float: left;
-	height: 44px;
-	width: 44px;
-	border-radius: 50%;
-	margin-left: 5px;
-	background-repeat: no-repeat;
-	background-position: center center;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    margin-left: 5px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 4px;
 }
 
     .m_veri {
 	font-family: calibri;
 	font-size: 14px;
 	background-color: #FFF;
-	width: 208px;
+	width: 218px;
 	height: 36px;
 	float: left;
 	border-radius: 10px;
 	margin-left: 5px;
 }
  .m_div {
-	margin-top: 5px;
-	width: 94%;
+	width: 96%;
 	margin-left: 2%;
 	margin-bottom: 8px;
-	padding-left: 4px;
 	padding-bottom: 5px;
 	height: 85%;
 	padding-right: 4px;
-	color: #FFFFFF;
-	padding-top: 3px;
 	overflow: scroll;
 }
 
@@ -946,20 +991,22 @@
 	padding-bottom: 3px;
 	padding-left: 3px;
 	margin-left: 5px;
-	font-size: 14px;
+	font-size: 12px;
+	font-family: calibri;
+	margin-top: 5px;
 }
 .isimx {
-	color: #0099FF;
+	color: #FFFFFF;
 	height: 19px;
 	width: 45%;
 	padding-top: 3px;
 	margin-bottom: 5px;
 	margin-top: 3px;
-	margin-left: 18%;
+	margin-left: 14%;
 	padding-left: 5px;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: #0099FF;
+	border-bottom-color: #FFFFFF;
 	font-size: 12px;
 	padding-right: 5px;
 }
@@ -981,17 +1028,70 @@
 }
 .resim {
 	margin-top: 10px;
-    box-shadow: 0 0 5px 2px #297929;
-    border-radius: 15px;
-    height: 280px;
+	box-shadow: 0 0 5px 2px #FFF;
+	border-radius: 15px;
+	height: 280px;
 	}
+    .zaman {
+	color: #4ce699;
+	font-size: 12px;
+	font-family: calibri;
+	height: 22px;
+	width: 80px;
+	text-align: center;
+	margin-left: 70%;
+	margin-top: -30px;
+}
     </style>
 </head>
 <body onload="onLoad()">
 <script>
         function onLoad() {
             //Jquery yazım alanı
-
+var a=new Date();
+var ay=a.getMonth();
+var gun=a.getUTCDate();
+switch(ay){
+	case 0:
+	ay='Ocak';
+	break;
+	case 1:
+	ay='Şubat';
+	break;
+	case 2:
+	ay='Mart';
+	break;
+	case 3:
+	ay='Nisan';
+	break;
+	case 4:
+	ay='Mayıs';
+	break;
+	case 5:
+	ay='Haziran';
+	break;
+	case 6:
+	ay='Temmuz';
+	break;
+	case 7:
+	ay='Ağustos';
+	break;
+	case 8:
+	ay='Eylül';
+	break;
+	case 9:
+	ay='Ekim';
+	break;
+	case 10:
+	ay='Kasım';
+	break;
+	case 11:
+	ay='Aralık';
+	break;
+	};
+if(gun<10){gun='0'+gun;}	
+$('.gun').html(gun);
+$('.ay').html(ay);	
 //GELEN KUTUSU SETINTERVAL			
 $.c_box=function(){		
 var box_id=$('.kul').attr('id');
@@ -1002,7 +1102,7 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 				if(cevap.veri>0){$('.menu').css("background-image",'url(icon/k.gif)');
-				$('#g_box').css('background-image','url(icon/1.jpg)');
+				$('#g_box').css('background-image','url(icon/1.png)');
 				}
 				if(cevap.veri==0){
 					$('#g_box').css('background-image','url()');
@@ -1012,7 +1112,8 @@ if(v==1){$('.menu').css('background-image','url(icon/x.jpg)');}
 					}
 }});//ajax ve cevap
 };//son c_box
-c_boxx=setInterval('$.c_box()',8000);		
+$.c_box();//ilk geldiğinde çalıştırdık
+c_boxx=setInterval('$.c_box()',30000);		
 
 //ux ut işlemleri
 $('.ux').click(function(){
@@ -1123,8 +1224,7 @@ $("#profilx").ajaxForm(options);//---dosya yükleme son
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeIn();});
 $('#y_kapat').click(function () {
-	 
-  clearInterval(mesaj_dongu);
+   clearInterval(mesaj_dongu);
 $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 //---------DOSYA YÜKLEME 
@@ -1346,7 +1446,7 @@ $('#sms_panel').slideDown();
 //MESAJ GONDERİCİ
 $.mesaj_sender=function(){
 $('#y_kapat').click(function(){ 
-clearInterval(mesaj_dongu); 
+ clearInterval(mesaj_dongu); 
 $('.yan_menu').fadeOut();
 $('#send').attr('tur',0); 
 $('#send').attr('m_alan','');
@@ -1445,7 +1545,7 @@ $.ajax({
 				   "son_id":son_id}),
 			dataType: "json",
 			success: function(cevap){
-if(cevap.yok){/*Buraya belki güncelleme gifi yaparız*/ $.uyari(cevap.yok);}
+if(cevap.yok){/*Buraya belki güncelleme gifi yaparız*/}
 if(cevap.veri){$('.m_box:last').after(cevap.veri);}
 
 $.mesaj_sil();
@@ -1480,7 +1580,8 @@ $.mesaj_sil();
 $.yan_menu();
 $.fotograf();
 
-$('#y_kapat').click(function() { 
+$('#y_kapat').click(function() {
+	$('.panel:eq(5)').hide();	  
 clearInterval(mesaj_dongu);
 if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
 
@@ -1488,6 +1589,54 @@ $('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');
 
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeToggle();
+var a=new Date();
+var saat1=a.getHours();
+var dk1=a.getMinutes();
+var ay=a.getMonth();
+var gun=a.getUTCDate();
+
+switch(ay){
+	case 0:
+	ay='Ocak';
+	break;
+	case 1:
+	ay='Şubat';
+	break;
+	case 2:
+	ay='Mart';
+	break;
+	case 3:
+	ay='Nisan';
+	break;
+	case 4:
+	ay='Mayıs';
+	break;
+	case 5:
+	ay='Haziran';
+	break;
+	case 6:
+	ay='Temmuz';
+	break;
+	case 7:
+	ay='Ağustos';
+	break;
+	case 8:
+	ay='Eylül';
+	break;
+	case 9:
+	ay='Ekim';
+	break;
+	case 10:
+	ay='Kasım';
+	break;
+	case 11:
+	ay='Aralık';
+	break;
+	};
+if(saat1<10){saat1='0'+saat1;}
+if(dk1<10){dk1='0'+dk1;}
+var zmnx=gun+' '+ay+' '+saat1+':'+dk1;	
+$('.metin[name=zaman]').val(zmnx);
 $('.metin[name=m_alan]').val(m_alan);
 $('.metin[name=m_gonderen]').val(m_gonderen);
 $('.metin[name=m_tur]').val(tur).attr('placeholder',tur);
@@ -1525,8 +1674,7 @@ var options={
 		$('.buton[name="dosya"]').val('');
         $("#bar").width('100%');
         $("#yuzde").html('100%');
-        $('.m_box:last').after('Dosya başarıyla yüklendi...');
-	  $('.d_gonder').slideDown();
+	    $('.d_gonder').slideUp();
 	   
 	   // $('.m_box:eq('+index+')').after(cevap.veri);       		 
 },
@@ -1776,6 +1924,8 @@ $('.dairex[tag="yoklama_blok"]').on("click",function(){
 var yoklama_id=$(this).attr('id');
 
 $('#basla').attr('yoklama_id',yoklama_id);
+$('#basla').attr('sms_tur','yoklama');
+
 $(this).css("background-color","#106b80").css("color","#FFF");
 $('.sinif').css("background-color","#FFF").css("color","#06F");
 $('.kutu,.alt_panel').hide();
@@ -2061,6 +2211,7 @@ $('.listey').click(function(){
 var li_id=$(this).attr('id');	
 var adi=$(this).attr('adi');
 $('#basla').attr('yoklama_id',li_id);
+$('#basla').attr('sms_tur','liste');
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
@@ -2236,7 +2387,9 @@ $('#okul_personel').hide();
 }//index==4 sonu
 
 if(index==5){
-var m_alan=$('.kul').attr('okul_id');
+$('.orta').show();	
+$('.panel:eq(5)').hide();	 
+ var m_alan=$('.kul').attr('okul_id');
 var m_gonderen=$('.kul').attr('id');
 $('#m_baslik').html('Okul Sohbeti');
 $('#send').attr('m_alan',m_alan);
@@ -2364,6 +2517,7 @@ if(saat<10){saat='0'+saat;}
 var zaman =' '+saat+'.'+dakika+' de ';	
 //cookies işlemleri
 var yoklama_id=$(this).attr('yoklama_id');
+var sms_tur=$(this).attr('sms_tur');
 if(Cookies.get(yoklama_id)== null){ var list="";}else{ var list=Cookies.get(yoklama_id);}
 var yok_index=Cookies.get(yoklama_id);
 
@@ -2387,7 +2541,11 @@ var mesajx=isim+zaman+mesaj;
 SMS.sendSMS(telefon,mesajx,function(){
 //işlem başarılı
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6');
-Cookies.set(yoklama_id,index);
+if(sms_tur!='liste'){Cookies.set(yoklama_id,index);
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ====== Cookies Kaydedildi...';
+$('#mesaj').attr('placeholder',cb);
+}
 index++;
 
 var ca=$('#mesaj').attr('placeholder');
@@ -2573,26 +2731,28 @@ $('#mesaj').attr('placeholder',cb);
 
 </div>
 <div class="orta">
-      <div class="daire" style="background-image:url(icon/tkvm.jpg);">
+      <div class="daire" style="background-image:url('');">
+      <div class="ay"></div><div class="gun"></div>
       <div class="d_yazi">Günlük Yoklama</div></div>
-  <div class="daire">
+  <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
       <div class="d_yazi">Sınıflar</div></div>
       <div class="daire">
       <div class="d_yazi">Listeler</div></div> 
-      <div class="daire">
+      <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
       <div class="d_yazi"><p>Toplu Sms</p>  </div>
   </div>
-      <div class="daire">
+      <div class="daire" style="background-image:url(icon/is.png); background-size:cover;">
       <div class="d_yazi">İş Ağı</div></div>
-      <div class="daire" style="background-image:url(icon/okul.png);">
+      <div class="daire" style="background-image:url(icon/okul.png);background-size:cover;">
   <div class="d_yazi" >Sohbet</div></div>
      
-      <div class="daire">
+      <div class="daire" style="background-image:url(icon/islist.png);">
       <div class="d_yazi">İş Listesi</div></div>
-      <div class="daire">
-      <div class="d_yazi">Kullanıcılar</div></div>
-      <div class="daire">
-      <div class="d_yazi">Üye Ol !</div></div>
+      <div class="daire" style="background-image:url(icon/ogretmen.png); background-size:cover;">
+  <div class="d_yazi">Kullanıcılar</div></div>
+      <div class="daire" style="background-image:url('');" >
+      <div class="merhaba">Hoşgeldin</div>
+  <div class="d_yazi">Üye Ol !</div></div>
       <div class="daire">
       <div class="d_yazi">Yardım</div></div>
 </div>
@@ -2675,7 +2835,7 @@ $('#mesaj').attr('placeholder',cb);
       <input type="text" style="display:none;" value="Fear" name="kul_id" id="profil_id">
       <input type="submit" style="height:33px; width:25%;  box-shadow: 0 0 10px 2px white;" class="buton" value="Yükle">
  </form>
-<div class="ic_kapat" style="margin-top:35px; width:40%; margin-left:30%; box-shadow: 0 0 10px 2px red;">İptal</div>
+<div class="ic_kapat">İptal</div>
 </div>
 </div>
 <div class="ut">
@@ -2714,7 +2874,7 @@ $('#mesaj').attr('placeholder',cb);
 <div class="yayiny">
 <div class="kapa" id="style-3" style="height:auto;" name="fotograf"></div>
 <p  style="color:#FFFFFF; font-family:Verdana; font-size:10px; text-align:center;">Telefonu yatay konumda kullanabilirsiniz</p>
-<div class="ic_kapat" id="yayiny_kapat">Kapat</div></div>
+<div class="ic_kapat" style="margin-top:5px;" id="yayiny_kapat">Kapat</div></div>
 
 <div class="yan_menu" value="kapali">
 <div class="baslik" id="m_baslik"></div>

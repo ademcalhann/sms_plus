@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.smsplus.system" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Sms Plus</name>
+    <name>Mesaj Plus</name>
     <description>
       Buyuk gruplar icin ucretsiz toplu sms gonderme, yoklama yapma ve haberlesme programi
     </description>

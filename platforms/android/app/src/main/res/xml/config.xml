@@ -17,7 +17,7 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <name>Sms Plus</name>
+    <name>Mesaj Plus</name>
     <description>
       Buyuk gruplar icin ucretsiz toplu sms gonderme, yoklama yapma ve haberlesme programi
     </description>
