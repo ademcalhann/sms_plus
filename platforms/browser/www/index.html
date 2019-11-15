@@ -8,7 +8,7 @@
     <script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="yukle.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="cookie.js"></script>
+    <script type="text/javascript" src="cookie.js"></script>
    
     <style type="text/css">
 .uyari {
@@ -175,14 +175,17 @@
 	background-image: url(icon/profil.jpg);
 }
 .dairec {
-	position:absolute;
+	position: absolute;
 	height: 90px;
 	width: 90px;
 	border-radius: 50%;
 	border: 1px solid #999;
 	float: left;
-	background-color:#099;
-	display:none;
+	display: none;
+	margin-top: -10px;
+	background-size: cover;
+	background-color: #0CF;
+	opacity: 50%;
 }
 .dairey {
 	height: 90px;
@@ -2103,15 +2106,17 @@ $.ajax({
 	$('#ogrenciler').html(cevap.veri).slideDown();	
 	$('#s_tabela').attr('placeholder',si_isim);
 $('.silg').click(function(){$('.y_panel').slideUp();});	
+
 //Yeni Öğrenci Ekleme
 $('#ogrenci_ekle').click(function(){
-$('#ogrenci_guncelle').attr('id','kaydet_ogrenci');
-$('.y_panel').slideDown();
-//fonksiyonun tekrar tekrar şarj olmasını engelledik
+// HATALI $('#ogrenci_guncelle').attr('id','kaydet_ogrenci');
+$('#ogrenci_add').slideDown();
+
 $('#kaydet_ogrenci').one("click",function(){
 var ogr_isim=$('#ogrenci_isim').val();
 var okul_no=$('#okul_numarasi').val();
 var veli_tel=$('#veli_telefonu').val();
+
 if(ogr_isim=='' || okul_no=='' || veli_tel==''){
 $.uyari('Tüm verileri girmelisiniz !');
 }else{
@@ -2130,42 +2135,45 @@ $.ajax({
 				$('.y_panel').hide();
 var ogr_isim=$('#ogrenci_isim').val('');
 var okul_no=$('#okul_numarasi').val('');
-var veli_tel=$('#veli_telefonu').val('');
+var veli_tel=$('#veli_telefonu').val(''); 
 
 }});//ajax son	
 }//ogrenci veri kontrol	
-});//ogrenci kayet
+});//ogrenci kaydet
 });//ogrenci ekle son
 $.sil_vt();
 //-----------------------ÖĞRENCİ BİLGİLERİNİ GÜNCELLEME
 $('.guncelle[tag="ogrenci"]').click(function(){
-$('.y_panel').slideDown();	
-$('#kaydet_ogrenci').attr('id','ogrenci_guncelle');	
-var isim=$(this).attr('isim');
-var okul_no=$(this).attr('okul_no');
-var veli_tel=$(this).attr('veli_tel');
-var up_ogr=$(this).attr('id');
-$('#ogrenci_isim').val(isim);
-$('#okul_numarasi').val(okul_no);
-$('#veli_telefonu').val(veli_tel);
 
+var up_id=$(this).attr('id');	
+$('#ogrenci_up').remove();
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"up_id":up_id}),
+			dataType: "json",
+			success: function(cevap){
+			$('.b_daire:last').after(cevap.veri);	
+$('.silg').click(function(){$('.y_panel').slideUp();});				
 $('#ogrenci_guncelle').click(function(){
-var up_isim=$('#ogrenci_isim').val();
-var up_okul=$('#okul_numarasi').val();
-var up_veli=$('#veli_telefonu').val();
+var up_isim=$('#up_isim').val();
+var up_okul=$('#up_okul').val();
+var up_veli=$('#up_veli').val();
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"up_isim":up_isim,
-			       "up_ogr":up_ogr,
+			       "up_idx":up_id,
 			       "up_okul":up_okul,
 				   "up_veli":up_veli}),
 			dataType: "json",
 			success: function(cevap){
+			
 $.uyari(cevap.veri);	
 $('.y_panel').hide();			
 }});//ajax son	
-});//kaydet son
+});//ogrenci_guncelle.click son
+}});//guncelle_gelis son
 });//ögrenci güncelle son
 //sınıf adını güncelleme		
 $('#s_tabela').change(function(){	
@@ -2481,6 +2489,7 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 $.uyari('İşlem Başarılı !');
+$('.ogrenci[isaret=1]').remove();
 $('.listex,#yoklama').html('');	
 $('.panel,.alt_panel').hide();
 $('.orta').slideDown();	
@@ -2736,7 +2745,7 @@ $('#mesaj').attr('placeholder',cb);
       <div class="d_yazi">Günlük Yoklama</div></div>
   <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
       <div class="d_yazi">Sınıflar</div></div>
-      <div class="daire">
+      <div class="daire" style="background-image:url(icon/islist.png);">
       <div class="d_yazi">Listeler</div></div> 
       <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
       <div class="d_yazi"><p>Toplu Sms</p>  </div>
@@ -2746,8 +2755,8 @@ $('#mesaj').attr('placeholder',cb);
       <div class="daire" style="background-image:url(icon/okul.png);background-size:cover;">
   <div class="d_yazi" >Sohbet</div></div>
      
-      <div class="daire" style="background-image:url(icon/islist.png);">
-      <div class="d_yazi">İş Listesi</div></div>
+      <div class="daire"  style="background-image:url(icon/syc.png);">
+      <div class="d_yazi">Sms Sayacı</div></div>
       <div class="daire" style="background-image:url(icon/ogretmen.png); background-size:cover;">
   <div class="d_yazi">Kullanıcılar</div></div>
       <div class="daire" style="background-image:url('');" >
