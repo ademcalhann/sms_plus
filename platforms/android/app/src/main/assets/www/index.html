@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <title>Mesaj Gönder !</title>
+    <title>Mesaj Gönder</title>
     <script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="yukle.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
@@ -32,6 +32,7 @@
 	visibility: visible;
 	font-family: "calibri";
 	font-size: 15px;
+	font-weight:bold;
 	bottom: 10%;
 }	
 .ay {
@@ -196,6 +197,38 @@
 	margin-top: -18px;
 	background-image: url(icon/profil.jpg);
 }
+.daires {
+	height: 90px;
+	width: 90px;
+	border-radius: 50%;
+	border: 1px solid #999;
+	float: left;
+	margin-top: -18px;
+	background-color:#FFF;
+}
+.d_yazis {
+	font-family: calibri;
+	font-size: 12px;
+	color:#FFF;
+	text-align: center;
+	margin-left: 10px;
+	margin-top: 32px;
+	width: 72px;
+}
+.scodes {
+	font-family:calibri;
+	font-size: 17px;
+	font-weight: bold;
+	color: #FFF;
+	height: 24px;
+	margin-top: 30px;
+	width: 90px;
+	text-align: center;
+	background-color: #09F;
+	border-radius: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	}
     .panel {
 	display: none;
 	width: 100%;
@@ -1045,6 +1078,37 @@
 	margin-left: 70%;
 	margin-top: -30px;
 }
+    .scode {
+	height: 60px;
+	width: 60%;
+	margin-left: 20%;
+	font-size: 54px;
+	color: #999;
+	border: 1px groove #999;
+	font-family: calibri;
+	font-weight: bold;
+	padding-bottom: 15px;
+	margin-top: 35px;
+	background-color: #FFF;
+	box-shadow: 0 0 10px 2px #000;
+	text-align: center;
+}
+    .s_sure {
+	height: 22px;
+	width: 24%;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	text-align: center;
+	margin-left: 2%;
+	border: 1px solid #09F;
+	font-family: calibri;
+	font-size: 18px;
+	font-weight: bold;
+	float: left;
+	background-color: #FFF;
+	box-shadow:0 0 5px 2px #0099FF;
+}
     </style>
 </head>
 <body onload="onLoad()">
@@ -1127,6 +1191,72 @@ $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
 	$('.ut:eq('+xc+')').slideDown();
 	
 });
+
+// scode alanı
+$('.ux[name=scode]').click(function(){
+	
+	function scode(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+var scode=scode(6);
+$('.scode').html(scode);
+//AKTİF SCODE GETİRİLMESİ
+var kul_id=$('.kul').attr('id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"gscode":kul_id}),
+			dataType: "json",
+			success: function(cevap){
+				$('#ascode').html(cevap.veri);
+	//scode silme			
+$('.sily').click(function(){
+var sil_code=$(this).attr('id');	
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"sil_code":sil_code}),
+			dataType: "json",
+			success: function(cevap){
+$('.d_daire[id='+sil_code+']').slideUp();	
+$.uyari(cevap.veri);			
+}});//ajax ve cevap
+});//scode sil
+					
+}});//ajax ve cevap	
+	});//scode son
+//sure seçme	
+$('.s_sure').click(function(){
+$('.s_sure').attr('durum',0).css('background-color','#FFF').css('color','#000');
+$(this).attr('durum',1).css('background-color','#09F').css('color','#FFF');
+});//s_sure son	
+
+//KAYDET SCODE
+$('#k_scode').click(function(){
+var scode=$('.scode').html();
+var s_sure=$('.s_sure[durum=1]').attr('value');
+var kul_id=$('.kul').attr('id');
+var o_id=$('.kul').attr('okul_id');
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/yoklama.php",
+			data:({"scode":scode,
+			       "s_sure":s_sure,
+				   "sp_id":kul_id,
+				   "so_id":o_id}),
+			dataType: "json",
+			success: function(cevap){
+				$.uyari(cevap.veri);
+					
+}});//ajax ve cevap	
+});//kaydet scode son
 //TABDAN ETKİLENMEYEN GELEN KUTUSU
 $('#g_box').click(function(){
 var box_id=$('.kul').attr('id');
@@ -2852,17 +2982,34 @@ $('#mesaj').attr('placeholder',cb);
         <input type="password" class="metin" placeholder="Şifre" id='g_sifre'>
         <div class="basla" id="giris">Giriş</div>
 </div>
-<div class="ut"></div>
+<div class="ut" name="g_kutusu"></div>
+<div class="ut" style="background-color:#115d20;">
+<div class="kutu" style="display:block;margin-top:-10px;  background-color:#115d20; height:98%;">
+<div class="baslik" style="margin-top:0px;">Etkileşimli tahta için kod oluşturun </div>
+<div class="scode" id="scode">------</div>
+<div style="width:100%; height:50px; margin-top:15px;">
+<div class="s_sure" durum="1" style="background-color:#09F; color:#FFF;" value="0">Tek Sefer</div>
+<div class="s_sure" style="width:20%;" durum="0" value="H">1 Saat</div>
+<div class="s_sure" style="width:20%;" durum="0" value="z">1 Gün</div>
+<div class="s_sure" durum="0" value="W">1 Hafta</div> 
+</div>
+<div class="basla" id="k_scode">Tamam</div>
+<div class="kutu" id="ascode" style="display:block; margin-top:10px;  background-color:#115d20; height:100%; border-top:solid 1px #FFF;">
+<div class="baslik" style="margin-top:0px;">Aktif SCode</div>
+</div>
+</div>
+</div>
 <div class="ut">
         <input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
 </div>
 <div class="ut">Yardım yeri</div>
 <div class="alti" id="style-3">
-<div class="uzun2">
+<div class="uzun2" style="width:690px;">
 <div class="ux" style="color:cyan; width:90px; border-color:cyan;">Hesabım</div>
 <div class="ux" style="width:90px;">Giriş Yap</div>
 <div class="ux" style="width:120px;"  id="g_box">Gelen Kutusu</div>
+<div class="ux" style="width:120px;" name="scode">SCode</div>
 <div class="ux" style="width:120px;">Şifremi Unuttum</div>
 <div class="ux">Yardım</div>
 
