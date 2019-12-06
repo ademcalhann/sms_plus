@@ -329,7 +329,7 @@
 	
 }
 .msayi {
-	height: 15px;
+	height: 12px;
 	padding-bottom: 3px;
 	width: 35px;
 	color: #F00;
@@ -340,6 +340,9 @@
 	margin-bottom: 10px;
 	margin-left: 5px;
 	background-image: url(icon/byz.png);
+	font-family: calibri;
+	font-weight: bold;
+	font-size: 14px;
 }
 .sms_d {
 	height: 15px;
@@ -1237,9 +1240,11 @@ if(zum_box>0){
 var zumre=$('.kul').attr('zumre');
 var ilce=$('.kul').attr('ilce'); var ilcex=ilce+zumre; 
 var il=$('.kul').attr('il'); var ilx=il+zumre;
+var okul_sayi=Cookies.get('okul_sayi');if(okul_sayi==null){okul_sayi=0;}
 var ilce_sayi=Cookies.get('ilce_sayi');if(ilce_sayi==null){ilce_sayi=0;}
 var il_sayi=Cookies.get('il_sayi');if(il_sayi==null){il_sayi=0;}
 var ulke_sayi=Cookies.get('ulke_sayi');if(ulke_sayi==null){ulke_sayi=0;}
+var okul_id=$('.kul').attr('okul_id');
 
 //DÜZENLEYECEĞİZ
 //cookies gunceelemesi yaazacaz
@@ -1248,18 +1253,21 @@ $.ajax({
 			url: "https://finansfear.com/sms/sohbet.php",
 			data:({"ilce_sayi":ilce_sayi,
 			       "il_sayi":il_sayi,
+				   "okul_sayi":okul_sayi,
 			       "ulke_sayi":ulke_sayi,
 				   "ilx":ilx,
-				   "ilcex":ilcex}),
+				   "ilcex":ilcex,
+				   "okulx":okul_id}),
 			dataType: "json",
 			success: function(cevap){
 				$('#il_say').html(cevap.il);
 				$('#ilce_say').html(cevap.ilce);
 				$('#ulke_say').html(cevap.ulke);
+				$('#okul_say').html(cevap.okul);
 				$('#zumre_say').html(cevap.zumre);//toplam
 }});//ajax ve cevap
 }};//son zum_box
-$.zum_box();
+
 zum_boxx=setInterval('$.zum_box()',15000);
 //ux ut işlemleri
 $('.ux').click(function(){
@@ -1671,7 +1679,7 @@ $('.onayla').click(function(){
 $('#sms_panel').slideDown();
 //smsm islemi basla
 });};
-
+$.zum_box();
 
 //MESAJ GONDERİCİ
 $.mesaj_sender=function(){
@@ -1750,7 +1758,13 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 	$('.m_box:last').after(cevap.veri);	
-    $('.m_veri').val('');
+var son_id=$('.m_box:last').attr('id');	
+if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
+if(tur==0){Cookies.set('okul_sayi',son_id);$('#okul_say').html('0');}
+if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+
+$('.m_veri').val('');
 $.fotograf();
 $.yan_menu();
 $.mesaj_sil();
@@ -1776,11 +1790,12 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 if(cevap.yok){/*Buraya belki güncelleme gifi yaparız*/}
-if(cevap.veri){$('.m_box:last').after(cevap.veri);}
-var son_id=$('.m_box:last').attr('id');
+if(cevap.veri){$('.m_box:last').after(cevap.veri);var son_id=$('.m_box:last').attr('id');
 if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
+if(tur==0){Cookies.set('okul_sayi',son_id);$('#okul_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
-if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}}
+
 
 $.mesaj_sil();
 $.yan_menu();	
@@ -1809,6 +1824,7 @@ if(ofset=='ilk'){$('.m_div').html(cevap.veri);
 var son_id=$('.m_box:last').attr('id');
 $('#send').attr('son_id',son_id);
 }else{$('.eski').after(cevap.veri)}//daha fazla yükle	
+if(tur==0){Cookies.set('okul_sayi',son_id);  $('#okul_say').html('0');}
 if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
 if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
@@ -1949,9 +1965,8 @@ var m_gonderen=$('.kul').attr('id');//müracat ben
 $('#send').attr('tur',1);
 $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
-$('#m_baslik').html('Özel Mesajlar');	
-
-//$('#m_baslik').html(); HALA BİR BAŞLIK SORUNUMUZ VAR 
+var baslik=	$(this).attr('placeholder');
+$('#m_baslik').html(baslik);
 //yan_menu açılınca duruma uygun mesajları getir
 //burası sadece özel mesaja geçiş alanı bu sebeble tur=1
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
@@ -3059,18 +3074,21 @@ $('#mesaj').attr('placeholder',cb);
       <div class="daire" style="background-image:url(icon/is.png); background-size:cover;">
       <div class="d_yazi">İş Ağı</div></div>
       <div class="daire" style="background-image:url(icon/okul.png);background-size:cover;">
+      <div class="msayi" id="okul_say">0</div>
   <div class="d_yazi" >Sohbet</div></div>
      
-      <div class="daire"  style="background-image:url(icon/syc.png);">
+  <div class="daire"  style="background-image:url(icon/syc.png);">
       <div class="d_yazi">Sms Sayacı</div></div>
       <div class="daire" style="background-image:url(icon/ogretmen.png); background-size:cover;">
-  <div class="d_yazi">Kullanıcılar</div></div>
-      <div class="daire" style="background-image:url('');" >
+      <div class="d_yazi">Kullanıcılar</div>
+  </div>
+  <div class="daire" style="background-image:url('');" >
       <div class="merhaba">Hoşgeldin</div>
-  <div class="d_yazi">Üye Ol !</div></div>
+      <div class="d_yazi">Üye Ol !</div>
+  </div>
    <div class="daire">
-   <div class="msayi" id="zumre_say">0</div>
-      <div class="d_yazi">Zümre</div></div>   
+     <div class="msayi" id="zumre_say">0</div>
+  <div class="d_yazi">Zümre</div></div>   
   <div class="daire">
       <div class="d_yazi">Yardım</div></div>
 </div>
