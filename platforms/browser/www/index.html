@@ -325,9 +325,21 @@
 	text-align: center;
 	float: right;
 	border-radius: 50%;
-	background-image: url(icon/x.png);
-	background-position: center center;
 	
+	
+}
+.msayi {
+	height: 15px;
+	padding-bottom: 3px;
+	width: 35px;
+	color: #F00;
+	border: 1px solid #085B70;
+	text-align: center;
+	float: right;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	background-image: url(icon/byz.png);
 }
 .sms_d {
 	height: 15px;
@@ -1197,6 +1209,7 @@ $('.ay').html(ay);
 //GELEN KUTUSU SETINTERVAL			
 $.c_box=function(){		
 var box_id=$('.kul').attr('id');
+//kul_id denetimi yaz
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1217,6 +1230,37 @@ if(v==1){$('.menu').css('background-image','url(icon/x.jpg)');}
 $.c_box();//ilk geldiğinde çalıştırdık
 c_boxx=setInterval('$.c_box()',30000);		
 
+//GELEN KUTUSU SETINTERVAL			
+$.zum_box=function(){
+var zum_box=$('.kul').attr('id');
+if(zum_box>0){		
+var zumre=$('.kul').attr('zumre');
+var ilce=$('.kul').attr('ilce'); var ilcex=ilce+zumre; 
+var il=$('.kul').attr('il'); var ilx=il+zumre;
+var ilce_sayi=Cookies.get('ilce_sayi');if(ilce_sayi==null){ilce_sayi=0;}
+var il_sayi=Cookies.get('il_sayi');if(il_sayi==null){il_sayi=0;}
+var ulke_sayi=Cookies.get('ulke_sayi');if(ulke_sayi==null){ulke_sayi=0;}
+
+//DÜZENLEYECEĞİZ
+//cookies gunceelemesi yaazacaz
+$.ajax({
+			type: "POST",
+			url: "https://finansfear.com/sms/sohbet.php",
+			data:({"ilce_sayi":ilce_sayi,
+			       "il_sayi":il_sayi,
+			       "ulke_sayi":ulke_sayi,
+				   "ilx":ilx,
+				   "ilcex":ilcex}),
+			dataType: "json",
+			success: function(cevap){
+				$('#il_say').html(cevap.il);
+				$('#ilce_say').html(cevap.ilce);
+				$('#ulke_say').html(cevap.ulke);
+				$('#zumre_say').html(cevap.zumre);//toplam
+}});//ajax ve cevap
+}};//son zum_box
+$.zum_box();
+zum_boxx=setInterval('$.zum_box()',15000);
 //ux ut işlemleri
 $('.ux').click(function(){
 $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
@@ -1733,6 +1777,10 @@ $.ajax({
 			success: function(cevap){
 if(cevap.yok){/*Buraya belki güncelleme gifi yaparız*/}
 if(cevap.veri){$('.m_box:last').after(cevap.veri);}
+var son_id=$('.m_box:last').attr('id');
+if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
+if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
 
 $.mesaj_sil();
 $.yan_menu();	
@@ -1761,6 +1809,9 @@ if(ofset=='ilk'){$('.m_div').html(cevap.veri);
 var son_id=$('.m_box:last').attr('id');
 $('#send').attr('son_id',son_id);
 }else{$('.eski').after(cevap.veri)}//daha fazla yükle	
+if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
+if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
 $.mesaj_sender();
 $.mesaj_sil();
 $.yan_menu();
@@ -1894,7 +1945,7 @@ $.mesaj_sender();
 $.yan_menu=function(){
 $('.kullanici,.profil,.isimx').click(function(){		
 var m_alan=$(this).attr('m_alan');//alan=m_alan
-var m_gonderen=$('.kul').attr('id');//zaten ben
+var m_gonderen=$('.kul').attr('id');//müracat ben
 $('#send').attr('tur',1);
 $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
@@ -1902,6 +1953,7 @@ $('#m_baslik').html('Özel Mesajlar');
 
 //$('#m_baslik').html(); HALA BİR BAŞLIK SORUNUMUZ VAR 
 //yan_menu açılınca duruma uygun mesajları getir
+//burası sadece özel mesaja geçiş alanı bu sebeble tur=1
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
 //senin burada olman şart mı acaba ?
 $.mesaj_sender();
@@ -3017,6 +3069,7 @@ $('#mesaj').attr('placeholder',cb);
       <div class="merhaba">Hoşgeldin</div>
   <div class="d_yazi">Üye Ol !</div></div>
    <div class="daire">
+   <div class="msayi" id="zumre_say">0</div>
       <div class="d_yazi">Zümre</div></div>   
   <div class="daire">
       <div class="d_yazi">Yardım</div></div>
@@ -3093,9 +3146,9 @@ $('#mesaj').attr('placeholder',cb);
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 <div class="panel">
-<div class="d_daire"><div class="daires" name="ilce" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70; margin-top: 92px;">İlçe Zümresi</div></div></div>
-<div class="d_daire"><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div></div></div>
-<div class="d_daire"><div class="daires" name="ulke" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">Ülke Geneli</div></div></div>
+<div class="d_daire"><div class="msayi" id="ilce_say">0</div><div class="daires" name="ilce" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70; margin-top: 92px;">İlçe Zümresi</div></div></div>
+<div class="d_daire"><div class="msayi" id="il_say">0</div><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div></div></div>
+<div class="d_daire"><div class="msayi" id="ulke_say">0</div><div class="daires" name="ulke" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">Ülke Geneli</div></div></div>
 <div class="taban">
 <div class="geri"  style="color:#F00; border-color:#F00;">Geri</div>
 </div>
