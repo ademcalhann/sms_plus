@@ -8,7 +8,7 @@
     <script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="yukle.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="cookie.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
    
     <style type="text/css">
 .uyari {
@@ -160,7 +160,7 @@
 	margin-top: 28px;
 	margin-left: 20px;
 	border-radius: 50%;
-	border: 1px solid #999;
+	border: 1px solid #085B70;
 	float: left;
 	background-image: url(icon/profil.jpg);
 	background-repeat: no-repeat;
@@ -282,6 +282,7 @@
 	border: 1px solid #999;
 	float: left;
 	color: #3F9;
+	background-size: cover;
 }
 .listey {
 	height: 70px;
@@ -662,7 +663,7 @@
 	border-bottom-right-radius: 15px;
 	border-bottom-left-radius: 15px;
 	font-weight: bold;
-	background-color: #085B70;
+	background-color: #09F;
 }
 
 .mesaj {
@@ -975,7 +976,6 @@
 	color: #FFFFFF;
 	height: auto;
 	padding-top: 5px;
-	padding-right: 3px;
 	padding-bottom: 3px;
 	padding-left: 5px;
 	font-size: 13px;
@@ -1097,7 +1097,7 @@
 	margin-left: 20%;
 	font-size: 54px;
 	color: #999;
-	border: 1px groove #999;
+	border: 1px solid #FFF;
 	font-family: calibri;
 	font-weight: bold;
 	padding-bottom: 15px;
@@ -1114,13 +1114,13 @@
 	padding-bottom: 5px;
 	text-align: center;
 	margin-left: 2%;
-	border: 1px solid #09F;
+	border: 1px solid #FFF;
 	font-family: calibri;
 	font-size: 18px;
-	font-weight: bold;
 	float: left;
 	background-color: #FFF;
-	box-shadow:0 0 5px 2px #0099FF;
+	box-shadow: 0 0 5px 2px #0099FF;
+	padding-top: 4px;
 }
 .d_cer {
 	height: 40px;
@@ -1210,9 +1210,9 @@ if(gun<10){gun='0'+gun;}
 $('.gun').html(gun);
 $('.ay').html(ay);	
 //GELEN KUTUSU SETINTERVAL			
-$.c_box=function(){		
+$.c_box=function(){
 var box_id=$('.kul').attr('id');
-//kul_id denetimi yaz
+if(box_id>0){
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/sohbet.php",
@@ -1221,6 +1221,8 @@ $.ajax({
 			success: function(cevap){
 				if(cevap.veri>0){$('.menu').css("background-image",'url(icon/k.gif)');
 				$('#g_box').css('background-image','url(icon/1.png)');
+				//gif başladı tekarar sormaya gerek yok !
+				clearInterval(c_boxx);
 				}
 				if(cevap.veri==0){
 					$('#g_box').css('background-image','url()');
@@ -1229,9 +1231,9 @@ if(v==0){$('.menu').css('background-image','url(icon/y.jpg)');}
 if(v==1){$('.menu').css('background-image','url(icon/x.jpg)');}	
 					}
 }});//ajax ve cevap
-};//son c_box
-$.c_box();//ilk geldiğinde çalıştırdık
+}};//son c_box
 c_boxx=setInterval('$.c_box()',30000);		
+
 
 //GELEN KUTUSU SETINTERVAL			
 $.zum_box=function(){
@@ -1372,8 +1374,11 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 			$('.ut:eq(2)').html(cevap.veri).slideDown();
-			$.sil_box();
-            $.yan_menu();				
+//Tekrar döngüyü çalıştırdım hepsini okudun saydım
+c_boxx=setInterval('$.c_box()',30000);
+
+$.sil_box();
+$.yan_menu();				
 }});//ajax ve cevap
 });//g_box
 
@@ -1656,6 +1661,8 @@ $('.m_box[m_alan='+gonderen+']').slideUp();
 //sil_vt SİLME
 $.sil_vt=function(){
 $('.sil_ogr').click(function(){
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 var sil_ogr=$(this).attr('id');	
 var p_url=$(this).attr('p_url');	
 var vt=$(this).attr('vt');	
@@ -1670,7 +1677,7 @@ $.ajax({
 $('.b_daire[id='+sil_ogr+']').slideUp();	
 $.uyari(cevap.veri);			
 }});//ajax ve cevap
-});//click
+}else{$.uyari('Yetkiniz Bulunmuyor...');}});//click
 };//sil_vt  son
 
 //SMS PANELİ AÇMA PROGRAMI
@@ -1679,6 +1686,7 @@ $('.onayla').click(function(){
 $('#sms_panel').slideDown();
 //smsm islemi basla
 });};
+$.c_box();//ilk geldiğinde çalıştırdık
 $.zum_box();
 
 //MESAJ GONDERİCİ
@@ -1973,7 +1981,7 @@ $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
 //senin burada olman şart mı acaba ?
 $.mesaj_sender();
 //önceki dongu varsa sil
-//clearInterval(mesaj_dongu);
+clearInterval(mesaj_dongu);
 var m_alan=$(this).attr('m_alan');
 var m_gonderen=$(this).attr('m_gonderen');
 var tur=$(this).attr('tur');
@@ -2016,6 +2024,7 @@ $('.sol_panel').slideUp();
 //yoklama sil fonksiyonu
 $.y_sil=function(){
 $('.sil').click(function(){
+//if(z_kont<16){}else{$.uyari('Yetkiniz Bulunmuyor...');}	
 var yok_id=$(this).attr('id');	
 $.ajax({
 			type: "POST",
@@ -2230,8 +2239,10 @@ $('.daire').click(function(){
                 $('.panel').slideUp();
 			    $('.orta').hide();
                 $('.panel:eq('+index+')').show();
+
 var okul_id=$('.kul').attr('okul_id');
 
+	
 //-----SINIFLARIN GELMESİ VE YOK YAZMA
 if(index==0){
 $('#yoklama').html('');	
@@ -2292,7 +2303,6 @@ $.geri();
 });//??? sinif click				
 }});//ajax ve cevap
 }//-----sınıfların gelmesi son
-
 //SINIF VE ÖĞRENCİ İŞLEMLERİ İŞLEMLERİ İNDEX==1
 if(index==1){
 $.ajax({
@@ -2305,6 +2315,8 @@ $.ajax({
 $('.silg').click(function(){$('.y_panel').slideUp();});	
 // SINIF EKLE
 $('#s_ekle').click(function(){
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 $('.y_panel').slideDown();
 $('#kaydet_sinif').click(function(){
 var s_isim=$('#sinif_adi').val();
@@ -2325,11 +2337,13 @@ $.ajax({
 }});//ajax son	
 }//sınıf adi kontrol	
 });//sınıf kaydet
-
+}else{$.uyari('Yetkiniz Bulunmuyor...');}	
 });//sınıf ekle son			
 $.geri();	
 //SINIFI KOMPLE SİLME
 $('.sily').click(function(){
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 var sil_sinif=$(this).attr('id');	
 $.ajax({
 			type: "POST",
@@ -2340,7 +2354,7 @@ $.ajax({
 $('.d_daire[id='+sil_sinif+']').slideUp();	
 $.uyari('Sınıf Silindi !');			
 }});//ajax ve cevap
-});//sınıf sil
+}else{$.uyari('Yetkiniz Bulunmuyor...');}});//sınıf sil
 
 //SINIF ÖĞRENCİLERİ GETİR	
 $('.dairey').click(function(){
@@ -2359,10 +2373,11 @@ $.ajax({
 $('.silg').click(function(){$('.y_panel').slideUp();});	
 
 //Yeni Öğrenci Ekleme
-$('#ogrenci_ekle').click(function(){
+$('#ogrenci_ekle').click(function(){	
 // HATALI $('#ogrenci_guncelle').attr('id','kaydet_ogrenci');
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 $('#ogrenci_add').slideDown();
-
 $('#kaydet_ogrenci').one("click",function(){
 var ogr_isim=$('#ogrenci_isim').val();
 var okul_no=$('#okul_numarasi').val();
@@ -2391,11 +2406,12 @@ var veli_tel=$('#veli_telefonu').val('');
 }});//ajax son	
 }//ogrenci veri kontrol	
 });//ogrenci kaydet
-});//ogrenci ekle son
+}else{$.uyari('Yetkiniz Bulunmuyor...');}});//ogrenci ekle son
 $.sil_vt();
 //-----------------------ÖĞRENCİ BİLGİLERİNİ GÜNCELLEME
 $('.guncelle[tag="ogrenci"]').click(function(){
-
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 var up_id=$(this).attr('id');	
 $('#ogrenci_up').remove();
 $.ajax({
@@ -2425,7 +2441,7 @@ $('.y_panel').hide();
 }});//ajax son	
 });//ogrenci_guncelle.click son
 }});//guncelle_gelis son
-});//ögrenci güncelle son
+}else{$.uyari('Yetkiniz Bulunmuyor...');}	});//ögrenci güncelle son
 //sınıf adını güncelleme		
 $('#s_tabela').change(function(){	
 var yeni_isim=$('#s_tabela').val();
@@ -2654,6 +2670,7 @@ $.ajax({
 		$('#okullar').hide();		
 		$('#okul_personel').html(cevap.veri).slideDown();
 		$.yan_menu();
+$('.sil_ogr').hide();		
 $('#bigeri').click(function(){
 $('#okullar').show();
 $('#okul_personel').hide();
@@ -2731,19 +2748,27 @@ $.sil_vt();
 if(tab_ac==1){$('#p_ekle').show();	$('#p_kullanici').hide();}//ac==1son
 });//TAB SON	
 $('#p_kaydet').click(function(){
+var z_kont=$('.kul').attr('zumre');	
+if(z_kont<16){
 var p_adi=$('#p_adi').val();
 var p_tel=$('#p_tel').val();
 var p_sifre=$('#p_sifre').val();
 var okul_id=$('.kul').attr('okul_id');
+var p_il=$('.kul').attr('il');
+var p_ilce=$('.kul').attr('ilce');
+var p_zumre=$('#p_zumre').val();
 if(okul_id== null){$.uyari('Öncelikle Üye Olmalısınız, Personel ekleyemezsiniz');}else{
-if(p_adi=='' || p_tel=='' || p_sifre==''){$.uyari('Tüm Bilgileri Doldudurun !');}else{
+if(p_adi=='' || p_tel=='' || p_sifre=='' ||p_zumre=='0'){$.uyari('Tüm Bilgileri Doldudurun !');}else{
 $.ajax({
 			type: "POST",
 			url: "https://finansfear.com/sms/yoklama.php",
 			data:({"p_adi":p_adi,
 			       "p_tel":p_tel,
 				   "p_sifre":p_sifre,
-				   "p_okul":okul_id}),
+				   "p_okul":okul_id,
+				   "p_il":p_il,
+				   "p_ilce":p_ilce,
+				   "p_zumre":p_zumre}),
 			dataType: "json",
 			success: function(cevap){
    $.uyari(cevap.veri);
@@ -2751,7 +2776,7 @@ $.ajax({
    $.uyari(cevap.ogrenci); 	
 }});//ajax son		
 }}//eksik veri üye_girisi kontrol son
-});	//p_kaydetson
+}else{$.uyari('Yetkiniz Bulunmuyor...');}});	//p_kaydetson
 }//index==7son
 //üye olma işlemleri
 if(index==8){
@@ -2829,6 +2854,7 @@ $.uyari('Bir Yerlerde Hata Olsa Gerek !');
 });//---SMS PLUGIN SON	
 }});//ajax ve cevap	
 })//şifre sıfırla son
+$('.marka').click(function(){location.reload();});
 
 //-------DÖNGÜLERDEN ETKİLENMEYEN BAŞLA FONKSİYONU
 $('#basla').click(function(){
@@ -3143,6 +3169,24 @@ $('#mesaj').attr('placeholder',cb);
 <div class="kutu" style="margin-top:0px;" id="p_kullanici"></div> 
 <div class="kutu" style="margin-top:0px; display:block;" id="p_ekle">
 <input type="text" class="metin" placeholder="Personel Adı" id="p_adi" />
+<select class="metin" style="height:38px;" id="p_zumre">
+<option selected value="0">Branş Seçin</option>
+<option value="1">Okul Müdürü</option>
+<option value="2">Müdür Yardımcısı</option>
+<option value="16">Sağlık Hizmetleri</option>
+<option value="17">Türk Dili ve Edebiyatı</option>
+<option value="18">Fizik</option>
+<option value="19">Kimya</option>
+<option value="20">Biyoloji</option>
+<option value="21">Matematik</option>
+<option value="22">Tarih</option>
+<option value="23">Felsefe</option>
+<option value="24">Beden Eğitimi</option>
+<option value="25">Müzik</option>
+<option value="26">Resim</option>
+<option value="27">Coğrafya</option>
+<option value="28">Din Kültürü</option>
+</select>
 <input type="number" class="metin" placeholder="Telefon" id="p_tel" />
 <input type="text" class="metin" placeholder="Şifre" id="p_sifre" />
 <div class="basla" id="p_kaydet">Kaydet</div>
