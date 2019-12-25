@@ -118,7 +118,7 @@
 	text-align: center;
 	margin-left: 10px;
 	margin-top: 90px;
-	width: 72px;
+	width: 78px;
 }
 .isim {
 	font-family: calibri;
@@ -323,11 +323,10 @@
 	height: 15px;
 	width: 15px;
 	border: 1px solid #FF0000;
-	text-align: center;
 	float: right;
 	border-radius: 50%;
-	
-	
+	background-image: url(icon/x.png);
+		background-position: center center;
 }
 .msayi {
 	height: 12px;
@@ -1682,7 +1681,7 @@ $.uyari(cevap.veri);
 
 //SMS PANELİ AÇMA PROGRAMI
 $.panel_ac=function(){
-$('.onayla').click(function(){
+$('#gonder,#devam').click(function(){
 $('#sms_panel').slideDown();
 //smsm islemi basla
 });};
@@ -1828,6 +1827,8 @@ $.ajax({
 		$('.yan_menu').slideDown();
 //ilk mesaj alma		
 if(ofset=='ilk'){$('.m_div').html(cevap.veri);
+//Fotoğraf hatası Düzelt
+$(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
 //$('.m_div').after(cevap.gonder);
 var son_id=$('.m_box:last').attr('id');
 $('#send').attr('son_id',son_id);
@@ -2576,8 +2577,7 @@ if(index<toplam){
 //----SMS PLUGIN
 var telefon=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
-
-var mesaj="Şu index: "+index+" Şu isim: "+telefon;
+var mesaj=$('#mesaji').val();
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
@@ -2591,10 +2591,11 @@ $.sms_dng(index);
 });//---SMS PLUGIN SON
 }//sms gönderecek kişi var son
 if(index==toplam-1){$.uyari('Görev Tamamlandı !');
-var ca=$('#mesaj').attr('placeholder');
+/*var ca=$('#mesaj').attr('placeholder');
 var cb=ca+' ======  Görev tamam: ';
-$('#mesaj').attr('placeholder',cb);
-$.uyari('Görev Tamamlandı! 2514 '+index);
+$('#mesaj').attr('placeholder',cb);*/
+
+$.uyari('Görev Tamamlandı ! ');
 $('.alt_panel').hide();
 //şimdilik deneme////-------$('#mesaji').html('');
 var sayi=$('.ogrenci[sayac=3]').length;
@@ -2632,10 +2633,10 @@ var sahne=$('.ogrenci[tag=toplu]').length;//sahnede ki herkes
 
 if(sahne<toplam){var last=$('.ogrenci[tag=toplu]').length;$.sahne(last);}//gelmeyenler var ajax getirsin
 if(sahne==toplam){
-
+/*
 var ca=$('#mesaji').attr('placeholder');
 var cb=ca+' ======  Herkes Geldi: '+sahne;
-$('#mesaji').attr('placeholder',cb);
+$('#mesaji').attr('placeholder',cb);*/
 $.sms_dng(0);// ilk kişiden başla
 };//Herkes geldi sms başlasın
 }});//ajax	
@@ -3090,9 +3091,9 @@ $('#mesaj').attr('placeholder',cb);
       <div class="daire" style="background-image:url('');">
       <div class="ay"></div><div class="gun"></div>
       <div class="d_yazi">Günlük Yoklama</div></div>
-  <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
+  <div class="daire" style="background-image:url(icon/sinif.png); background-size:cover;">
       <div class="d_yazi">Sınıflar</div></div>
-      <div class="daire" style="background-image:url(icon/islist.png);">
+      <div class="daire" style="background-image:url(icon/islist.png); background-size:contain;">
       <div class="d_yazi">Listeler</div></div> 
       <div class="daire" style="background-image:url(icon/profils.png); background-size:cover;">
       <div class="d_yazi"><p>Toplu Sms</p>  </div>
@@ -3103,7 +3104,7 @@ $('#mesaj').attr('placeholder',cb);
       <div class="msayi" id="okul_say">0</div>
   <div class="d_yazi" >Sohbet</div></div>
      
-  <div class="daire"  style="background-image:url(icon/syc.png);">
+  <div class="daire"  style="background-image:url(icon/syc.gif); background-size:contain;">
       <div class="d_yazi">Sms Sayacı</div></div>
       <div class="daire" style="background-image:url(icon/ogretmen.png); background-size:cover;">
       <div class="d_yazi">Kullanıcılar</div>
@@ -3112,10 +3113,10 @@ $('#mesaj').attr('placeholder',cb);
       <div class="merhaba">Hoşgeldin</div>
       <div class="d_yazi">Üye Ol !</div>
   </div>
-   <div class="daire">
+   <div class="daire" style="background-image:url(icon/zmr.png); background-size:contain;">
      <div class="msayi" id="zumre_say">0</div>
   <div class="d_yazi">Zümre</div></div>   
-  <div class="daire">
+  <div class="daire"style="background-image:url(icon/yrdm.png); background-size:contain;">
       <div class="d_yazi">Yardım</div></div>
 </div>
 <div class="panel">
