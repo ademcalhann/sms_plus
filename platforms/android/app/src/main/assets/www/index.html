@@ -12,8 +12,8 @@
    
     <style type="text/css">
 .uyari {
-	color: #000000;
-	background-image: url(icon/byz.png);
+	color: #FFFFFF;
+	background-image: url(icon/mavi.png);
 	background-repeat: repeat;
 	text-align: center;
 	height: 56px;
@@ -23,17 +23,17 @@
 	padding-bottom: 5px;
 	position: fixed;
 	z-index: 20;
-	border-right-width: 3px;
-	border-left-width: 3px;
+	border-right-width: 4px;
+	border-left-width: 4px;
 	border-right-style: solid;
 	border-left-style: solid;
 	border-right-color: #00FF66;
 	border-left-color: #00FF66;
 	visibility: visible;
 	font-family: "calibri";
-	font-size: 15px;
-	font-weight:bold;
-	bottom: 10%;
+	font-size: 18px;
+	font-weight: bold;
+	bottom: 45%;
 }	
 .ay {
 	font-size: 18px;
@@ -136,7 +136,7 @@
 	margin-top: 35px;
 	width: 80px;	
 }
-.d_daire{
+.d_daire {
 	height: 90px;
 	width: 90px;
 	margin-top: 25px;
@@ -173,7 +173,7 @@
 	border: 1px solid #999;
 	float: left;
 	margin-top: -18px;
-	background-image: url(icon/profil.jpg);
+	background-image: url(icon/profils.png);
 }
 .dairec {
 	height: 90px;
@@ -818,11 +818,10 @@
 	color: #FFFFFF;
 	text-align: center;
 	width: 72px;
-	height:20px;
-	margin-top: 36px;
+	height: 20px;
+	margin-top: -50px;
 	box-shadow: 0 0 10px 2px white;
 	margin-left: -1px;
-	position: absolute;
 	border-bottom-right-radius: 29px;
 	border-bottom-left-radius: 29px;
 	padding-bottom: 12px;
@@ -2063,7 +2062,6 @@ $.alt_kapat();
 
 //ÜYELERİN GİRİŞ YAPMA ALANI
 $('#giris').click(function(){
-
 var g_tel=$('#g_tel').val();
 var g_sifre=$('#g_sifre').val();
 var durum=$(this).html();
@@ -2541,6 +2539,9 @@ break;
 });//dairey son	
 //DEVAM TIKLAMA 
 $('#devam').click(function(){
+var yoklama='';	
+var yok_ogr=$('.dairey[isaret=1]').length;
+if(yok_ogr==0){$.uyari('Mesaj Gönderilecek Sınıfları Seçin !');}else{
 $('#sinif_sec').hide();
 $('#toplu_kutu').show();
 $('#kisiler,#sms_panel2').slideDown();
@@ -2550,8 +2551,7 @@ $('#sinif_sec').show();
 $('#toplu_kutu').hide();
 $('#kisiler').html('');	
 });
-var yoklama='';	
-var yok_ogr=$('.dairey[isaret=1]').length;
+
 for(index=0;index<yok_ogr; index++){
 var id=$('.dairey[isaret=1]:eq('+index+')').attr('id');
 yoklama+=',\"'+id+'\"';	}
@@ -2644,7 +2644,7 @@ $.sms_dng(0);// ilk kişiden başla
 $.sahne(0);
 });//toplu_basla son
 }});//ajax ve cevap		
-});//devam tıklama son
+}});//devam tıklama son
 }});//ajax ve cevap		
 }//index==3 sonu
 //OKUL İŞLEMLERİ DİYE GEÇİYOR AMA DEĞİŞTİRECEĞİZ
@@ -2860,12 +2860,7 @@ $('.marka').click(function(){location.reload();});
 //-------DÖNGÜLERDEN ETKİLENMEYEN BAŞLA FONKSİYONU
 $('#basla').click(function(){
 $(this).css('background-color','#0F6');	
-var z= new Date();
-var saat=z.getHours();
-var dakika=z.getMinutes();
-if(dakika<10){dakika='0'+dakika;}
-if(saat<10){saat='0'+saat;}
-var zaman =' '+saat+'.'+dakika+' de ';	
+
 //cookies işlemleri
 var yoklama_id=$(this).attr('yoklama_id');
 var sms_tur=$(this).attr('sms_tur');
@@ -2887,7 +2882,7 @@ var telefon=$('.y_ogrenci:eq('+index+')').attr('veli_tel');
 var isim=$('.isim:eq('+index+')').html();
 
 var mesaj=$('#mesaj').val();
-var mesajx=isim+zaman+mesaj;
+var mesajx=isim+'-'+mesaj;
 //----SMS PLUGIN
 SMS.sendSMS(telefon,mesajx,function(){
 //işlem başarılı
@@ -2908,9 +2903,9 @@ $.sms_gonder(index);
 },function (str){
 //hata oluştu alert(str); 
 $('.y_ogrenci:eq('+index+')').css('background-color','#F03').attr('sayac',4);
-
-/*var ca=$('#mesaj').attr('placeholder');
-var cb=ca+' ====== başarısız: '+index;
+/*
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ====== Başarısız: '+mesajx+' '+telefon;
 $('#mesaj').attr('placeholder',cb);*/
 index++;
 $.sms_gonder(index);
@@ -2918,12 +2913,11 @@ $.sms_gonder(index);
 });//---SMS PLUGIN SON	
 }
 if(index==ogr_sayi-1){
-//BU KISIMDA DENEME YAPALIM İNDEX DURUMUNU YAZDIRARAK TAKİP EDELİM
-    //İNDEXTE Mİ İKİ DEFA YAZIYOR ?? SADECE GÖREV TMM MI ?
+/*
 var ca=$('#mesaj').attr('placeholder');
 var cb=ca+' ======  Görev tamam: ';
-$('#mesaj').attr('placeholder',cb);
-$.uyari('Görev Tamamlandı!2827 '+index);
+$('#mesaj').attr('placeholder',cb);*/
+$.uyari('Görev Tamamlandı !');
 //Cookies.set(yoklama_id,index);
 $('#sms_panel').fadeOut();
 var sayi=$('.y_ogrenci[sayac=1]').length;
@@ -2954,10 +2948,10 @@ var ogr_sayi=$('.y_ogrenci').length;
 yok_index++;
 if(yok_index<ogr_sayi){$.uyari('Sistem '+yok_index+'. Kişiden Devam Edecek !'); $('.y_ogrenci:eq('+yok_index+')').css('background-color','#0F6');
 $.sms_gonder(yok_index);}
-if(yok_index==ogr_sayi || yok_index>ogr_sayi){$.uyari('Görev Tamamlandı!2854');
-var ca=$('#mesaj').attr('placeholder');
+if(yok_index==ogr_sayi || yok_index>ogr_sayi){$.uyari('Görev Tamamlandı !');
+/*var ca=$('#mesaj').attr('placeholder');
 var cb=ca+' ======  Görev tamamlandı !';
-$('#mesaj').attr('placeholder',cb);
+$('#mesaj').attr('placeholder',cb);*/
 }
 	
 }
