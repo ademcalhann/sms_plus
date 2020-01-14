@@ -1213,7 +1213,7 @@ var box_id=$('.kul').attr('id');
 if(box_id>0){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"c_box":box_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -1250,7 +1250,7 @@ var okul_id=$('.kul').attr('okul_id');
 //cookies gunceelemesi yaazacaz
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"ilce_sayi":ilce_sayi,
 			       "il_sayi":il_sayi,
 				   "okul_sayi":okul_sayi,
@@ -1299,7 +1299,7 @@ var kul_id=$('.kul').attr('id');
 if(kul_id>0){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"gscode":kul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -1324,7 +1324,7 @@ $('.sily').click(function(){
 var sil_code=$(this).attr('id');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sil_code":sil_code}),
 			dataType: "json",
 			success: function(cevap){
@@ -1350,7 +1350,7 @@ if(kul_id>0){
 var o_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"scode":scode,
 			       "s_sure":s_sure,
 				   "sp_id":kul_id,
@@ -1367,7 +1367,7 @@ $('#g_box').click(function(){
 var box_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"box_id":box_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -1436,7 +1436,7 @@ $('#p_img').val(p_img);
 		 
  $.ajax({
                     type: "POST",
-                    url: "https://finansfear.com/sms/profil.php",
+                    url: "https://mesajplus.com/profil.php",
                     data: ({"ckul_id":kul_id,
 					        "cokul_id":okul_id }),
                     dataType: "json",
@@ -1515,7 +1515,7 @@ $('#profilim').attr('src','icon/profil.jpg');
 $('#profilim').attr('name','icon/profil.jpg');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/profil.php",
+			url: "https://mesajplus.com/profil.php",
 			data:({"p_sil":url}),
 			dataType: "json",
 			success: function(cevap){
@@ -1538,7 +1538,7 @@ $.p_sil();
 $.fotograf=function(){
 $('.resim,.profil').on("click",function(){
 	var adi=$(this).attr('name');
-	var url='https://finansfear.com/sms/resim/buyuk/'+adi;
+	var url='https://mesajplus.com/resim/buyuk/'+adi;
 	var image='<img src="'+url+'" width="90%" height="auto"  style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px;"/>';
 	$('.kapa[name=fotograf]').html(image).show();
 	$('.yayiny').slideDown();
@@ -1583,7 +1583,7 @@ var k_sifre=$('#k_sifre').val();
 if(k_okul=='' || k_kul=='' || k_tel=='' || k_sifre==''){$.uyari('Tüm Alanları Doldurmalısınız !');}else{
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"k_okul":k_okul,
 			"k_kul":k_kul,
 			"k_tel":k_tel,
@@ -1612,7 +1612,7 @@ var mesaj_id=$(this).attr('mesaj_id');
 var url=$(this).attr('url');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"yorum_id":mesaj_id,
 			       "url":url}),
 			dataType: "json",
@@ -1638,7 +1638,7 @@ var gonderen=$(this).attr('gonderen');
 
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"alan":kul_id,
 				   "sil_box":gonderen}),
 			dataType: "json",
@@ -1666,7 +1666,7 @@ var p_url=$(this).attr('p_url');
 var vt=$(this).attr('vt');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sil_ogr":sil_ogr,
 			       "vt":vt,
 				   "p_url":p_url}),
@@ -1754,7 +1754,7 @@ var zmnx=gun+' '+ay+' '+saat1+':'+dk1;
 
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"kaydet_alan":m_alan,
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
@@ -1788,7 +1788,7 @@ var tur=$('#send').attr('tur');
 var son_id=$('.m_box:last').attr('id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"k_alan":m_alan,
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
@@ -1815,7 +1815,7 @@ $.mesaj_getir=function(m_alan,m_gonderen,tur,ofset,kalan){
 mesaj_dongu=setInterval('$.mesaj_kontrol()',8000);	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/sohbet.php",
+			url: "https://mesajplus.com/sohbet.php",
 			data:({"m_alan":m_alan,
 			       "m_gonderen":m_gonderen,
 				   "tur":tur,
@@ -2028,7 +2028,7 @@ $('.sil').click(function(){
 var yok_id=$(this).attr('id');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"yok_id":yok_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2068,7 +2068,7 @@ var durum=$(this).html();
 if(durum=='Giriş'){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"g_tel":g_tel,
 			       "g_sifre":g_sifre}),
 			dataType: "json",
@@ -2094,7 +2094,7 @@ if(durum=='Güncelle'){
 
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"kim_isim":g_tel,
 			       "yeni_sifre":g_sifre,
 				   "kim":kul_id}),
@@ -2125,7 +2125,7 @@ $('.yoklama').css("background-color","#106b80").css("color","#FFF");
 var okul_id=$('.kul').attr('okul_id');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"bugun":okul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2158,7 +2158,7 @@ $('.sinif').css("background-color","#FFF").css("color","#06F");
 $('.kutu,.alt_panel').hide();
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"cok_yok_id":yoklama_id,
 			       "tek_id":tek_id}),
 			dataType: "json",
@@ -2195,7 +2195,7 @@ var kul_id=$('.kul').attr('id');
 var okul_id=$('.kul').attr('okul_id');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"yoklama_id":yoklama_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2248,7 +2248,7 @@ $('#yoklama').html('');
 $.gunluk_yoklama();	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"s_getir":okul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2269,7 +2269,7 @@ $('.kutu').hide();
 //öğrencileri getir ajax
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sinif_id":sinif_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2306,7 +2306,7 @@ $.geri();
 if(index==1){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"siniflar":okul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2325,7 +2325,7 @@ $.uyari('Sınıf adı olmadan kayıt yapılamaz !');
 var o_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"ss_isim":s_isim,
 			       "ox_id":o_id}),
 			dataType: "json",
@@ -2346,7 +2346,7 @@ if(z_kont<16){
 var sil_sinif=$(this).attr('id');	
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sil_sinif":sil_sinif}),
 			dataType: "json",
 			success: function(cevap){
@@ -2362,7 +2362,7 @@ var getir_ogr=$(this).attr('id');
 var sg_id=getir_ogr;
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"getir_ogr":getir_ogr}),
 			dataType: "json",
 			success: function(cevap){
@@ -2388,7 +2388,7 @@ $.uyari('Tüm verileri girmelisiniz !');
 var oxx_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"ogr_isim":ogr_isim,
 			       "okul_no":okul_no,
 				   "veli_tel":veli_tel,
@@ -2415,7 +2415,7 @@ var up_id=$(this).attr('id');
 $('#ogrenci_up').remove();
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"up_id":up_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2427,7 +2427,7 @@ var up_okul=$('#up_okul').val();
 var up_veli=$('#up_veli').val();
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"up_isim":up_isim,
 			       "up_idx":up_id,
 			       "up_okul":up_okul,
@@ -2446,7 +2446,7 @@ $('#s_tabela').change(function(){
 var yeni_isim=$('#s_tabela').val();
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"yeni_isim":yeni_isim,
 			       "sg_id":sg_id}),
 			dataType: "json",
@@ -2470,7 +2470,7 @@ if(index==2){
 var okul_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"liste_id":okul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2488,7 +2488,7 @@ $('#basla').attr('yoklama_id',li_id);
 $('#basla').attr('sms_tur','liste');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"li_id":li_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2514,7 +2514,7 @@ $('#sinif_sec').show();
 var okul_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"toplu_id":okul_id}),
 			dataType: "json",
 			success: function(cevap){
@@ -2559,7 +2559,7 @@ yoklama=yoklama.slice(1);
 var ofset=0;
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"t_count":yoklama}),
 			dataType: "json",
 			success: function(cevap){
@@ -2603,7 +2603,7 @@ var hata=$('.ogrenci[sayac=6]').length;
 var o_id=$('.kul').attr('okul_id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sao_id":o_id,
 			        "sayi":sayi,
 					"hata":hata}),
@@ -2618,7 +2618,7 @@ $.sahne=function(son){
 
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"t_list":yoklama,
 			        "ofset":son}),
 			dataType: "json",
@@ -2651,7 +2651,7 @@ $.sahne(0);
 if(index==4){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"tum_okul":1}),
 			dataType: "json",
 			success: function(cevap){
@@ -2662,7 +2662,7 @@ var okul_id=$(this).attr('id');
 var kul_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"p_kullanici":okul_id,
 			       "ne_icin":1,
 				   "pers_id":kul_id}),
@@ -2700,7 +2700,7 @@ $.mesaj_sender();
 if(index==6){
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"g_sayac":0}),
 			dataType: "json",
 			success: function(cevap){
@@ -2711,7 +2711,7 @@ $('#o_sayac').click(function(){
 var ofset=$('.d_cer').length;
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"g_sayac":ofset}),
 			dataType: "json",
 			success: function(cevap){
@@ -2733,7 +2733,7 @@ var okul_id=$('.kul').attr('okul_id');
 var kul_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"p_kullanici":okul_id,
 			       "ne_icin":0,
 				   "pers_id":kul_id}),
@@ -2762,7 +2762,7 @@ if(okul_id== null){$.uyari('Öncelikle Üye Olmalısınız, Personel ekleyemezsi
 if(p_adi=='' || p_tel=='' || p_sifre=='' ||p_zumre=='0'){$.uyari('Tüm Bilgileri Doldudurun !');}else{
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"p_adi":p_adi,
 			       "p_tel":p_tel,
 				   "p_sifre":p_sifre,
@@ -2822,7 +2822,7 @@ var ogr_id=yoklama;
 var yok_isim=$('#yok_isim').val();
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"oo_id":okul_id,
 			       "ogr_id":yoklama,
 				   "yok_isim":yok_isim}),
@@ -2843,7 +2843,7 @@ $('#sifirla').click(function(){
 var sifirla=$('#esifir').val;
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sifirla":sifirla}),
 			dataType: "json",
 			success: function(cevap){
@@ -2927,7 +2927,7 @@ var o_id=$('.kul').attr('okul_id');
 
 $.ajax({
 			type: "POST",
-			url: "https://finansfear.com/sms/yoklama.php",
+			url: "https://mesajplus.com/yoklama.php",
 			data:({"sao_id":o_id,
 			        "sayi":sayi,
 					"hata":hata,
@@ -3218,7 +3218,7 @@ $('#mesaj').attr('placeholder',cb);*/
 <p style="color:#FFF;">Hemen üye olup sistemin nasıl çalıştığını görebilirsin.</p> <p style="color:#FFF;">Okullar üye olur, öğretmenler personel olarak eklenir.</p><p style="color:#FFF;"> Sonrasıda Tam kurulum için sizinle iletişime geçeriz...</p>
 </div>
 <div class="kapa" style="height: 70px; float: left; display: none; 	position: absolute;	margin-top:50px;" id="dv_ekle">
-<form id="profilx" action="https://finansfear.com/sms/profil.php" method="post" enctype="multipart/form-data">
+<form id="profilx" action="https://mesajplus.com/profil.php" method="post" enctype="multipart/form-data">
       <input type="file" name="dosya" class="buton">
       <input type="text" style="display:none;" value="Fear" name="p_img" id="p_img">
       <input type="text" style="display:none;" value="Fear" name="kul_id" id="profil_id">
