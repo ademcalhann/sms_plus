@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -7,31 +8,32 @@
     <script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="yukle.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="cookie.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
    
     <style type="text/css">
 .uyari {
 	color: #FFFFFF;
-	background-image: url(icon/ela.png);
+	background-image: url(icon/mavi.png);
 	background-repeat: repeat;
 	text-align: center;
-	height: 50px;
+	height: 56px;
 	width: 80%;
-	margin-left: 4%;
-	padding-top: 15px;
+	margin-left: 8%;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	position: fixed;
 	z-index: 20;
-	border-right-width: 8px;
-	border-left-width: 8px;
+	border-right-width: 4px;
+	border-left-width: 4px;
 	border-right-style: solid;
 	border-left-style: solid;
 	border-right-color: #00FF66;
 	border-left-color: #00FF66;
+	visibility: visible;
 	font-family: "calibri";
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	bottom: 45%;
-	display: none;
 }	
 .ay {
 	font-size: 18px;
@@ -39,8 +41,10 @@
 	color: #ffffff;
 	height: 25px;
 	position: absolute;
+	margin-left: px;
 	width: 92px;
 	text-align: center;
+	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-top: 17px;
 	background-image: url(icon/ayx.png);
@@ -141,7 +145,7 @@
 	float: left;
 	
 }
-.b_daire {
+.b_daire{
 	height: 70px;
 	width: 70px;
 	border-radius: 50%;
@@ -150,16 +154,6 @@
 	margin-top: 15px;
 	margin-bottom: 15px;	
 }
-.g_boxx {
-	height: 70px;
-	width: 70px;
-	border-radius: 50%;
-	float: left;
-	margin-left: 20px;
-	margin-top: 15px;
-	margin-bottom: 15px;	
-}
-
 .daire {
 	height: 90px;
 	width: 90px;
@@ -375,14 +369,17 @@
 .sil_box {
 	height: 15px;
 	width: 15px;
+	margin-top: -25px;
 	border: 1px solid #FF0000;
 	text-align: center;
 	float: right;
+	margin-right: 2px;
 	border-radius: 50%;
 	background-image: url(icon/x.png);
 	background-position: center center;
-	margin-right: -7px;
-	margin-bottom:-10px;
+	position: absolute;
+	z-index: 5;
+	margin-left: 90%;
 }
 .silg {
 	height: 15px;
@@ -574,20 +571,23 @@
 	background-position: center center;
 }		
 .liste {
-	color: #ffffff;
-	font-family: calibri;
-	font-size: 14px;
-	text-align: center;
-	height: 22px;
-	width: 80%;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-left: 10%;
-	border-bottom-right-radius: 15px;
-	border-bottom-left-radius: 15px;
-	font-weight: bold;
-	background-color: #09F;
 	
+	width: 80%;
+	font-size: 18px;
+	color: #06F;
+	height: 22px;
+	margin-left:10%;
+	background-color: #FFF;
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #06F;
+	border-bottom-color: #06F;
+	float: left;
 }
     .yoklama {
 	width: 25%;
@@ -1164,21 +1164,6 @@
 	height: 30px;
 	padding-top: 8px;
 }
-
-.zum_is {
-	color: #FFFFFF;
-	text-align: center;
-	width: 90px;
-	height: 20px;
-	margin-top: -46px;
-	box-shadow: 0 0 10px 8px white;
-	border-bottom-right-radius: 29px;
-	border-bottom-left-radius: 29px;
-	padding-bottom: 14px;
-	background-color: #00FF66;
-	font-family: calibri;
-	font-size: 13px;
-	}
     </style>
 </head>
 <body onload="onLoad()">
@@ -1290,7 +1275,7 @@ $.ajax({
 }});//ajax ve cevap
 }};//son zum_box
 
-zum_boxx=setInterval('$.zum_box()',30000);
+zum_boxx=setInterval('$.zum_box()',15000);
 //ux ut işlemleri
 $('.ux').click(function(){
 $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
@@ -1396,16 +1381,15 @@ $.ajax({
 			$('.ut:eq(2)').html(cevap.veri).slideDown();
 //Tekrar döngüyü çalıştırdım hepsini okudun saydım
 c_boxx=setInterval('$.c_box()',30000);
+
 $.sil_box();
-$.ozel_mesaj2();
-//------EKSİK PROFİL RESMİ TAMAMLAMA
-$("img").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
- 				
+$.yan_menu();				
 }});//ajax ve cevap
 });//g_box
 
 //Cookies Kullanıcı Giriş Kontrol
 $.sil=function(){Cookies.remove('kek');};
+
 var kek=Cookies.get('kek');
 var kekim=kek+'</div>';
 var uye_ol_div=$('.ust').html();
@@ -1487,7 +1471,10 @@ $("#profilx").ajaxForm(options);//---dosya yükleme son
 //BUNLARI BELKİDE SİLMELİYİZ
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeIn();});
-
+$('#y_kapat').click(function () {
+   clearInterval(mesaj_dongu);
+   alert('Kapattım')
+$('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 //---------DOSYA YÜKLEME 
 $("#dosyayukle").ajaxForm({
@@ -1588,7 +1575,7 @@ $('#g_sifre').attr('placeholder','Yeni Şifre Girin yada Boş Bırak...');
 $.uye_ol_div=function(){
 $('.uye_ol_div').click(function(){
 $('.sol_panel,.orta').hide();
-$('.panel:eq('+10+')').show();
+$('.panel:eq('+8+')').show();
 $('.menu').attr('v',0);	
 $('.menu').css('background-image','url(icon/y.jpg)');
 });};	
@@ -1672,7 +1659,8 @@ $.ajax({
 				if (cevap.hata){alert(cevap.hata);} else {
 					$('.uyari').html(cevap.olumlu);
 					$.uyari();
-                  $('.g_boxx[silup='+gonderen+']').slideUp();
+
+$('.m_box[m_alan='+gonderen+']').slideUp();
 
 }//ELSE
 }//CEVAP
@@ -1714,7 +1702,13 @@ $.zum_box();
 
 //MESAJ GONDERİCİ
 $.mesaj_sender=function(){
-
+$('#y_kapat').click(function(){ 
+   clearInterval(mesaj_dongu);
+   alert('Kapattım')
+$('.yan_menu').fadeOut();
+$('#send').attr('tur',0); 
+$('#send').attr('m_alan','');
+$('#send').attr('m_gonderen','');});
 $('#send').click(function(){
 var m_alan=$(this).attr('m_alan');
 var m_gonderen=$(this).attr('m_gonderen');
@@ -1794,7 +1788,7 @@ $('.m_veri').val('');
 //Fotoğraf hatası Düzelt
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
 $.fotograf();
-if(tur!=1)$.yan_menu();
+$.yan_menu();
 $.mesaj_sil();
 }});//ajax ve cevap
 }else{$.uyari('Boş mesaj gönderemezsiniz...');}//doluboş kontrol
@@ -1808,7 +1802,7 @@ var m_alan=$('#send').attr('m_alan');
 var m_gonderen=$('#send').attr('m_gonderen');
 var tur=$('#send').attr('tur');
 var son_id=$('.m_box:last').attr('id');
-//$.uyari(son_id);
+alert(son_id);
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/sohbet.php",
@@ -1828,7 +1822,7 @@ if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$
 //Fotoğraf hatası Düzelt
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
 $.mesaj_sil();
-if(tur!=1){$.yan_menu();}	
+$.yan_menu();	
 }});//ajax ve cevap
 };//mesaj_kontrol
 
@@ -1862,18 +1856,15 @@ if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#z
 if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
 $.mesaj_sender();
 $.mesaj_sil();
-if(tur!=1){$.yan_menu();}
+$.yan_menu();
 $.fotograf();
 
 $('#y_kapat').click(function() {
-                  $('.panel:eq(5)').hide();	  
-                  clearInterval(mesaj_dongu);
-                 // $.uyari('Döngü Temizlendi');
-                  if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
-                  $('.yan_menu').fadeOut();
-				  $('#send').attr('tur',0);
-				  $('#send').attr('m_alan','');
-				  $('#send').attr('m_gonderen','');});//y_kapat son
+	$('.panel:eq(5)').hide();	  
+clearInterval(mesaj_dongu);
+if(tur=='0'){$('.panel:eq('+5+')').hide(); $('.orta').show();}
+
+$('.yan_menu').fadeOut();$('#send').attr('tur',0); $('#send').attr('m_alan','');$('#send').attr('m_gonderen','');});
 
 $('.ic_kapat').click(function () { $('#dv_ekle,.d_gonder').fadeOut();});
 $('#d_ekle').click(function () { $('.d_gonder').fadeToggle();
@@ -1994,7 +1985,7 @@ $.mesaj_sender();
 
 //MESAJLAŞMA PANELİ AÇ
 $.yan_menu=function(){
-$('.profil,.isimx').click(function(){		
+$('.kullanici,.profil,.isimx').click(function(){		
 var m_alan=$(this).attr('m_alan');//alan=m_alan
 var m_gonderen=$('.kul').attr('id');//müracat ben
 $('#send').attr('tur',1);
@@ -2002,28 +1993,27 @@ $('#send').attr('m_alan',m_alan);
 $('#send').attr('m_gonderen',m_gonderen);
 var baslik=	$(this).attr('placeholder');
 $('#m_baslik').html(baslik);
-
-	clearInterval(mesaj_dongu);
-	//$.uyari('Varsa Döngü Kapat!');	
-	
+//yan_menu açılınca duruma uygun mesajları getir
+//burası sadece özel mesaja geçiş alanı bu sebeble tur=1
+//önceki dongu varsa sil
+//clearInterval(mesaj_dongu);
 $.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
+//senin burada olman şart mı acaba ?
+$.mesaj_sender();
 
+var m_alan=$(this).attr('m_alan');
+var m_gonderen=$(this).attr('m_gonderen');
+var tur=$(this).attr('tur');
+
+$('#y_kapat').click(function(){ 
+   clearInterval(mesaj_dongu);
+   alert('Kapattım')
+$('.yan_menu').fadeOut();
+$('#send').attr('tur',1); 
+$('#send').attr('m_alan','');
+$('#send').attr('m_gonderen','');});
 });};//MESAJLAŞMA PANELSON
 
-//özel_mesaj2
-$.ozel_mesaj2=function(){
-$('.kullanici').click(function(){
-$(this).css('box-shadow','0 0 0px 0px');			
-var m_alan=$(this).attr('m_alan');//alan=m_alan
-var m_gonderen=$('.kul').attr('id');//müracat ben
-$('#send').attr('tur',1);
-$('#send').attr('m_alan',m_alan);
-$('#send').attr('m_gonderen',m_gonderen);
-var baslik=	$(this).attr('placeholder');
-$('#m_baslik').html(baslik);
-$.mesaj_getir(m_alan,m_gonderen,1,'ilk',0);
-
-});};//özel_mesaj_son2
 
 	
 // SLAYT İŞLEMLERİ SONRA AJAX EKLENECEK
@@ -2258,10 +2248,8 @@ $.panel_ac();
 	
 //--------YÜKSEKLİK AYARLARI******************
 var yukseklik=screen.height;
-var yuksekx=yukseklik-150;
-//alert(yukseklik)
-//alert(yuksekx)
-$('.orta,.panel').css('height',yuksekx);
+var yuksekx=yukseklik-120;
+$('.orta').css('height',yuksekx);
 
 //-----STATİK YOKLAMA GUNLUK BLOK GİRİŞİ
 $('.yoklama').click(function(){
@@ -2270,17 +2258,15 @@ $('.alt_panel').hide();
 $(this).css("background-color","#106b80").css("color","#FFF");
 $('.sinif').css("background-color","#FFF").css("color","#06F");	
 $.gunluk_yoklama();});//statik son
- var okul_id=$('.kul').attr('okul_id');
-if(okul_id>0) $('.daire:eq('+10+')').hide();
 //--------MENÜLER ALANI
 $('.daire').click(function(){
                 var index = $(this).index();
  var okul_id=$('.kul').attr('okul_id');
-if(okul_id==null){index=10; $.uyari('Öncelikle Üye olmalısınız !');}
+if(okul_id==null){index=8; $.uyari('Öncelikle Üye olmalısınız !');} 
    
     $('.panel').slideUp();
 	$('.orta').hide();
-    $('.panel:eq('+index+'),.kutu').show();
+    $('.panel:eq('+index+')').show();
 
 
 	
@@ -2516,6 +2502,8 @@ $.ajax({
 			data:({"liste_id":okul_id}),
 			dataType: "json",
 			success: function(cevap){
+				
+
 $('#liste_panel').show();
 $('#liste_div').html(cevap.veri).slideDown();	
 $.geri();	
@@ -2535,7 +2523,7 @@ $.ajax({
 $('#liste_panel').hide();				
 $('#lis_ogr').html(cevap.veri).slideDown();
 $('#liste_ici').show();
-$('.liste[adi=li_adi]').html(adi).attr('id',li_id);
+$('#li_adi').html(adi).attr('id',li_id);
 $.panel_ac();
 $('.geri_a').click(function(){
 	 $('#liste_ici').hide();
@@ -2687,7 +2675,7 @@ $.sahne(0);
 }});//devam tıklama son
 }});//ajax ve cevap		
 }//index==3 sonu
-//İŞ VE KOORDİNASYON AĞI
+//OKUL İŞLEMLERİ DİYE GEÇİYOR AMA DEĞİŞTİRECEĞİZ
 if(index==4){
 $.ajax({
 			type: "POST",
@@ -2710,7 +2698,7 @@ $.ajax({
 			success: function(cevap){
 		$('#okullar').hide();		
 		$('#okul_personel').html(cevap.veri).slideDown();
-		$.ozel_mesaj2();
+		$.yan_menu();
 $('.sil_ogr').hide();		
 $('#bigeri').click(function(){
 $('#okullar').show();
@@ -2734,7 +2722,7 @@ $('#send').attr('tur',0);
 var tur=0;
 var ofset='ilk';
 $.mesaj_getir(m_alan,m_gonderen,0,ofset,0);
-//içinde var$.mesaj_sender();
+$.mesaj_sender();
 }//==5son
 //sms sayacı
 if(index==6){
@@ -2780,8 +2768,10 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 		$('#p_kullanici').html(cevap.veri);
-	$.ozel_mesaj2();
-    $.sil_vt();			
+		
+		$.yan_menu();
+
+$.sil_vt();			
 }});//ajax son	
 }//ac==0son
 if(tab_ac==1){$('#p_ekle').show();	$('#p_kullanici').hide();}//ac==1son
@@ -2819,15 +2809,10 @@ $.ajax({
 }else{$.uyari('Yetkiniz Bulunmuyor...');}});	//p_kaydetson
 }//index==7son
 //üye olma işlemleri
-if(index==10){
+if(index==8){
 $.uye_ol();
 }//üye olma son
 
-//Zümreler==9 index
-if(index==8){
-var zumre=$('.kul').attr('zumre');	
-var zumre_adi=$('option[value='+zumre+']').html();
-$('.zum_is').html(zumre_adi);
 //--------------ZÜMRELER
 $('.daires').click(function(){
 var zumre=$('.kul').attr('zumre');
@@ -2844,10 +2829,11 @@ $('#send').attr('tur',tur);
 var tur=tur;
 var ofset='ilk';
 $.mesaj_getir(m_alan,m_gonderen,tur,ofset,0);
+$.mesaj_sender();
+
 });//daires.click
-}//zümre==9
-if(index==9){
-$.ozel_mesaj2();
+if(index==10){
+$.yan_menu();
 
 	}
 
@@ -3111,7 +3097,7 @@ $('#mesaj').attr('placeholder',cb);*/
         }
 
     </script>
-<div class="uyari"></div>     
+<div class="uyari" style="display:none;"></div>   
 <div class="alt_panel" id="liste">
 <input type="text" class="baslik" id="yok_isim"  placeholder="Liste Olarak kaydetmek için isim ver..."/>
 <div class="taban">
@@ -3149,16 +3135,15 @@ $('#mesaj').attr('placeholder',cb);*/
       <div class="daire" style="background-image:url(icon/ogretmen.png); background-size:cover;">
       <div class="d_yazi">Kullanıcılar</div>
   </div>
-    <div class="daire" style="background-image:url(icon/zmr.png); background-size:contain;">
-     <div class="msayi" id="zumre_say">0</div>
-  <div class="d_yazi">Zümre</div></div>   
-  <div class="daire" style="background-image:url(icon/yrdm.png); background-size:contain;">
-      <div class="d_yazi">Yardım</div></div>
-    
-   <div class="daire" style="background-image:url('');" >
+  <div class="daire" style="background-image:url('');" >
       <div class="merhaba">Hoşgeldin</div>
       <div class="d_yazi">Üye Ol !</div>
   </div>
+   <div class="daire" style="background-image:url(icon/zmr.png); background-size:contain;">
+     <div class="msayi" id="zumre_say">0</div>
+  <div class="d_yazi">Zümre</div></div>   
+  <div class="daire"style="background-image:url(icon/yrdm.png); background-size:contain;">
+      <div class="d_yazi">Yardım</div></div>
 </div>
 <div class="panel">
 <div class="yoklama">Yoklama</div>
@@ -3170,7 +3155,7 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="panel" id="sinifim"></div>
 <div class="panel" id="liste_panel">
 <div class="liste">Listeler</div>
-<div class="kutu" id="liste_div" style="display:block; margin-top:0px;">
+<div class="kutu" id="liste_div" style="display:block;">
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
@@ -3195,6 +3180,8 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="kutu" id="okullar" style="display:block; margin-top:0px;"></div>
 <div class="kutu" id="okul_personel" style="margin-top:5px;"></div>
 </div>
+
+</div>
 <div class="panel"></div>
 <div class="panel">
 <div class="kutu" id="d_sayac" style="display:block; margin-top:0px;">
@@ -3210,7 +3197,7 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="kutu" style="margin-top:0px; display:block;" id="p_ekle">
 <input type="text" class="metin" placeholder="Personel Adı" id="p_adi" />
 <select class="metin" style="height:38px;" id="p_zumre">
-<option selected value="0">Zümresiz</option>
+<option selected value="0">Branş Seçin</option>
 <option value="1">Okul Müdürü</option>
 <option value="2">Müdür Yardımcısı</option>
 <option value="16">Sağlık Hizmetleri</option>
@@ -3234,78 +3221,6 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
-<div class="panel">
-<div class="d_daire"><div class="msayi" id="ilce_say">0</div><div class="daires" name="ilce" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70; margin-top: 92px;">İlçe Zümresi</div><div class="zum_is"></div></div></div>
-
-<div class="d_daire"><div class="msayi" id="il_say">0</div><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div><div class="zum_is"></div></div></div>
-
-<div class="d_daire"><div class="msayi" id="ulke_say">0</div><div class="daires" name="ulke" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">Ülke Geneli</div><div class="zum_is"></div></div></div>
-
-<div class="taban">
-<div class="geri"  style="color:#F00; border-color:#F00;">Geri</div>
-</div>
-</div>
-<div class="panel">
-<div class="kutu" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
-<div class="baslik">Yardım</div>
-  <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
-  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda veliye anlık ve ücretsiz sms göndermek amacıyla kuruldu. Bu noktada benzer işi yapan ancak maliyet nedeniyle anlık kullanılamayan uygulamalar olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının aslında neredeyse tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesini sağlaması ayrıca aynı sektörleri birbirine bağlamasıyla <a style="color:#0C9;;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.</p>
-<details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
-    <p class="aciklama">En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
-</details>
-
-<details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Mesaj Plus nasıl ücretsiz çalışabiliyor ?</summary>
-    <p class="aciklama">Mesaj Plus çalıştığı telefonun smslerini kullanır. Bu sayede birden fazla telefondan sınırsız ve ücretsiz sms gönderirsiniz.</p>
-</details>
-
-<details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Telefon numaramı <a style="color:#F00;">veli görebilir mi?</a> </summary>
-    <p class="aciklama">Öğretmenler yoklama alırken ve sistem üzerinden mesajlaşırken hiçbir şekilde telefon numarası görünmez. Yoklama ve bilgilendirme smsleri okul hattından veliye gönderilmelidir çünkü bu numara <a style="color:#F00;">veli</a> tarafından görülür.</p>
-</details>  
-
-<details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">İş ve Koordinasyon ağından mesaj attığımda <a style="color:#F00;">numaram görünür mü ?</a></summary>
-    <p class="aciklama">Sistem üzerinden yapılan hiçbir mesajlaşmada karşı taraf telefon numaranızı <a style="color:#F00;">göremez.</a> Ayrıca Zümre alanının temel amacı aslında budur; telefon numarasına gerek kalmadan iletişim ortamı oluşturmak.</p>
-</details> 
-  
-<details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Şifremi Unuttum !</summary>
-  <p class="aciklama">Sol panelden şifremi unuttum alanından şifrenizi yenileyebilirsiniz. Yeni şifreyi size sms ile kendi numaranız gönderecektir.</p>
-</details>
-  
-<details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Smsde <a style="color:#F00;">Kırmızı</a> ve <a style="color:#0F0;">Yeşil</a> renk öğrenci ne anlama geliyor ?</summary>
-  <p class="aciklama">Kırmızı renk mesajın gönderilemediği Yeşil renk ise başarılı bir şekilde gönderildiği anlamına gelir.</p>
-</details>
-
-<details style="margin-top:10px;" style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Sms gönderirken sürekli hata alıyorum.</summary>
-  <p class="aciklama">Öncelikle sistem yöneticisi ile iletişime geçin, şimdilik sizin yapabileceğiniz telefon ayarlarından sms izni verilmiş mi kontrol etmek ve telefonunuzda sms kalmış mı kontrol etmek.</p>
-</details>
-
-<details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Listeler nasıl kullanılır ?</summary>
-<div class="aciklama">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
-<hr>
-Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hemde veliye geç geldiği bildirilebilir.
-<hr>
-Listeleri okuldaki tüm öğretmenler görebilir.
-<hr>
-Müdür yardımcısı listelere sms gönderebilir.
-</div>
-</details>
-
-<details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Sms Gönderirken Lütfen Dikkat !</a></summary>
-  <p class="aciklama">Toplu sms göndermeden önce mutlaka yeterli sms hakkınız olduğundan emin olun çünkü sistem sms hakkınız bittikten sonra operatörün belirlediği ücret üzerinden kalan smsleri göndermeye devam edecektir.</p>
-</details>
-
-</div>
-<div class="taban">
-<div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
-</div>
 
 <div class="panel">
 <div class="kutu" style="display:block; margin-top:0px;">
@@ -3315,13 +3230,25 @@ Müdür yardımcısı listelere sms gönderebilir.
 <input type="number" class="metin" placeholder="Telefon" id="k_tel" />
 <input type="password" class="metin" placeholder="Şifre" id="k_sifre" />
 <div class="basla" id="uye_ol">Üye Ol !</div>
-<div class="aciklama">Sistemi tanımanız için yapılan ön üyeliktir.<hr><p>Deneme amaçlı öğretmen, öğrenci ekleyiniz.</p>
-<p><strong>Sistem Yöneticisi</strong> tüm öğrencilerinizi otomatik olarak e-okuldan ekleyecektir.</p><hr>
+<div class="aciklama">Sistemi tanımanız için yapılan ön üyeliktir.<p>Deneme amaçlı öğretmen, öğrenci ekleyiniz.</p>
+<p><strong>Sistem Yöneticisi</strong> tüm öğrencilerinizi otomatik olarak e-okuldan ekleyecektir.</p>
 <p>Zümre alanı deneme modunda herkesi Adana Zümresi olarak kabul eder.</p>
 </div>
 </div>
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
+</div>
+<div class="panel">
+<div class="d_daire"><div class="msayi" id="ilce_say">0</div><div class="daires" name="ilce" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70; margin-top: 92px;">İlçe Zümresi</div></div></div>
+<div class="d_daire"><div class="msayi" id="il_say">0</div><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div></div></div>
+<div class="d_daire"><div class="msayi" id="ulke_say">0</div><div class="daires" name="ulke" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">Ülke Geneli</div></div></div>
+<div class="taban">
+<div class="geri"  style="color:#F00; border-color:#F00;">Geri</div>
+</div>
+</div>
+<div class="panel">
+<div class="kullanici" id="1" m_alan="1" style="background-image: url(https:mesajplus.com/resim/kucuk/owvg9.jpg);" placeholder="Adem Çalhan">
+     <div class="isim" style="margin-top:75px;">Sistem Yöneticisi</div></div>
 </div>
 <div class="sol_panel">
 <div class="ut">
@@ -3380,15 +3307,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="tam_panel" id="ogrenciler"></div>
 <div class="tam_panel" id="liste_ici">
 <div class="liste" id="li_adi" adi="li_adi">Liste Adı</div>
-<div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px; margin-top:0px;">
-<div class="aciklama">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
-<hr>
-Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hemde veliye geç geldiği bildirilebilir.
-<hr>
-Listeleri okuldaki tüm öğretmenler görebilir.
-<hr>
-Müdür yardımcısı listelere sms gönderebilir.
-</div>
+<div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px;">
 </div> 
 <div class="taban">
 <div class="geri_a"  style="color:#F00; border-color:#F00;">Geri</div>
