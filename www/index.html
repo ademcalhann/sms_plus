@@ -2258,7 +2258,7 @@ $.panel_ac();
 	
 //--------YÜKSEKLİK AYARLARI******************
 var yukseklik=screen.height;
-var yuksekx=yukseklik-150;
+var yuksekx=yukseklik-140;
 //alert(yukseklik)
 //alert(yuksekx)
 $('.orta,.panel').css('height',yuksekx);
@@ -2280,7 +2280,7 @@ if(okul_id==null){index=10; $.uyari('Öncelikle Üye olmalısınız !');}
    
     $('.panel').slideUp();
 	$('.orta').hide();
-    $('.panel:eq('+index+'),.kutu').show();
+    $('.panel:eq('+index+')').show();
 
 
 	
@@ -2422,9 +2422,11 @@ $('#ogrenci_add').slideDown();
 $('#kaydet_ogrenci').one("click",function(){
 var ogr_isim=$('#ogrenci_isim').val();
 var okul_no=$('#okul_numarasi').val();
-var veli_tel=$('#veli_telefonu').val();
+var vetel=$('#veli_telefonu').val();
+var islevsel=$('.kul').attr('islevsel');
+var veli_tel=vetel-islevsel;
 
-if(ogr_isim=='' || okul_no=='' || veli_tel==''){
+if(ogr_isim=='' || okul_no=='' || veli_tel<0){
 $.uyari('Tüm verileri girmelisiniz !');
 }else{
 var oxx_id=$('.kul').attr('okul_id');
@@ -2466,7 +2468,9 @@ $('.silg').click(function(){$('.y_panel').slideUp();});
 $('#ogrenci_guncelle').click(function(){
 var up_isim=$('#up_isim').val();
 var up_okul=$('#up_okul').val();
-var up_veli=$('#up_veli').val();
+var up_vetel=$('#up_veli').val();
+var islevsel=$('.kul').attr('islevsel');
+var up_veli=up_vetel-islevsel;
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
@@ -2615,9 +2619,11 @@ var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 
 if(index<toplam){	
 //----SMS PLUGIN
-var telefon=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');	
+var telef=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
 var mesaj=$('#mesaji').val();
+var islevsel=$('.kul').attr('islevsel');
+var telefon=parseInt(telef)+parseInt(islevsel);
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
@@ -2793,11 +2799,9 @@ var p_adi=$('#p_adi').val();
 var p_tel=$('#p_tel').val();
 var p_sifre=$('#p_sifre').val();
 var okul_id=$('.kul').attr('okul_id');
-var p_il=$('.kul').attr('il');
-var p_ilce=$('.kul').attr('ilce');
 var p_zumre=$('#p_zumre').val();
 if(okul_id== null){$.uyari('Öncelikle Üye Olmalısınız, Personel ekleyemezsiniz');}else{
-if(p_adi=='' || p_tel=='' || p_sifre=='' ||p_zumre=='0'){$.uyari('Tüm Bilgileri Doldudurun !');}else{
+if(p_adi=='' || p_tel=='' || p_sifre=='' || p_zumre=='0'){$.uyari('Tüm Bilgileri Doldudurun !');}else{
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
@@ -2805,8 +2809,6 @@ $.ajax({
 			       "p_tel":p_tel,
 				   "p_sifre":p_sifre,
 				   "p_okul":okul_id,
-				   "p_il":p_il,
-				   "p_ilce":p_ilce,
 				   "p_zumre":p_zumre}),
 			dataType: "json",
 			success: function(cevap){
@@ -2924,9 +2926,10 @@ $('#mesaj').attr('placeholder',cb);
 */
 var ogr_sayi=$('.y_ogrenci').length;
 if(index<ogr_sayi){
-var telefon=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
+var telef=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
-
+var islevsel=$('.kul').attr('islevsel');
+var telefon=parseInt(telef)+parseInt(islevsel);
 var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 //----SMS PLUGIN
@@ -3249,7 +3252,7 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="kutu" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
   <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
-  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda veliye anlık ve ücretsiz sms göndermek amacıyla kuruldu. Bu noktada benzer işi yapan ancak maliyet nedeniyle anlık kullanılamayan uygulamalar olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının aslında neredeyse tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesini sağlaması ayrıca aynı sektörleri birbirine bağlamasıyla <a style="color:#0C9;;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.</p>
+  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maaliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca aynı sektörleri birbirine bağlamasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
 <details style="margin-top:10px;">
     <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
     <p class="aciklama">En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
