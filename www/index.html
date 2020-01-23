@@ -2641,7 +2641,7 @@ if(index==toplam-1){$.uyari('Görev Tamamlandı !');
 var cb=ca+' ======  Görev tamam: ';
 $('#mesaj').attr('placeholder',cb);*/
 
-$.uyari('Görev Tamamlandı ! ');
+alert(toplam-1);
 $('.alt_panel').hide();
 //şimdilik deneme////-------$('#mesaji').html('');
 var sayi=$('.ogrenci[sayac=3]').length;
@@ -2677,14 +2677,8 @@ if(son=='0'){
 var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 var sahne=$('.ogrenci[tag=toplu]').length;//sahnede ki herkes
 
-if(sahne<toplam){var last=$('.ogrenci[tag=toplu]').length;$.sahne(last);}//gelmeyenler var ajax getirsin
-if(sahne==toplam){
-/*
-var ca=$('#mesaji').attr('placeholder');
-var cb=ca+' ======  Herkes Geldi: '+sahne;
-$('#mesaji').attr('placeholder',cb);*/
-$.sms_dng(0);// ilk kişiden başla
-};//Herkes geldi sms başlasın
+if(sahne<toplam){var last=$('.ogrenci[tag=toplu]').length; $.sahne(last);}//gelmeyenler var ajax getirsin
+if(sahne==toplam){ $.sms_dng(0); };//Herkes geldi sms başlasın // ilk kişiden başla
 }});//ajax	
 };//sahne func son
 $.sahne(0);
@@ -2693,6 +2687,7 @@ $.sahne(0);
 }});//devam tıklama son
 }});//ajax ve cevap		
 }//index==3 sonu
+
 //İŞ VE KOORDİNASYON AĞI
 if(index==4){
 $.ajax({
@@ -3379,8 +3374,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 
 </div>
 </div>
-</div>
-<div class="tam_panel" id="ogrenciler"></div>
+</div><div class="tam_panel" id="ogrenciler"></div>
 <div class="tam_panel" id="liste_ici">
 <div class="liste" id="li_adi" adi="li_adi">Liste Adı</div>
 <div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px; margin-top:0px;">
