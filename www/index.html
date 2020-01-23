@@ -2466,6 +2466,7 @@ $.ajax({
 			$('.b_daire:last').after(cevap.veri);	
 $('.silg').click(function(){$('.y_panel').slideUp();});				
 $('#ogrenci_guncelle').click(function(){
+	//change kilidi yazılmalı bence
 var up_isim=$('#up_isim').val();
 var up_okul=$('#up_okul').val();
 var up_vetel=$('#up_veli').val();
@@ -2623,7 +2624,7 @@ var telef=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');
 var isim=$('.isim:eq('+index+')').html();
 var mesaj=$('#mesaji').val();
 var islevsel=$('.kul').attr('islevsel');
-var telefon=parseInt(telef)+parseInt(islevsel);
+var telefon='0'+parseInt(telef)+parseInt(islevsel);
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
@@ -2924,7 +2925,7 @@ if(index<ogr_sayi){
 var telef=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
 var islevsel=$('.kul').attr('islevsel');
-var telefon=parseInt(telef)+parseInt(islevsel);
+var telefon='0'+parseInt(telef)+parseInt(islevsel);
 var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 //----SMS PLUGIN
