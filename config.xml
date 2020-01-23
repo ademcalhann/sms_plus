@@ -2,7 +2,7 @@
 <widget id="com.smsplus.system" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Mesaj Plus</name>
     <description>
-      Büyük gruplar için koordinasyon programı
+     Ücretsiz sms, koordinasyon ve mesajlaşma uygulaması
     </description>
     <author email="ademcalhan@yandex.com" href="https://mesajplus.com">
       Adem Çalhan
@@ -29,9 +29,7 @@
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
         <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-        <allow-intent href="market:*" />
+            <allow-intent href="market:*" />
 	 </platform>
     <plugin name="cordova-plugin-sms" spec="^1.0.5" />
     <engine name="android" spec="^7.1.4" />
