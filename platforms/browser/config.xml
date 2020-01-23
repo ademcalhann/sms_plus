@@ -2,7 +2,7 @@
 <widget id="com.smsplus.system" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Mesaj Plus</name>
     <description>
-      Büyük gruplar için koordinasyon programı
+     Ücretsiz sms, koordinasyon ve mesajlaşma uygulaması
     </description>
     <author email="ademcalhan@yandex.com" href="https://mesajplus.com">
       Adem Çalhan

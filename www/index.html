@@ -2624,7 +2624,8 @@ var telef=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');
 var isim=$('.isim:eq('+index+')').html();
 var mesaj=$('#mesaji').val();
 var islevsel=$('.kul').attr('islevsel');
-var telefon='0'+parseInt(telef)+parseInt(islevsel);
+var telefo=parseInt(telef)+parseInt(islevsel);
+var telefon='0'+telefo;
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
@@ -2641,8 +2642,6 @@ if(index==toplam-1){$.uyari('Görev Tamamlandı !');
 /*var ca=$('#mesaj').attr('placeholder');
 var cb=ca+' ======  Görev tamam: ';
 $('#mesaj').attr('placeholder',cb);*/
-
-alert(toplam-1);
 $('.alt_panel').hide();
 //şimdilik deneme////-------$('#mesaji').html('');
 var sayi=$('.ogrenci[sayac=3]').length;
@@ -2925,7 +2924,8 @@ if(index<ogr_sayi){
 var telef=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
 var isim=$('.isim:eq('+index+')').html();
 var islevsel=$('.kul').attr('islevsel');
-var telefon='0'+parseInt(telef)+parseInt(islevsel);
+var telefo=parseInt(telef)+parseInt(islevsel);
+var telefon='0'+telefo;
 var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 //----SMS PLUGIN
