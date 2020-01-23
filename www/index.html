@@ -2644,9 +2644,11 @@ var cb=ca+' ======  Görev tamam: ';
 $('#mesaj').attr('placeholder',cb);*/
 $('.alt_panel').hide();
 //şimdilik deneme////-------$('#mesaji').html('');
-var sayi=$('.ogrenci[sayac=3]').length;
+var say=$('.ogrenci[sayac=3]').length;
 var hata=$('.ogrenci[sayac=6]').length;
 var o_id=$('.kul').attr('okul_id');
+ var sayi=say+1;
+
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
@@ -2965,10 +2967,11 @@ $('#mesaj').attr('placeholder',cb);*/
 $.uyari('Görev Tamamlandı !');
 //Cookies.set(yoklama_id,index);
 $('#sms_panel').fadeOut();
-var sayi=$('.y_ogrenci[sayac=1]').length;
+var say=$('.y_ogrenci[sayac=1]').length;
 var hata=$('.y_ogrenci[sayac=4]').length;
 var ekran=$('.basla').attr('yoklama_id');
 var o_id=$('.kul').attr('okul_id');
+ var sayi=say+1;
 
 $.ajax({
 			type: "POST",
