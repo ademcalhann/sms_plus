@@ -2621,11 +2621,17 @@ var toplam=$('#toplu_basla').attr('toplam');//toplamda sms gidecek
 if(index<toplam){	
 //----SMS PLUGIN
 var telef=$('.ogrenci[tag=toplu]:eq('+index+')').attr('veli_tel');	
-var isim=$('.isim:eq('+index+')').html();
-var mesaj=$('#mesaji').val();
+var isim=$('.isim[tag=toplu]:eq('+index+')').html();
+var mesa=$('#mesaji').val();
+var mesaj=isim+'-'+mesa;
 var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
+
+/*var ca=$('#mesaji').attr('placeholder');
+var cb=ca+' ======'+mesaj+telefon;
+$('#mesaji').attr('placeholder',cb);*/
+
 SMS.sendSMS(telefon,mesaj,function(){
 //işlem başarılı
 $('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
@@ -2758,7 +2764,9 @@ $.ajax({
 			data:({"g_sayac":ofset}),
 			dataType: "json",
 			success: function(cevap){
-			$('.d_cer:last').after(cevap.veri);	
+				if(cevap.hata){$.uyari(cevap.hata);}
+				if(cevap.veri){$('.d_cer:last').after(cevap.veri);	}
+			
 			
 }});//ajax		
 });//dahafazlason			
@@ -2904,8 +2912,6 @@ $('.marka').click(function(){location.reload();});
 
 //-------DÖNGÜLERDEN ETKİLENMEYEN BAŞLA FONKSİYONU
 $('#basla').click(function(){
-$(this).css('background-color','#0F6');	
-
 //cookies işlemleri
 var yoklama_id=$(this).attr('yoklama_id');
 var sms_tur=$(this).attr('sms_tur');
@@ -2923,23 +2929,23 @@ $('#mesaj').attr('placeholder',cb);
 */
 var ogr_sayi=$('.y_ogrenci').length;
 if(index<ogr_sayi){
-var telef=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
-var isim=$('.isim:eq('+index+')').html();
+var telef=$('.y_ogrenci[ekran='+yoklama_id+']:eq('+index+')').attr('veli_tel');	
+var isim=$('.isim[ekran='+yoklama_id+']:eq('+index+')').html();
 var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
 var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
+
+/*var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======'+mesajx+telefon;
+$('#mesaj').attr('placeholder',cb);*/
+
 //----SMS PLUGIN
 SMS.sendSMS(telefon,mesajx,function(){
 //işlem başarılı
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6').attr('sayac',1);;
-if(sms_tur!='liste'){Cookies.set(yoklama_id,index);
-
-/*var ca=$('#mesaj').attr('placeholder');
-var cb=ca+' ====== Cookies Kaydedildi...';
-$('#mesaj').attr('placeholder',cb);*/
-}
+if(sms_tur!='liste'){Cookies.set(yoklama_id,index);}
 index++;
 /*
 var ca=$('#mesaj').attr('placeholder');
@@ -3251,15 +3257,24 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="kutu" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
   <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
-  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
+  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
-    <p class="aciklama">En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
+    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Üyelikten sonra</a> yapmam gereken işlem var mı ?</summary>
+    <p class="aciklama"><a style="color:#F00;">En önemli</a> nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
+</details>
+
+<details style="margin-top:10px;" style="margin-top:10px;">
+<summary style="color:#dbdc82; line-height:25px;">Sms gönderirken sürekli <a style="color:#F00;">hata</a> alıyorum.</summary>
+  <p class="aciklama">Öncelikle sistem yöneticisi ile iletişime geçin, şimdilik sizin yapabileceğiniz telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip sms izni verilmiş mi kontorol etmek ve telefonunuzda sms kalmış mı kontrol etmek olabilir.</p>
 </details>
 
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Mesaj Plus nasıl ücretsiz çalışabiliyor ?</summary>
-    <p class="aciklama">Mesaj Plus çalıştığı telefonun smslerini kullanır. Bu sayede birden fazla telefondan sınırsız ve ücretsiz sms gönderirsiniz.</p>
+    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#0C9;">Mesaj Plus</a> nasıl ücretsiz çalışabiliyor ?</summary>
+    <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> çalıştığı telefonun smslerini kullanır. Bu sayede birden fazla telefondan sınırsız ve ücretsiz sms gönderirsiniz.</p>
+</details>
+<details style="margin-top:10px;">
+    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Güvenlik 1.0 Sistemi</a> ne işe yarar ?</summary>
+    <p class="aciklama">Güvenlik 1.0 kullanıcı ve müşteri telefon numaralarını çalınmaya karşı koruyan sistemindir. Veritabanına eklenen her telefonu benzersiz şekilde uçtan uca şifreleyerek numaralar çalınsa dahi kullanılamaz rastagele sayılar halde olmasını sağlar.</p>
 </details>
 
 <details style="margin-top:10px;">
@@ -3273,7 +3288,7 @@ $('#mesaj').attr('placeholder',cb);*/
 </details> 
   
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Şifremi Unuttum !</summary>
+<summary style="color:#dbdc82; line-height:25px;">Şifremi <a style="color:#F00;">unuttum</a> ne yapmalıyım ?</summary>
   <p class="aciklama">Sol panelden şifremi unuttum alanından şifrenizi yenileyebilirsiniz. Yeni şifreyi size sms ile kendi numaranız gönderecektir.</p>
 </details>
   
@@ -3282,13 +3297,8 @@ $('#mesaj').attr('placeholder',cb);*/
   <p class="aciklama">Kırmızı renk mesajın gönderilemediği Yeşil renk ise başarılı bir şekilde gönderildiği anlamına gelir.</p>
 </details>
 
-<details style="margin-top:10px;" style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Sms gönderirken sürekli hata alıyorum.</summary>
-  <p class="aciklama">Öncelikle sistem yöneticisi ile iletişime geçin, şimdilik sizin yapabileceğiniz telefon ayarlarından sms izni verilmiş mi kontrol etmek ve telefonunuzda sms kalmış mı kontrol etmek.</p>
-</details>
-
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Listeler nasıl kullanılır ?</summary>
+<summary style="color:#dbdc82; line-height:25px;"><a style="color:#0F0;">Listeler</a> nasıl kullanılır ?</summary>
 <div class="aciklama">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
 <hr>
 Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hemde veliye geç geldiği bildirilebilir.
@@ -3300,7 +3310,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 </details>
 
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Sms Gönderirken Lütfen Dikkat !</a></summary>
+<summary style="color:#dbdc82; line-height:25px;">Sms Gönderirken <a style="color:#F00;">Lütfen Dikkat !</a></summary>
   <p class="aciklama">Toplu sms göndermeden önce mutlaka yeterli sms hakkınız olduğundan emin olun çünkü sistem sms hakkınız bittikten sonra operatörün belirlediği ücret üzerinden kalan smsleri göndermeye devam edecektir.</p>
 </details>
 
