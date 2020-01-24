@@ -2280,7 +2280,7 @@ if(okul_id==null){index=10; $.uyari('Öncelikle Üye olmalısınız !');}
    
     $('.panel').slideUp();
 	$('.orta').hide();
-    $('.panel:eq('+index+')').show();
+    $('.panel:eq('+index+')').slideDown();
 
 
 	
@@ -2855,7 +2855,7 @@ $.mesaj_getir(m_alan,m_gonderen,tur,ofset,0);
 }//zümre==9
 if(index==9){
 $.ozel_mesaj2();
-
+$('.kutu[name=yardim]').slideDown();
 	}
 
 });//----------------------------------------DAİRELER TIKLAMA SONU
@@ -3255,7 +3255,7 @@ $('#mesaj').attr('placeholder',cb);*/
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
-<div class="panel">
+<div class="panel"><div class="baslik">Zümreler</div>
 <div class="d_daire"><div class="msayi" id="ilce_say">0</div><div class="daires" name="ilce" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70; margin-top: 92px;">İlçe Zümresi</div><div class="zum_is"></div></div></div>
 
 <div class="d_daire"><div class="msayi" id="il_say">0</div><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div><div class="zum_is"></div></div></div>
@@ -3267,7 +3267,7 @@ $('#mesaj').attr('placeholder',cb);*/
 </div>
 </div>
 <div class="panel">
-<div class="kutu" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
+<div class="kutu" name="yardim" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
   <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
   <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
