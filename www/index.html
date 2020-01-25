@@ -2463,15 +2463,19 @@ $.ajax({
 			data:({"up_id":up_id}),
 			dataType: "json",
 			success: function(cevap){
-			$('.b_daire:last').after(cevap.veri);	
-$('.silg').click(function(){$('.y_panel').slideUp();});				
+			$('.b_daire:last').after(cevap.veri);
+var islevsel=$('.kul').attr('islevsel');
+var telef=$('#up_veli').val();
+var telefon=parseInt(telef)+parseInt(islevsel);
+$('#up_veli').attr('value',telefon).html(telefon);		
+$('.silg').click(function(){$('.y_panel').slideUp();});	
+//GÜNCELLE.CLİCK			
 $('#ogrenci_guncelle').click(function(){
 	//change kilidi yazılmalı bence
 var up_isim=$('#up_isim').val();
 var up_okul=$('#up_okul').val();
-var up_vetel=$('#up_veli').val();
-var islevsel=$('.kul').attr('islevsel');
-var up_veli=up_vetel-islevsel;
+var telef=$('#up_veli').val();
+var up_veli=telef-islevsel;
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
