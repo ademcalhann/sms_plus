@@ -1303,7 +1303,14 @@ $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
 
 // scode alanı
 $('.ux[name=scode]').click(function(){
-	
+	//idareten tam izin alınması
+CordovaSMS.setDefault(null,null,"com.smsplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){ $.uyari('Tebrikler varsayılan olduk');}
+	             if(false){ $.uyari('Varsayılan olamadık');}
+              });
+			  ////tam izin	
 	function scode(length) {
    var result           = '';
    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
