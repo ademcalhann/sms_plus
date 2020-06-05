@@ -3139,8 +3139,35 @@ $('#mesaj').attr('placeholder',cb);*/
 	
 }
 });//basla son
+	
+
+
  
-       
+$("#x1").click(function(){
+alert("Tıkladın")	
+CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){ $.uyari('Lütfen ikinci adıma geçin !');
+				 $(".dikkat:eq(0)").show();
+				  $(".dikkat:eq(1)").show();
+				  }
+	             if(false){ $.uyari('Sms İzni Verilemedi !');}
+              });
+			  ////tam izin  	
+	})  
+$("#x2").click(function(){
+	
+CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){ $.uyari('İptal İşlemi Hatalı !');}
+	             if(false){ $.uyari('Tebrikler Herşey yolunda !');}
+              });
+			  ////tam izin  	
+	})  
+	
+	       
             if ((/(ipad|iphone|ipod|android)/i.test(navigator.userAgent))) {
                 document.addEventListener('deviceready', initApp, false);
             } else {
@@ -3246,29 +3273,6 @@ $('#mesaj').attr('placeholder',cb);*/
             $('span#intercept').text('intercept ' + (interceptEnabled ? 'ON' : 'OFF'));
             $('button#enable_intercept').text(interceptEnabled ? 'Disable' : 'Enable');
   
-$("#x1").click(function(){
-alert("Tıkladın")	
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Lütfen ikinci adıma geçin !');
-				 $(".dikkat:eq(0)").show();
-				  $(".dikkat:eq(1)").show();
-				  }
-	             if(false){ $.uyari('Sms İzni Verilemedi !');}
-              });
-			  ////tam izin  	
-	})  
-$("#x2").click(function(){
-	
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('İptal İşlemi Hatalı !');}
-	             if(false){ $.uyari('Tebrikler Herşey yolunda !');}
-              });
-			  ////tam izin  	
-	})  	
 
         }
 
