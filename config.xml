@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.smsplus.system" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.mesajplus.system" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Mesaj Plus</name>
     <description>
-     Ücretsiz sms, koordinasyon ve mesajlaşma uygulaması
+     Yoklama Terminali Entegreli Ücretsiz Sms ve Kurumsal Mesajlaşma Programı...
     </description>
     <author email="ademcalhan@yandex.com" href="https://mesajplus.com">
       Adem Çalhan
@@ -17,7 +17,9 @@
     <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <access origin="*" />
+     <plugin name="cordova-plugin-sms" spec="^1.0.5" />
+	 <plugin spec="https://github.com/rampicos/Cordova-SMS-Plugin" source="git" />
+	   <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -32,6 +34,6 @@
         <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
             <allow-intent href="market:*" />
 	 </platform>
-    <plugin name="cordova-plugin-sms" spec="^1.0.5" />
+ 
     <engine name="android" spec="^7.1.4" />
 </widget>

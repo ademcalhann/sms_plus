@@ -4,20 +4,6 @@ var argscheck = require('cordova/argscheck'),
 
 var safesmsExport = {};
 
-/*
- * Methods
- */
-
-/*
- * set options:
- *  {
- *    position: integer, // default position
- *    x: integer,	// default X of banner
- *    y: integer,	// default Y of banner
- *    isTesting: boolean,	// if set to true, to receive test ads
- *    autoShow: boolean,	// if set to true, no need call showBanner or showInterstitial
- *   }
- */
 safesmsExport.setOptions = function(options, successCallback, failureCallback) {
 	  if(typeof options === 'object') {
 		  cordova.exec( successCallback, failureCallback, 'SMS', 'setOptions', [options] );
