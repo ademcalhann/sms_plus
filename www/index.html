@@ -44,14 +44,14 @@
 	font-weight: bold;
 	padding-top: 8px;
 	border-radius: 5px;
-	margin-top: 48px;
+	margin-top: 90px;
 	background-color: #0F6;
 	box-shadow: 0 0 5px 2px #FFF;
 }
 .dikkat {
 	width: 92%;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 	margin-left: 2%;
 	box-shadow: 0 0 5px 2px #FFF;
 	font-family: calibri;
@@ -2758,7 +2758,7 @@ var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
 
- CordovaSMS.sendSMS(telefon,mesaj,successCallback,errorCallback);
+ SMS.sendSMS(telefon,mesaj,successCallback,errorCallback);
 
   successCallback=function(){$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
 index++;	
@@ -3084,7 +3084,7 @@ var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 
 
- CordovaSMS.sendSMS(telefon,mesajx,successCallback,errorCallback);
+ SMS.sendSMS(telefon,mesajx,successCallback,errorCallback);
 
   successCallback=function(){
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6').attr('sayac',1);;
@@ -3144,12 +3144,12 @@ $('#mesaj').attr('placeholder',cb);*/
 
  
 $("#x1").click(function(){
-alert("Tıkladın")	
+	
 CordovaSMS.setDefault(null,null,"com.mesajplus.system");
 
 CordovaSMS.onDefaultSelected(function(result){
                   if(true){ $.uyari('Lütfen ikinci adıma geçin !');
-				 $(".dikkat:eq(0)").show();
+				  $(".dikkat:eq(0)").hide();
 				  $(".dikkat:eq(1)").show();
 				  }
 	             if(false){ $.uyari('Sms İzni Verilemedi !');}
@@ -3158,7 +3158,7 @@ CordovaSMS.onDefaultSelected(function(result){
 	})  
 $("#x2").click(function(){
 	
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
                   if(true){ $.uyari('İptal İşlemi Hatalı !');}
@@ -3556,12 +3556,12 @@ Müdür yardımcısı listelere sms gönderebilir.
 </div>
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
-<div class="dikkat" style="display:block;">Merhana birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Evet</a>'e dokunun. 
-<div class="evet" id="x1">1. Adım Evet</div>
+<div class="dikkat" style="display:block;">Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. 
+<div class="evet" id="x1">1. Adım Var</div>
 </div>
 
-<div class="dikkat">İkinci adımdan merhaba ! Şimdi Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü  <a style="color:#0F0">Mesaj Plus</a>'ın sms okumak gibi bir amacı yoktur. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Hayır</a>'a dokunun. Bu adımı Mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri okuyamazsınız !
-<div class="evet" id="x2" style="background-color:#F00">2. Adım Hayır</div>
+<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü  <a style="color:#0F0">Mesaj Plus</a>'ın sms okumak gibi bir amacı yoktur. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Yok</a>'a dokunun. Bu adımı Mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri okuyamazsınız !
+<div class="evet" id="x2" style="background-color:#F00; margin-top:50px;">2. Adım Yok</div>
 </div>
 
 </div>
