@@ -3040,7 +3040,7 @@ $('.orta').slideDown();
 //SİSTEM DIŞI STATİK SMS
 //-----SMS ŞİFRE SIFIRLAMA
 $('#sifirla').click(function(){
-var sifirla=$('#esifir').val;
+var sifirla=$('#esifir').val();
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
@@ -3048,7 +3048,6 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 //----SMS PLUGIN
-$.uyari(cevap.gizli+" "+sifirla);
 SMS.sendSMS(sifirla,cevap.gizli, function(){
 //başarılı	
 $.uyari('Sms Gönderildi'); 
@@ -3559,7 +3558,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 </div>
 </div>
 <div class="ut">
- <div class="dikkat" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. 
+ <div class="dikkat" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. 
 <div class="evet" id="x1">1. Adım </div>
 </div>
 
@@ -3573,7 +3572,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 </div>
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
-<div class="dikkat" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. </label>
+<div class="dikkat" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. </label>
 <div class="evet" id="x1">1. Adım </div>
 </div>
 
