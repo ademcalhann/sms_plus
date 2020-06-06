@@ -322,8 +322,8 @@
 	color: #06F;
 }
 .kullanici {
-	height: 70px;
-	width: 70px;
+	height: 75px;
+	width: 75px;
 	border-radius: 50%;
 	border: 1px solid #999;
 	float: left;
@@ -455,7 +455,6 @@
 	border-radius: 50%;
 	background-image: url(icon/x.png);
 	background-position: center center;
-	margin-right: -7px;
 	margin-bottom:-10px;
 }
 .sil_liste {
@@ -3049,11 +3048,14 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 //----SMS PLUGIN
-SMS.sendSMS(sifirla,cevap.gizli,function(){
-$.uyari('Sms Gönderildi');
-},function (str){
+$.uyari(cevap.gizli+" "+sifirla);
+SMS.sendSMS(sifirla,cevap.gizli, function(){
+//başarılı	
+$.uyari('Sms Gönderildi'); 
+}, function(){
+//hata
 $.uyari('Sol panel Terminal İzni Gerekli olabilir !');
-});//---SMS PLUGIN SON	
+});
 }});//ajax ve cevap	
 })//şifre sıfırla son
 $('.marka').click(function(){location.reload();});
@@ -3166,6 +3168,7 @@ CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
                   if(true){ $.uyari('Tebrikler Herşey Yolunda !');
+				   $(".dikkat:eq(1)").hide();
 				  $(".dikkat:eq(2)").show();}
 	             if(false){ $.uyari('İkinci Adım Başarısız !');}
               });
@@ -3560,7 +3563,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="evet" id="x1">1. Adım </div>
 </div>
 
-<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
 <div class="evet" id="x2" style="margin-top:50px;">2. Adım </div>
 </div>
 <div class="dikkat"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
@@ -3574,7 +3577,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="evet" id="x1">1. Adım </div>
 </div>
 
-<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
 <div class="evet" id="x2" style="margin-top:50px;">2. Adım</div>
 </div>
 
