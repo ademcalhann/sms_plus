@@ -544,7 +544,7 @@
 	width: 96%;
 	margin-left: 2%;
 	margin-top: 15px;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 5px 2px white;
 	display: none;
 	margin-bottom: -10px;
 	background-image: url(icon/byz.png);
@@ -770,7 +770,7 @@
 	margin-top: 10px;
 	margin-left: 24%;
 	font-family: calibri;
-	box-shadow: 0 0 10px 2px #09F;
+	box-shadow: 0 0 5px 2px #09F;
 	border: 1px solid #FFFFFF;
 }
 .sol_panel {
@@ -851,7 +851,7 @@
     float: left;
     height: 20px;
     width: 20px;
-    box-shadow: 0 0 10px 2px white;
+    box-shadow: 0 0 5px 2px white;
     border-radius: 50%;
 }
 .profil {
@@ -894,7 +894,7 @@
 	border: 1px solid #0F0;
 	margin-top: 35px;
 	background-color: #FFF;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 5px 2px white;
 	margin-left: -1px;
 	font-weight: bold;
 	border-radius: 6px;
@@ -905,7 +905,7 @@
 	width: 90%;
 	border: 1px solid #0F0;
 	background-color: #FFF;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 5px 2px white;
 	font-weight: bold;
 	border-radius: 6px;
 	padding: 5px;
@@ -916,7 +916,7 @@
 	width: 72px;
 	height: 20px;
 	margin-top: -50px;
-	box-shadow: 0 0 10px 2px white;
+	box-shadow: 0 0 5px 2px white;
 	margin-left: -1px;
 	border-bottom-right-radius: 29px;
 	border-bottom-left-radius: 29px;
@@ -969,7 +969,7 @@
 	float: left;
 	height: 60px;
 	width: 60px;
-	box-shadow: 0 0 10px 2px #FFFFFF;
+	box-shadow: 0 0 5px 2px #FFFFFF;
 	border-radius: 50%;
 }
 .ic_kapat {
@@ -1197,7 +1197,7 @@
 	padding-bottom: 15px;
 	margin-top: 35px;
 	background-color: #FFF;
-	box-shadow: 0 0 10px 2px #000;
+	box-shadow: 0 0 5px 2px #000;
 	text-align: center;
 }
     .s_sure {
@@ -1267,7 +1267,7 @@
 	width: 90px;
 	height: 20px;
 	margin-top: -46px;
-	box-shadow: 0 0 10px 8px white;
+	box-shadow: 0 0 5px 8px white;
 	border-bottom-right-radius: 29px;
 	border-bottom-left-radius: 29px;
 	padding-bottom: 14px;
@@ -1666,7 +1666,7 @@ $.fotograf=function(){
 $('.resim,.profil').on("click",function(){
 	var adi=$(this).attr('name');
 	var url='https://mesajplus.com/resim/buyuk/'+adi;
-	var image='<img src="'+url+'" width="90%" height="auto"  style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px;"/>';
+	var image='<img src="'+url+'" width="90%" height="auto"  style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px white; border-radius:20px;"/>';
 	$('.kapa[name=fotograf]').html(image).show();
 	$('.yayiny').slideDown();
 	 $('.ic_kapat').click(function () { $('.yayiny').fadeOut(); $('.kapa[name=fotograf]').html(''); });		
@@ -2758,7 +2758,7 @@ var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
 
- SMS.sendSMS(telefon,mesaj,successCallback,errorCallback);
+   CordovaSMS.sendSMS(telefon,mesaj,successCallback,errorCallback);
 
   successCallback=function(){$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
 index++;	
@@ -3047,7 +3047,7 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 //----SMS PLUGIN
-SMS.sendSMS(sifirla,cevap.gizli,function(){
+  CordovaSMS.sendSMS(sifirla,cevap.gizli,function(){
 $.uyari('Sms Gönderildi');
 },function (str){
 $.uyari('Bir Yerlerde Hata Olsa Gerek !');
@@ -3084,21 +3084,32 @@ var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 
 
- SMS.sendSMS(telefon,mesajx,successCallback,errorCallback);
+   CordovaSMS.sendSMS(telefon,mesajx,successCallback,errorCallback);
 
   successCallback=function(){
-$('.y_ogrenci:eq('+index+')').css('background-color','#0F6').attr('sayac',1);;
+$('.y_ogrenci:eq('+index+')').css('background-color','#0F6').attr('sayac',1);
 if(sms_tur!='liste'){Cookies.set(yoklama_id,index);}
-index++; $.sms_gonder(index);};
-
- errorCallback=function(){$('.y_ogrenci:eq('+index+')').css('background-color','#F03').attr('sayac',4); index++; $.sms_gonder(index); };
- 
-}
-if(index==ogr_sayi-1){
-/*
+index++; $.sms_gonder(index);
 var ca=$('#mesaj').attr('placeholder');
 var cb=ca+' ======  Görev tamam: ';
-$('#mesaj').attr('placeholder',cb);*/
+$('#mesaj').attr('placeholder',cb);
+$.uyari('başarılı!');
+
+}
+
+ errorCallback=function(){$('.y_ogrenci:eq('+index+')').css('background-color','#F03').attr('sayac',4); index++; $.sms_gonder(index); };
+
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======  Görev tamam: ';
+$('#mesaj').attr('placeholder',cb);
+$.uyari('hatalı  !');
+ 
+}//if
+if(index==ogr_sayi-1){
+
+var ca=$('#mesaj').attr('placeholder');
+var cb=ca+' ======  Görev tamam: ';
+$('#mesaj').attr('placeholder',cb);
 $.uyari('Görev Tamamlandı !');
 //Cookies.set(yoklama_id,index);
 $('#sms_panel').fadeOut();
@@ -3161,8 +3172,8 @@ $("#x2").click(function(){
 CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('İptal İşlemi Hatalı !');}
-	             if(false){ $.uyari('Tebrikler Herşey yolunda !');}
+                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');}
+	             if(false){ $.uyari('İkinci Adım Başarısız !');}
               });
 			  ////tam izin  	
 	})  
@@ -3433,7 +3444,7 @@ CordovaSMS.onDefaultSelected(function(result){
 <div class="panel">
 <div class="kutu" name="yardim" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
-  <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 10px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
+  <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
   <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
 <details style="margin-top:10px;">
     <summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Üyelikten sonra</a> yapmam gereken işlem var mı ?</summary>
@@ -3523,7 +3534,7 @@ Müdür yardımcısı listelere sms gönderebilir.
       <input type="file" name="dosya" class="buton">
       <input type="text" style="display:none;" value="Fear" name="p_img" id="p_img">
       <input type="text" style="display:none;" value="Fear" name="kul_id" id="profil_id">
-      <input type="submit" style="height:33px; width:25%;  box-shadow: 0 0 10px 2px white;" class="buton" value="Yükle">
+      <input type="submit" style="height:33px; width:25%;  box-shadow: 0 0 5px 2px white;" class="buton" value="Yükle">
  </form>
 <div class="ic_kapat">İptal</div>
 </div>
