@@ -2371,7 +2371,7 @@ $('.iptal').click(function(){
 var index=$(this).attr('okul_no');
 //alert(index)
 $('.y_ogrenci[okul_no='+index+']').slideUp().remove();
-$.uyari('Öğrenci sms listesinden çıkarıldı, tekrar eklemek için Yoklamaya dokun !');	
+$.uyari('Geçici olarak sms kuyrugundan çıkarıldı!');	
 });//yerel son
 $.panel_ac();
 }});//AJAX	
@@ -2423,7 +2423,8 @@ $('#siniflar').html(cevap.veri);
 $.geri();
 //---siniflara tıklama 
 $('.sinif').click(function(){
-$('.ogrenci[isaret=1]').remove();	
+var yok_isim=$('#yok_isim').val();
+if(yok_isim==""){$('.ogrenci[isaret=1]').remove();} 	
 $('#sms_panel').fadeOut();		
 $('#liste').slideDown();
 var sinif_id=$(this).attr('id');
@@ -2758,17 +2759,18 @@ var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
 
-   CordovaSMS.sendSMS(telefon,mesaj,successCallback,errorCallback);
-
-  successCallback=function(){$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
+SMS.sendSMS(telefon,mesaj, function(){
+//başarılı	
+$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#0F6').attr('sayac',3);
 index++;	
-$.sms_dng(index); };
-
- errorCallback=function(){$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#F03').attr('sayac',6); 
+$.sms_dng(index); 
+}, function(){
+//hata
+$('.ogrenci[tag=toplu]:eq('+index+')').css('background-color','#F03').attr('sayac',6); 
 index++; 	
-$.sms_dng(index);};
-
-
+$.sms_dng(index);	
+	});
+	
 }//sms gönderecek kişi var son
 if(index==toplam-1){$.uyari('Görev Tamamlandı !');
 /*var ca=$('#mesaj').attr('placeholder');
@@ -3047,10 +3049,10 @@ $.ajax({
 			dataType: "json",
 			success: function(cevap){
 //----SMS PLUGIN
-  CordovaSMS.sendSMS(sifirla,cevap.gizli,function(){
+SMS.sendSMS(sifirla,cevap.gizli,function(){
 $.uyari('Sms Gönderildi');
 },function (str){
-$.uyari('Bir Yerlerde Hata Olsa Gerek !');
+$.uyari('Sol panel Terminal İzni Gerekli olabilir !');
 });//---SMS PLUGIN SON	
 }});//ajax ve cevap	
 })//şifre sıfırla son
@@ -3084,26 +3086,17 @@ var mesaj=$('#mesaj').val();
 var mesajx=isim+'-'+mesaj;
 
 
-   CordovaSMS.sendSMS(telefon,mesajx,successCallback,errorCallback);
-
-  successCallback=function(){
+SMS.sendSMS(telefon,mesajx, function(){
+//başarılı	
 $('.y_ogrenci:eq('+index+')').css('background-color','#0F6').attr('sayac',1);
 if(sms_tur!='liste'){Cookies.set(yoklama_id,index);}
 index++; $.sms_gonder(index);
-var ca=$('#mesaj').attr('placeholder');
-var cb=ca+' ======  Görev tamam: ';
-$('#mesaj').attr('placeholder',cb);
-$.uyari('başarılı!');
 
-}
+	}, function(){
+//hata
+$('.y_ogrenci:eq('+index+')').css('background-color','#F03').attr('sayac',4); index++; $.sms_gonder(index); 	
+	});
 
- errorCallback=function(){$('.y_ogrenci:eq('+index+')').css('background-color','#F03').attr('sayac',4); index++; $.sms_gonder(index); };
-
-var ca=$('#mesaj').attr('placeholder');
-var cb=ca+' ======  Görev tamam: ';
-$('#mesaj').attr('placeholder',cb);
-$.uyari('hatalı  !');
- 
 }//if
 if(index==ogr_sayi-1){
 
@@ -3172,7 +3165,8 @@ $("#x2").click(function(){
 CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');}
+                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');
+				  $(".dikkat:eq(2)").show();}
 	             if(false){ $.uyari('İkinci Adım Başarısız !');}
               });
 			  ////tam izin  	
@@ -3562,17 +3556,26 @@ Müdür yardımcısı listelere sms gönderebilir.
 </div>
 </div>
 <div class="ut">
-        <input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
+ <div class="dikkat" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. 
+<div class="evet" id="x1">1. Adım </div>
+</div>
+
+<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="evet" id="x2" style="margin-top:50px;">2. Adım </div>
+</div>
+<div class="dikkat"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
+        
+        </div>        
 </div>
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
-<div class="dikkat" style="display:block;">Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. 
-<div class="evet" id="x1">1. Adım Var</div>
+<div class="dikkat" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'e dokunun. </label>
+<div class="evet" id="x1">1. Adım </div>
 </div>
 
-<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü  <a style="color:#0F0">Mesaj Plus</a>'ın sms okumak gibi bir amacı yoktur. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Yok</a>'a dokunun. Bu adımı Mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri okuyamazsınız !
-<div class="evet" id="x2" style="background-color:#F00; margin-top:50px;">2. Adım Yok</div>
+<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="evet" id="x2" style="margin-top:50px;">2. Adım</div>
 </div>
 
 </div>
