@@ -64,6 +64,22 @@
 	display: none;
 	background-image: url(icon/mavix.png);
 }
+.u2 {
+	width: 92%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 2%;
+	box-shadow: 0 0 5px 2px #FFF;
+	font-family: calibri;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	text-decoration: blink;
+	color: #FFF;
+	padding-left: 15px;
+	height: 130px;
+	background-image: url(icon/lilb.png);
+}
+
 .ay {
 	font-size: 18px;
 	font-weight: bold;
@@ -282,6 +298,7 @@
 	overflow: scroll;
 	margin-top: 50px;
 	height: 595px;
+	padding-bottom:100px;
 }
     .tam_panel {
 	display: none;
@@ -734,17 +751,16 @@
 }
 .baslik {
 	color: #ffffff;
-	font-family: calibri;
-	font-size: 14px;
+	font-family: verdana;
+	font-size: 15px;
 	text-align: center;
 	height: 22px;
 	width: 80%;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-left: 10%;
-	border-bottom-right-radius: 15px;
-	border-bottom-left-radius: 15px;
-	font-weight: bold;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 	background-color: #09F;
 }
 
@@ -771,6 +787,7 @@
 	font-family: calibri;
 	box-shadow: 0 0 5px 2px #09F;
 	border: 1px solid #FFFFFF;
+	border-radius:5px;
 }
 .sol_panel {
 	width: 100%;
@@ -1167,6 +1184,8 @@
 	box-shadow: 0 0 5px 2px #00CCFF;
 	border: 1px solid #FFFFFF;
 	margin-bottom: 5px;
+		border-radius:5px;
+
 }
 .resim {
 	margin-top: 10px;
@@ -1198,6 +1217,7 @@
 	background-color: #FFF;
 	box-shadow: 0 0 5px 2px #000;
 	text-align: center;
+	border-radius:5px;
 }
     .s_sure {
 	height: 22px;
@@ -1214,6 +1234,7 @@
 	background-color: #FFF;
 	box-shadow: 0 0 5px 2px #0099FF;
 	padding-top: 4px;
+	border-radius:5px;
 }
 .d_cer {
 	height: 40px;
@@ -2270,9 +2291,8 @@ $.ajax({
 			data:({"bugun":okul_id}),
 			dataType: "json",
 			success: function(cevap){
-if(cevap.hata=='Henüz Yoklama Alınmamış !'){$.uyari(cevap.hata);
-$('#yoklama').html('<div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>');
-}			
+if(cevap.hata=='Henüz Yoklama Alınmamış !'){$.uyari(cevap.hata);}	
+		
 $('.kutu').hide();		
 $('#yoklama').html(cevap.veri).show();	
 $.geri();
@@ -2381,7 +2401,7 @@ $.panel_ac();
 	
 //--------YÜKSEKLİK AYARLARI******************
 var yukseklik=screen.height;
-var yuksekx=yukseklik-140;
+var yuksekx=yukseklik-90;
 //alert(yukseklik)
 //alert(yuksekx)
 $('.orta,.panel').css('height',yuksekx);
@@ -3335,7 +3355,7 @@ CordovaSMS.onDefaultSelected(function(result){
       <div class="d_yazi">Yardım</div></div>
     
    <div class="daire" style="background-image:url('');" >
-      <div class="merhaba">Hoşgeldin</div>
+      <div class="merhaba">Hoşgeldin</div>"
       <div class="d_yazi">Üye Ol !</div>
   </div>
 </div>
@@ -3440,61 +3460,65 @@ CordovaSMS.onDefaultSelected(function(result){
 <div class="panel">
 <div class="kutu" name="yardim" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
-  <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px white; border-radius:20px; float:left; margin-right:10px; width:90px; height:auto;">
-  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu.Gelişmiş kurum içi ve kurumlar arası mesajlaşma özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;">Mesaj Plus</a> uygulamasını sevdiyseniz bir diğer projem <a href="https://play.google.com/store/apps/details?id=com.finansfear.system&hl=tr" target="_blank" style="color:#FC6; text-decoration:none;">Finans Fear</a>'ı da mutlaka görmelisiniz.</p>
+  <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px #3F9; border-radius:5px; float:left; margin-right:10px; width:90px; height:auto;">
+  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu. Gelişmiş  özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;"> MP Terminali</a>'nin de programa entegre edilmesiyle artık sınıfta kolayca alınan yoklama analiz ve sentez yapabilen program zekası sayesinde eokula aktarılabilir hale geldi. </p>
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Üyelikten sonra</a> yapmam gereken işlem var mı ?</summary>
-    <p class="aciklama"><a style="color:#F00;">En önemli</a> nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
+    <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
+    <p class="aciklama">En önemli nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
 </details>
 
 <details style="margin-top:10px;" style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Sms gönderirken sürekli <a style="color:#F00;">hata</a> alıyorum.</summary>
+<summary style="color:#dbdc82; line-height:25px;">Sms gönderirken sürekli hata alıyorum.</summary>
   <p class="aciklama">Öncelikle sistem yöneticisi ile iletişime geçin, şimdilik sizin yapabileceğiniz telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip sms izni verilmiş mi kontorol etmek ve telefonunuzda sms kalmış mı kontrol etmek olabilir.</p>
 </details>
 
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#0C9;">Mesaj Plus</a> nasıl ücretsiz çalışabiliyor ?</summary>
+    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#0C9;">Mesaj Plus </a> nasıl ücretsiz çalışabiliyor ?</summary>
     <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> çalıştığı telefonun smslerini kullanır. Bu sayede birden fazla telefondan sınırsız ve ücretsiz sms gönderirsiniz.</p>
 </details>
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;"><a style="color:#F00;">Güvenlik 1.0 Sistemi</a> ne işe yarar ?</summary>
+    <summary style="color:#dbdc82; line-height:25px;">Güvenlik 1.0 Sistemi ne işe yarar ?</summary>
     <p class="aciklama">Güvenlik 1.0 kullanıcı ve müşteri telefon numaralarını çalınmaya karşı koruyan sistemindir. Veritabanına eklenen her telefonu benzersiz şekilde uçtan uca şifreleyerek numaralar çalınsa dahi kullanılamaz rastagele sayılar halde olmasını sağlar.</p>
 </details>
 
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">Telefon numaramı <a style="color:#F00;">veli görebilir mi?</a> </summary>
-    <p class="aciklama">Öğretmenler yoklama alırken ve sistem üzerinden mesajlaşırken hiçbir şekilde telefon numarası görünmez. Yoklama ve bilgilendirme smsleri okul hattından veliye gönderilmelidir çünkü bu numara <a style="color:#F00;">veli</a> tarafından görülür.</p>
+    <summary style="color:#dbdc82; line-height:25px;">Telefon numaramı veli görebilir mi?</summary>
+    <p class="aciklama">Öğretmenler yoklama alırken ve sistem üzerinden mesajlaşırken hiçbir şekilde telefon numarası görünmez. Yoklama ve bilgilendirme smsleri okul hattından veliye gönderilmelidir çünkü bu numara veli tarafından görülür.</p>
 </details>  
 
 <details style="margin-top:10px;">
-    <summary style="color:#dbdc82; line-height:25px;">İş ve Koordinasyon ağından mesaj attığımda <a style="color:#F00;">numaram görünür mü ?</a></summary>
-    <p class="aciklama">Sistem üzerinden yapılan hiçbir mesajlaşmada karşı taraf telefon numaranızı <a style="color:#F00;">göremez.</a> Ayrıca Zümre alanının temel amacı aslında budur; telefon numarasına gerek kalmadan iletişim ortamı oluşturmak.</p>
+    <summary style="color:#dbdc82; line-height:25px;">İş ve Koordinasyon ağından mesaj attığımda numaram görünür mü ?</summary>
+    <p class="aciklama">Sistem üzerinden yapılan hiçbir mesajlaşmada karşı taraf telefon numaranızı göremez. Ayrıca Zümre alanının temel amacı aslında budur; telefon numarasına gerek kalmadan iletişim ortamı oluşturmak.</p>
 </details> 
   
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Şifremi <a style="color:#F00;">unuttum</a> ne yapmalıyım ?</summary>
+<summary style="color:#dbdc82; line-height:25px;">Şifremi unuttum ne yapmalıyım ?</summary>
   <p class="aciklama">Sol panelden şifremi unuttum alanından şifrenizi yenileyebilirsiniz. Yeni şifreyi size sms ile kendi numaranız gönderecektir.</p>
 </details>
   
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Smsde <a style="color:#F00;">Kırmızı</a> ve <a style="color:#0F0;">Yeşil</a> renk öğrenci ne anlama geliyor ?</summary>
+<summary style="color:#dbdc82; line-height:25px;">Smsde Kırmızı ve Yeşil renk öğrenci ne anlama geliyor ?</summary>
   <p class="aciklama">Kırmızı renk mesajın gönderilemediği Yeşil renk ise başarılı bir şekilde gönderildiği anlamına gelir.</p>
 </details>
 
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;"><a style="color:#0F0;">Listeler</a> nasıl kullanılır ?</summary>
-<div class="aciklama">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
+<summary style="color:#dbdc82; line-height:25px;">Listeler nasıl kullanılır ?</summary>
+<div class="u2" style="height:auto;">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
 <hr>
-Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hem de veliye geç geldiği bildirilebilir.
+Günlük yoklama alanında öğrencileri seçmeden liste ismi oluşturarak kendi gruplarınızı kurabilirsiniz. 
+<hr>
+Örnek: Sabah Geç Gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hem de veliye geç geldiği bildirilebilir.
+<hr>
+Dikkat etmeniz gereken nokta yoklama türü olarak Nöbetçi veya Geç seçilirse bu otomatik eokula aktarılır, listeler ise eokula aktarılmaz.
 <hr>
 Listeleri okuldaki tüm öğretmenler görebilir.
 <hr>
-Müdür yardımcısı listelere sms gönderebilir.
-</div>
+Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
+</div> 
 </details>
 
 <details style="margin-top:10px;">
-<summary style="color:#dbdc82; line-height:25px;">Sms Gönderirken <a style="color:#F00;">Lütfen Dikkat !</a></summary>
+<summary style="color:#dbdc82; line-height:25px;">Sms Gönderirken Lütfen Dikkat !</summary>
   <p class="aciklama">Toplu sms göndermeden önce mutlaka yeterli sms hakkınız olduğundan emin olun çünkü sistem sms hakkınız bittikten sonra operatörün belirlediği ücret üzerinden kalan smsleri göndermeye devam edecektir.</p>
 </details>
 
@@ -3597,7 +3621,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="tam_panel" id="liste_ici">
 <div class="liste" id="li_adi" adi="li_adi">Liste Adı</div>
 <div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px; margin-top:0px;">
-<div class="aciklama">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
+<div class="u2" style="height:auto;">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
 <hr>
 Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hemde veliye geç geldiği bildirilebilir.
 <hr>
