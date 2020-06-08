@@ -1917,7 +1917,7 @@ if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$
 if(tur==0){Cookies.set('okul_sayi',son_id);$('#okul_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
 if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
-if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
+if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i;  z=$('#zumre_say').html(nz); $('#yonet').html('0');}
 
 $('.m_veri').val('');
 //Fotoğraf hatası Düzelt
@@ -1985,14 +1985,14 @@ if(ofset=='ilk'){$('.m_div').html(cevap.veri);
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
 //$('.m_div').after(cevap.gonder);
 var son_id=$('.m_box:last').attr('id');
+//alert(son_id+"-"+tur);
 $('#send').attr('son_id',son_id);
 }else{$('.eski').after(cevap.veri)}//daha fazla yükle	
 if(tur==0){Cookies.set('okul_sayi',son_id);  $('#okul_say').html('0');}
 if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
-if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');
-if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
-}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+if(tur==5){Cookies.set('y_say',son_id);  var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
 $.mesaj_sender();
 $.mesaj_sil();
 if(tur!=1){$.yan_menu();}
@@ -2998,10 +2998,8 @@ var name=$(this).attr('name');
 if(name=='ilce'){var ilce=$('.kul').attr('ilce'); var zumrex=ilce+zumre; var baslik='İlçe Zümresi'; tur=2;}//ilçe_zümson
 if(name=='il'){var il=$('.kul').attr('il'); var zumrex=il+zumre; var baslik='İl Zümresi'; tur=3;}//ilson	
 if(name=='ulke'){var zumrex=zumre; var baslik='Ülke Zümresi'; tur=4}//ülke son
-// Deneysel 
 if(name=='yonet'){var zumrex=1; var baslik='Sistem Yöneticisi'; tur=5;}//Sistem Yönecisi son
 
-//Deneysel
 var m_alan=zumrex;
 var m_gonderen=$('.kul').attr('id');
 $('#m_baslik').html(baslik);
@@ -3480,7 +3478,7 @@ CordovaSMS.onDefaultSelected(function(result){
   <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu. Gelişmiş  özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;"> MP Terminali</a>'nin de programa entegre edilmesiyle artık sınıfta kolayca alınan yoklama analiz ve sentez yapabilen program zekası sayesinde eokula aktarılabilir hale geldi. </p>
 <details style="margin-top:10px;">
     <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
-    <p class="aciklama">En önemli nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
+    <p class="u2">En önemli nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
 </details>
 
 <details style="margin-top:10px;" style="margin-top:10px;">
