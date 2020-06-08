@@ -274,9 +274,8 @@
 	font-size: 12px;
 	color:#FFF;
 	text-align: center;
-	margin-left: 10px;
 	margin-top: 32px;
-	width: 72px;
+	width: 90px;
 }
 .scodes {
 	font-family:calibri;
@@ -1282,18 +1281,18 @@
 }
 
 .zum_is {
-	color: #FFFFFF;
-	text-align: center;
-	width: 90px;
-	height: 20px;
-	margin-top: -46px;
-	box-shadow: 0 0 5px 8px white;
-	border-bottom-right-radius: 29px;
-	border-bottom-left-radius: 29px;
-	padding-bottom: 14px;
-	background-color: #00FF66;
-	font-family: calibri;
-	font-size: 13px;
+	    color: #FFFFFF;
+    text-align: center;
+    width: 94px;
+    height: 26px;
+    margin-top: -55px;
+    margin-left: -2px;
+    box-shadow: 0 0 2px 2px #3ecaec85;
+    border-radius: 5px;
+    padding-bottom: 14px;
+    background-color: #264c35;
+    font-family: calibri;
+    font-size: 13px;
 	}
 .c_sinif {
 	color: #085B70;
@@ -1392,6 +1391,7 @@ var okul_sayi=Cookies.get('okul_sayi');if(okul_sayi==null){okul_sayi=0;}
 var ilce_sayi=Cookies.get('ilce_sayi');if(ilce_sayi==null){ilce_sayi=0;}
 var il_sayi=Cookies.get('il_sayi');if(il_sayi==null){il_sayi=0;}
 var ulke_sayi=Cookies.get('ulke_sayi');if(ulke_sayi==null){ulke_sayi=0;}
+var y_say=Cookies.get('y_say');if(y_say==null){y_say=0;}
 var okul_id=$('.kul').attr('okul_id');
 
 //DÜZENLEYECEĞİZ
@@ -1405,12 +1405,14 @@ $.ajax({
 			       "ulke_sayi":ulke_sayi,
 				   "ilx":ilx,
 				   "ilcex":ilcex,
+				   "y_say":y_say,
 				   "okulx":okul_id}),
 			dataType: "json",
 			success: function(cevap){
 				$('#il_say').html(cevap.il);
 				$('#ilce_say').html(cevap.ilce);
 				$('#ulke_say').html(cevap.ulke);
+				$('#yonet').html(cevap.yonet);
 				$('#okul_say').html(cevap.okul);
 				$('#zumre_say').html(cevap.zumre);//toplam
 }});//ajax ve cevap
@@ -1915,6 +1917,7 @@ if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$
 if(tur==0){Cookies.set('okul_sayi',son_id);$('#okul_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
 if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
 
 $('.m_veri').val('');
 //Fotoğraf hatası Düzelt
@@ -1949,7 +1952,9 @@ if(cevap.veri){$('.m_box:last').after(cevap.veri);var son_id=$('.m_box:last').at
 if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
 if(tur==0){Cookies.set('okul_sayi',son_id);$('#okul_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
-if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
+}
 
 //Fotoğraf hatası Düzelt
 $(".profil").on("error", function(){ $(this).attr('src', 'icon/profil.jpg');});	
@@ -1985,7 +1990,9 @@ $('#send').attr('son_id',son_id);
 if(tur==0){Cookies.set('okul_sayi',son_id);  $('#okul_say').html('0');}
 if(tur==2){Cookies.set('ilce_sayi',son_id); var i=$('#ilce_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ilce_say').html('0');}
 if(tur==3){Cookies.set('il_sayi',son_id); var i=$('#il_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#il_say').html('0');}
-if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');}
+if(tur==4){Cookies.set('ulke_sayi',son_id); var i=$('#ulke_say').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#ulke_say').html('0');
+if(tur==5){Cookies.set('y_say',son_id); var i=$('#yonet').html(); var z=$('#zumre_say').html(); var nz=z-i; z=$('#zumre_say').html(nz); $('#yonet').html('0');}
+}
 $.mesaj_sender();
 $.mesaj_sil();
 if(tur!=1){$.yan_menu();}
@@ -2983,13 +2990,18 @@ if(index==8){
 var zumre=$('.kul').attr('zumre');	
 var zumre_adi=$('option[value='+zumre+']').html();
 $('.zum_is').html(zumre_adi);
+$('.zum_is:eq(3)').html("Sistem Yöneticisi");
 //--------------ZÜMRELER
 $('.daires').click(function(){
 var zumre=$('.kul').attr('zumre');
 var name=$(this).attr('name');	
 if(name=='ilce'){var ilce=$('.kul').attr('ilce'); var zumrex=ilce+zumre; var baslik='İlçe Zümresi'; tur=2;}//ilçe_zümson
 if(name=='il'){var il=$('.kul').attr('il'); var zumrex=il+zumre; var baslik='İl Zümresi'; tur=3;}//ilson	
-if(name=='ulke'){var zumrex=zumre;var baslik='Ülke Zümresi'; tur=4}//ülke son
+if(name=='ulke'){var zumrex=zumre; var baslik='Ülke Zümresi'; tur=4}//ülke son
+// Deneysel 
+if(name=='yonet'){var zumrex=1; var baslik='Sistem Yöneticisi'; tur=5;}//Sistem Yönecisi son
+
+//Deneysel
 var m_alan=zumrex;
 var m_gonderen=$('.kul').attr('id');
 $('#m_baslik').html(baslik);
@@ -3299,6 +3311,7 @@ CordovaSMS.onDefaultSelected(function(result){
 
             $('span#intercept').text('intercept ' + (interceptEnabled ? 'ON' : 'OFF'));
             $('button#enable_intercept').text(interceptEnabled ? 'Disable' : 'Enable');
+ 
   
 
         }
@@ -3452,6 +3465,9 @@ CordovaSMS.onDefaultSelected(function(result){
 <div class="d_daire"><div class="msayi" id="il_say">0</div><div class="daires" name="il" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">İl Zümresi</div><div class="zum_is"></div></div></div>
 
 <div class="d_daire"><div class="msayi" id="ulke_say">0</div><div class="daires" name="ulke" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;">Ülke Geneli</div><div class="zum_is"></div></div></div>
+
+
+<div class="d_daire"><div class="msayi" id="yonet">0</div><div class="daires" name="yonet" style="background-image:url(icon/ogretmen.png);"><div class="d_yazis" style="color:#085b70;  margin-top: 92px;"></div><div class="zum_is" style="padding-top:5px; height: 21px;"></div></div></div>
 
 <div class="taban">
 <div class="geri"  style="color:#F00; border-color:#F00;">Geri</div>
