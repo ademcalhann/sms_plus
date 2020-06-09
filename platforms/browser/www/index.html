@@ -1323,7 +1323,7 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 }
     </style>
 </head>
-<body onload="onLoad()" style="background: linear-gradient(49deg, rgb(42, 99, 73) 0%, rgb(253, 253, 253) 100%)">
+<body onload="onLoad()" style="background: rgb(0,0,0);background: linear-gradient(30deg, rgba(0, 0, 0, 0.73) 44%, rgba(0, 255, 196, 0.18) 100%);">
 <script>
         function onLoad() {
             //Jquery yazım alanı
@@ -1448,7 +1448,7 @@ $('.ux').css('border-color','#FFFFFF').css('color','#FFFFFF');
 
 // scode alanı
 $('.ux[name=scode]').click(function(){
-
+$(".kutu").show();
 	function scode(length) {
    var result           = '';
    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -2677,7 +2677,7 @@ $.uyari('Sınıf İsmi Değiştirildi !');
 
 $('#bigeri').click(function(){
 $('#ogrenciler').hide();
-$('.panel:eq(1)').slideDown();	
+$('.panel:eq(1)').show();	
 })//bigeri click
 }});//ajax ve cevap	
 });//dairey son	
