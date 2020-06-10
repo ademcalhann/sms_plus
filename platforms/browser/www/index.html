@@ -903,8 +903,8 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 }
 .profil {
 	float: left;
-	height: 60px;
-	width: 60px;
+	height: 85px;
+	width: 85px;
 	box-shadow: 0 0 5px 2px #FFFFFF;
 	border-radius: 50%;
 }
@@ -997,17 +997,17 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 }
 .cikis {
 	color: #FFF;
-	background-color: #F00;
 	width: 60%;
 	height: 20px;
-	margin-left: 20%;
+	margin-left: 28%;
 	text-align: center;
-	padding: 3px;
+	padding-top: 5px;
+	padding-bottom:4px;
 	position: absolute;
     margin-top: 70px;
-	border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
+	border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: linear-gradient(18deg, rgb(37, 17, 17) 0%, rgb(255, 26, 26) 100%);}
 .kapa {
 	width: 100%;
 	height: 158px;
@@ -2348,11 +2348,13 @@ if(sec==1){$(this).attr('sec',0);	$(this).css('background-color','#099');}
 });//coklusec son
 $('#coklu_devam').click(function(){
 var cok_ici='';	
+var yoklama_id='';	
 var yok_sayi=$('.dairec[sec="1"]').length;
 for(index=0;index<yok_sayi; index++){
 var ogr_id=$('.dairec[sec="1"]:eq('+index+')').attr('ogr_id');
 cok_ici+=','+ogr_id;
-	
+
+////-----ARTIK ÖĞRENCİLERİN TCLERİ BİZDE VAR HALİYLE YOKLAMA MODELİNİ BURDA YENİLE	
 var id=$('.dairec[sec="1"]:eq('+index+')').attr('id');
 yoklama_id+=','+id;	
 }
@@ -3150,8 +3152,8 @@ $('#mesaj').attr('placeholder',cb);
 */
 var ogr_sayi=$('.y_ogrenci').length;
 if(index<ogr_sayi){
-var telef=$('.y_ogrenci[ekran='+yoklama_id+']:eq('+index+')').attr('veli_tel');	
-var isim=$('.isim[ekran='+yoklama_id+']:eq('+index+')').html();
+var telef=$('.y_ogrenci:eq('+index+')').attr('veli_tel');	
+var isim=$('.isim:eq('+index+')').html();
 var islevsel=$('.kul').attr('islevsel');
 var telefo=parseInt(telef)+parseInt(islevsel);
 var telefon='0'+telefo;
@@ -3181,7 +3183,7 @@ $.uyari('Görev Tamamlandı !');
 $('#sms_panel').fadeOut();
 var say=$('.y_ogrenci[sayac=1]').length;
 var hata=$('.y_ogrenci[sayac=4]').length;
-var ekran=$('.basla').attr('yoklama_id');
+var yoklama_id=$('.basla').attr('yoklama_id');
 var o_id=$('.kul').attr('okul_id');
  var sayi=say+1;
 
@@ -3191,7 +3193,7 @@ $.ajax({
 			data:({"sao_id":o_id,
 			        "sayi":sayi,
 					"hata":hata,
-					"ekran":ekran}),
+					"ekran":yoklama_id}),
 			dataType: "json",
 			success: function(cevap){
 //$.uyari(cevap.veri);			
@@ -3380,7 +3382,7 @@ CordovaSMS.onDefaultSelected(function(result){
 <div class="marka">Mesaj Plus</div></div>
 
 <div class="orta">
-      <div class="daire" style="background-image:url('');    background: linear-gradient(30deg, rgb(13, 90, 110) 53%, rgb(82, 180, 206) 100%);S">
+      <div class="daire" style="background-image:url('');background: linear-gradient(31deg, rgba(12,26,51,1) 0%, rgba(34,193,195,1) 100%);">
       <div class="ay"></div><div class="gun"></div>
       <div class="d_yazi">Günlük Yoklama</div></div>
   <div class="daire" style="background-image:url(icon/sinif.png); background-size:cover;">
@@ -3675,7 +3677,7 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 </div><div class="tam_panel" id="ogrenciler"></div>
 <div class="tam_panel" id="liste_ici">
 <div class="liste" id="li_adi" adi="li_adi">Liste Adı</div>
-<div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:270px; margin-top:0px;">
+<div class="kutu" id="lis_ogr" style="overflow-y:scroll; height:51%; margin-top:0px;">
 <div class="u2" style="height:auto;">Öğrencileri ödüllendirme veya yakın takip için listeler oluşturun.
 <hr>
 Örnek: Sabah geç gelenler listesi oluşturduğunuzda hem öğrenci yok yazılmaz hemde veliye geç geldiği bildirilebilir.
