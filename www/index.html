@@ -3279,9 +3279,12 @@ $(".evet[name='unut2']").click(function(){
 CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');
-				   $(".dikkat[name='d_unut2'])").hide();
-				   $(".dikkat[name='d_unut3']").show();}
+                  if(true){
+				   $(".dikkat[name='d_unut2']").hide();
+				   $(".dikkat[name='d_unut3']").show();
+				   $.uyari('Tebrikler Herşey Yolunda !');
+				  
+				   }
 	             if(false){ $.uyari('İkinci Adım Başarısız !');}
               });
 			
@@ -3610,7 +3613,7 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 <div class="dikkat" name="d_unut3"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
         
-        </div>        
+</div>        
 </div>
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
