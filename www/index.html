@@ -3261,7 +3261,7 @@ $('#mesaj').attr('placeholder',cb);*/
 
 
 //-----------  DEFAULT SMS HANDLER PERMISSION -----------------------------
-$("#x1").click(function(){
+$(".evet[name='terminal1'],.evet[name='unut1']").click(function(){
 	
 CordovaSMS.setDefault(null,null,"com.mesajplus.system");
 
@@ -3274,7 +3274,7 @@ CordovaSMS.onDefaultSelected(function(result){
               });
 			   	
 	});  ////tam izin 
-$("#x2").click(function(){
+$(".evet[name='terminal2'],.evet[name='unut2']").click(function(){
 	
 CordovaSMS.setDefault(null,null,"messages");
 
@@ -3571,11 +3571,11 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 </div>
 <div class="ut">
  <div class="dikkat" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. 
-<div class="evet" id="x1">1. Adım </div>
+<div class="evet"  name="unut1">1. Adım </div>
 </div>
 
 <div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
-<div class="evet" id="x2" style="margin-top:50px;">2. Adım </div>
+<div class="evet"  name="unut2" style="margin-top:50px;">2. Adım </div>
 </div>
 <div class="dikkat"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
@@ -3585,11 +3585,11 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
 <div class="dikkat" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. </label>
-<div class="evet" id="x1">1. Adım </div>
+<div class="evet"  name="terminal1">1. Adım </div>
 </div>
 
 <div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
-<div class="evet" id="x2" style="margin-top:50px;">2. Adım</div>
+<div class="evet"  name="terminal2" style="margin-top:50px;">2. Adım</div>
 </div>
 
 </div>
