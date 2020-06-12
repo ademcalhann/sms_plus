@@ -3261,27 +3261,57 @@ $('#mesaj').attr('placeholder',cb);*/
 
 
 //-----------  DEFAULT SMS HANDLER PERMISSION -----------------------------
-$(".evet[name='terminal1'],.evet[name='unut1']").click(function(){
+$(".evet[name='unut1']").click(function(){
 	
 CordovaSMS.setDefault(null,null,"com.mesajplus.system");
 
 CordovaSMS.onDefaultSelected(function(result){
                   if(true){ $.uyari('Lütfen ikinci adıma geçin !');
-				  $(".dikkat:eq(0)").hide();
-				  $(".dikkat:eq(1)").show();
+				  $(".dikkat[name='d_unut1']").hide();
+				  $(".dikkat[name='d_unut2']").show();
 				  }
 	             if(false){ $.uyari('Sms İzni Verilemedi !');}
               });
 			   	
 	});  ////tam izin 
-$(".evet[name='terminal2'],.evet[name='unut2']").click(function(){
+$(".evet[name='unut2']").click(function(){
 	
 CordovaSMS.setDefault(null,null,"messages");
 
 CordovaSMS.onDefaultSelected(function(result){
                   if(true){ $.uyari('Tebrikler Herşey Yolunda !');
-				   $(".dikkat:eq(1)").hide();
-				  $(".dikkat:eq(2)").show();}
+				   $(".dikkat[name='d_unut2'])").hide();
+				   $(".dikkat[name='d_unut13']").show();}
+	             if(false){ $.uyari('İkinci Adım Başarısız !');}
+              });
+			
+	});  ////tam izin  	  
+//-------   DEFAULT SMS HANDLER PERMISSION  --------- 
+
+
+
+//-----------  DEFAULT SMS HANDLER PERMISSION -----------------------------
+$(".evet[name='terminal1']").click(function(){
+	
+CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){ $.uyari('Lütfen ikinci adıma geçin !');
+				  $(".dikkat[name='d_term1']").hide();
+				  $(".dikkat[name='d_term12']").show();
+				  }
+	             if(false){ $.uyari('Sms İzni Verilemedi !');}
+              });
+			   	
+	});  ////tam izin 
+$(".evet[name='terminal2']").click(function(){
+	
+CordovaSMS.setDefault(null,null,"messages");
+
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');
+				   $(".dikkat[name='d_term12']").hide();
+				   $(".dikkat[name='d_term13']").show();}
 	             if(false){ $.uyari('İkinci Adım Başarısız !');}
               });
 			
@@ -3570,28 +3600,28 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 </div>
 </div>
 <div class="ut">
- <div class="dikkat" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. 
+ <div class="dikkat" name="d_unut1" style="display:block;">Şifrenizi yenilemek için Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. 
 <div class="evet"  name="unut1">1. Adım </div>
 </div>
 
-<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="dikkat" name="d_unut2">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
 <div class="evet"  name="unut2" style="margin-top:50px;">2. Adım </div>
 </div>
-<div class="dikkat"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
+<div class="dikkat" name="d_unut3"><input type="text" class="metin" placeholder="Yeni Şifre Sms İle Gönderilecek Telefon Girin !" id='esifir'>
         <div class="basla" id="sifirla">Sms Gönder </div>
         
         </div>        
 </div>
 <div class="ut">
 <div class="baslik">Sms Terminal İzinleri</div>
-<div class="dikkat" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. </label>
+<div class="dikkat" name="d_term1" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. </label>
 <div class="evet"  name="terminal1">1. Adım </div>
 </div>
 
-<div class="dikkat">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
+<div class="dikkat" name="d_term2">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
 <div class="evet"  name="terminal2" style="margin-top:50px;">2. Adım</div>
 </div>
-
+<div class="dikkat" name="d_term3">Tebrikler herşey yolunda artık <a style="color:#0F0">Mesaj Plus</a> ile sms gönderebilirsiniz.İşlemin bu kadar uzun olmasının nedeni smslerinizi okumamak için gösterdiğimiz garettir. Bu sayede smsleriniz sizin, mutlu kullanıcılar ise bizim oluyor ✔</div>
 </div>
 <div class="alti" id="style-3">
 <div class="uzun2" style="width:690px;">
