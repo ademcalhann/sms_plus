@@ -17,8 +17,7 @@
     <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <plugin name="cordova-plugin-sms" spec="^1.0.5" />
-    <plugin spec="https://github.com/rampicos/Cordova-SMS-Plugin" source="git" />
+    <plugin spec="https://github.com/cordova-sms/cordova-sms-plugin.git" source="git" />
 	<access origin="*" />
 
     <allow-intent href="http://*/*" />
