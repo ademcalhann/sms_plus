@@ -146,9 +146,17 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	margin-top: 5px;
 	margin-left: 10px;
 	background-image: url(icon/y.png);
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	background-size:contain;
+
+}
+.sms_durum {
+	float:right;
+	height: 20px;
+	width: 35px;
+	margin-top: 5px;
+	margin-right: 10px;
+	background-image: url(icon/pasif.png);
+	background-size:contain;
 }
 .marka {float: left;
 	margin-left: 18%;
@@ -444,6 +452,19 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	border: 1px solid #09F;
 }
 .silx {
+	height: 15px;
+	width: 15px;
+	margin-top: -25px;
+	border: 1px solid #FF0000;
+	text-align: center;
+	float: right;
+	margin-right: 2px;
+	border-radius: 50%;
+	display: none;
+	background-image: url(icon/x.png);
+	background-position: center center;
+}
+.sms_sil {
 	height: 15px;
 	width: 15px;
 	margin-top: -25px;
@@ -1156,6 +1177,18 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	margin-bottom: 10px;
 }
 
+.sms_box {
+	color: #FFFFFF;
+	height: auto;
+	padding-top: 5px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	font-size: 13px;
+	border-radius: 15px;
+	width: 98%;
+	margin-bottom: 10px;
+}
+
 .m_gonder {
 	width: 100%;
 	height: 35px;
@@ -1217,6 +1250,21 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	margin-top: 5px;
 }
 .isimx {
+	color: #FFFFFF;
+	height: 19px;
+	width: 45%;
+	padding-top: 3px;
+	margin-bottom: 5px;
+	margin-top: 3px;
+	margin-left: 14%;
+	padding-left: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+	font-size: 12px;
+	padding-right: 5px;
+}
+.sms_tel {
 	color: #FFFFFF;
 	height: 19px;
 	width: 45%;
@@ -3065,9 +3113,44 @@ $.ajax({
 }else{$.uyari('Yetkiniz Bulunmuyor...');}});	//p_kaydetson
 }//index==7son
 //üye olma işlemleri
-if(index==10){
-$.uye_ol();
-}//üye olma son
+if(index==10){ $.uye_ol(); }//üye olma son
+if(index==11){
+	
+//---SMS SİLME BAŞLA
+$('.sms_sil').click(function(){
+var sil_tel=$(this).attr('sil_no');
+
+var filter = {
+        		box : 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+        		
+        		// the following 4 filters are OR relationship
+        		_id : 1234, // given a sms id, recommend ONLY use this filter
+        		read : 1, // delete all read SMS
+        		address :sil_tel, // delete all SMS from this phone number
+        	
+        	};
+        	if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
+        	}, function(err){$.uyari("Silme Hatası !");});
+				
+});//---SMS SİLME SON
+ 
+function listSMS() {    		    		
+if(SMS) SMS.listSMS({}, function(data){
+$.uyari("Smsler listelendi...");
+
+var icim = "";
+if(Array.isArray(data)) {
+  for(var i in data) {
+ var sms = data[i];
+smsList.push(sms);
+icim+="<div class='sms_box'><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='y_y'>"+ sms.body +"</div></div>";
+}}
+$('#sms_liste').html(icim).show();}, function(err){$.uyari("Smsler okunamadı...");	});
+}	
+		
+listSMS();		
+}//index==11
+
 
 //Zümreler==9 index
 if(index==8){
@@ -3320,7 +3403,44 @@ CordovaSMS.onDefaultSelected(function(result){
 			
 	});  ////tam izin  	  
 //-------   DEFAULT SMS HANDLER PERMISSION  --------- 
-        }
+
+//----SMS DİNLEMEYE BAŞLA
+CordovaSMS.onDefaultSelected(function(result){
+                  if(true){
+					  if(SMS) SMS.startWatch(function(){$.uyari("Sms Dinleme Aktif...");
+					  $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");
+					  }, function(){});
+					  }
+	             if(false){if(SMS) SMS.stopWatch(function(){$.uyari("Sms Dinleme Durduruldu !");   $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");}, function(){}); }
+});//ONDEFAULT
+
+$('.sms_durum').click(function(){
+CordovaSMS.checkDefault(function(s){
+	alert("başarılı alanı bence");
+	
+	$.uyari("Senin Uygulaman :"+thisApp)
+			var ben=thisApp;
+			var varsayilan=currentDefault;
+			alert(s)
+			alert(s.thisApp)
+			
+			
+	$.uyari("S degeri: "+s);}, 
+        function(){
+			alert("başarısız alanı bence");
+			$.uyari("Senin Uygulaman :"+thisApp)
+			var ben=thisApp;
+			var varsayilan=currentDefault;
+			alert(s)
+			alert(s.thisApp)
+			
+			});	
+	
+	});
+     
+
+
+ }
 
     </script>
 <div class="uyari"></div>     
@@ -3343,6 +3463,7 @@ CordovaSMS.onDefaultSelected(function(result){
 <div class="basla" id="basla">Başla</div>
 </div>         
 <div class="markabar"><div class="menu" v="0"></div>
+<div class="sms_durum"></div>
 <div class="marka">Mesaj Plus</div></div>
 
 <div class="orta">
@@ -3372,10 +3493,12 @@ CordovaSMS.onDefaultSelected(function(result){
   <div class="d_yazi">Zümre</div></div>   
   <div class="daire" style="background-image:url(icon/yrdm.png); background-size:contain;">
       <div class="d_yazi">Yardım</div></div>
-    
+     
    <div class="daire" style="background-image:url('icon/merhabax.png'); background-size:cover;" >
            <div class="d_yazi">Üye Ol !</div>
   </div>
+     <div class="daire"><div class="d_yazi">Sms</div></div>
+  
 </div>
 <div class="panel">
 <div class="yoklama">Yoklama</div>
@@ -3563,6 +3686,10 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 </div>
 <div class="taban">
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
+</div>
+<div class="panel" name="yerel_sms">
+<div class="kutu" id="sms_liste"></div>
+<div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 <div class="sol_panel">
 <div class="ut">
