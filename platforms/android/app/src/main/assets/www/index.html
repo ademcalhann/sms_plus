@@ -563,6 +563,19 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	border-radius: 6px;
 	background-color: #FFFFFF;
 }
+.sms_geri {
+	width: 35%;
+	border: 1px solid #00CC00;
+	color: #00CC00;
+	float: left;
+	margin-left: 10%;
+	margin-top: 5px;
+	margin-bottom: 3px;
+	padding-top: 3px;
+	height: 22px;
+	border-radius: 6px;
+	background-color: #FFFFFF;
+}
 
 .geri_a {
 	width: 35%;
@@ -3146,33 +3159,25 @@ if(index==10){ $.uye_ol(); }//üye olma son
 $.sms_sil=function(){
 $('.sms_sil').click(function(){
 var sil_tel=$(this).attr('sil_no');
-alert(sil_no)
+
+if(SMS) SMS.deleteSMS({	address :sil_tel
+        	}, function( n ){
+        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	}, function(err){
+        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	});
+
+alert("Sil: "+sil_no)
 var filter = {address :sil_tel};
-        	if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
-        	}, function(err){$.uyari("Silme Hatası !");});
+if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
+$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	}, function(err){$.uyari("Silme Hatası !");
+			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
 });};//---SMS SİLME SON
  
  
-if(index==11){
-	
-function listSMS() {  
-		  		    		
-if(SMS) SMS.listSMS({}, function(data){
-
-var icim="";
-if(Array.isArray(data)) {
-for(var i in data) { var sms=data[i]; smsList.push(sms);
-icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
-}//for
-}//if
-$('#sms_liste').html(icim).show();
-$.sms_sil();
-$.sms_box();
-}, function(err){$.uyari("Kısa mesaj okuma hatası...");});
-
-}	
-		
+if(index==11){		
 listSMS();		
 }//index==11
 
@@ -3191,7 +3196,8 @@ for(var i in data) { var sms=data[i]; smsList.push(sms);
 icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
 }//for
 }//if
-$('.sms_oku').html(icim).show();
+$('.sms_oku').html(icim);
+$(".sms_menu").slideDown();
 $.sms_sil();
 }, function(err){$.uyari("Kısa mesaj okuma hatası...");});
 
@@ -3434,29 +3440,59 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css(
 }//0	
 });//click
 
-var din_sms= $('.sms_durum').attr("durum");
-if(din_sms==1){ $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");}
-if(din_sms==0){$('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");}
+
 
 //----SMS DİNLEMEYE BAŞLA
 
-CordovaSMS.onDefaultSelected(function(result){
+  var errCallback =function(){
+   if(false){
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
+}//olumsuz son
+  };
+ 
+  CordovaSMS.checkDefault(function(){
+	  if(true){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+}//olumlu son
+
+	  },errCallback);
+
+/*KAPATTIM CAHACK DENİYORUZ
+ CordovaSMS.onDefaultSelected(function(result){
 //olumlu 
-if(true){if(SMS) SMS.startWatch(function(){alert("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+if(true){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
 }//olumlu son
 //olumsuz
 if(false){
-if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
 }//olumsuz son
 });//Kontrol_son	
+*/
 
+ 
+function listSMS() {  
+		  		    		
+if(SMS) SMS.listSMS({}, function(data){
 
+var icim="";
+if(Array.isArray(data)) {
+for(var i in data) { var sms=data[i]; smsList.push(sms);
+icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
+}//for
+}//if
+$('#sms_liste').html(icim).show();
+$.sms_sil();
+$.sms_box();
+}, function(err){$.uyari("Kısa mesaj okuma hatası...");});
+
+}	
      
-/////Cordova mesaj dinleme
-  CordovaSMS.onSMS(function(sms){
-    alert('Cordova mesaj geldi: '+JSON.stringify(sms));
-  });
- }
+//--Cordova mesaj geldi LİST SMS DENENİYOR
+  CordovaSMS.onSMS(function(sms){   $.uyari(JSON.stringify(sms)); listSMS();  });
+
+$.sms_geri=function(){
+	 $('.geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");	});};  
+  
+  }
 
     </script>
 <div class="uyari"></div>     
@@ -3813,9 +3849,9 @@ Müdür yardımcısı listelere sms gönderebilir.
 
 <div class="sms_menu">
 <div class="kutu" id="sms_oku" style="display:block;margin-top:0px; height:100%;">
-
+Burada seri smsler olacak.
 </div>
-<div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
+<div class="taban"><div class="sms_geri" id="sms_geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 
 </div>
