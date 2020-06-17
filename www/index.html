@@ -3138,10 +3138,10 @@ function listSMS() {
 if(SMS) SMS.listSMS({}, function(data){
 alert("listeleme çalışıyor")
 
-var icim = "";
+var icim="";
 if(Array.isArray(data)) {
   for(var i in data) {
- var sms = data[i];
+ var sms=data[i];
 smsList.push(sms);
 icim+="<div class='sms_box'><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='y_y'>"+ sms.body +"</div></div>";
 }
@@ -3344,86 +3344,30 @@ $('#mesaj').attr('placeholder',cb);*/
 }
 });//basla son
 
-
-//-----------  DEFAULT SMS HANDLER PERMISSION -----------------------------
-$(".evet[name='unut1']").click(function(){
-	
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Lütfen ikinci adıma geçin !');
-				  $(".dikkat[name='d_unut1']").hide();
-				  $(".dikkat[name='d_unut2']").show();
-				  }
-	             if(false){ $.uyari('Sms İzni Verilemedi !');}
-              });
-			   	
-	});  ////tam izin 
-$(".evet[name='unut2']").click(function(){
-	
-CordovaSMS.setDefault(null,null,"messages");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){
-				   $(".dikkat[name='d_unut2']").hide();
-				   $(".dikkat[name='d_unut3']").show();
-				   $.uyari('Tebrikler Herşey Yolunda !');
-				  
-				   }
-	             if(false){ $.uyari('İkinci Adım Başarısız !');}
-              });
-			
-	});  ////tam izin  	  
-//-------   DEFAULT SMS HANDLER PERMISSION  --------- 
-
-
-
-//-----------  DEFAULT SMS HANDLER PERMISSION -----------------------------
-$(".evet[name='terminal1']").click(function(){
-	
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Lütfen ikinci adıma geçin !');
-				  $(".dikkat[name='d_term1']").hide();
-				  $(".dikkat[name='d_term2']").show();
-				  }
-	             if(false){ $.uyari('Sms İzni Verilemedi !');}
-              });
-			   	
-	});  ////tam izin 
-$(".evet[name='terminal2']").click(function(){
-	
-CordovaSMS.setDefault(null,null,"messages");
-
-CordovaSMS.onDefaultSelected(function(result){
-                  if(true){ $.uyari('Tebrikler Herşey Yolunda !');
-				   $(".dikkat[name='d_term2']").hide();
-				   $(".dikkat[name='d_term3']").show();}
-	             if(false){ $.uyari('İkinci Adım Başarısız !');}
-              });
-			
-	});  ////tam izin  	  
-//-------   DEFAULT SMS HANDLER PERMISSION  --------- 
-
-//----SMS DİNLEMEYE BAŞLA
-
-CordovaSMS.onDefaultSelected(function(result){
-//olumlu 
-if(true){if(SMS) SMS.startWatch(function(){alert("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
-}//olumlu son
-//olumsuz
-if(false){
-if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
-}//olumsuz son
-});//Kontrol_son	
-
-
+// we will restore the intercepted SMS here, for later restore
+        var smsList = [];
+        var interceptEnabled = false;
+function initApp() {
+        	if (! SMS ) { alert( 'Hazır değil!' ); return; }
+        	
+            document.addEventListener('onSMSArrive', function(e){
+            	var data = e.data;
+            	smsList.push( data );
+            	alert("Mesaj Ulaştı !"+smsList.length)
+    
+            	$('.sms_box').prepend(JSON.stringify( data ));
+            
+            	
+            });
+        }
+initApp();		
+//---ON OFF CLİCK
 $('.sms_durum').click(function(){
-var din_sms= $('.sms_durum').attr("durum");
+	alert("bana tıkladın")
+var din_sms= $(this).attr("durum");
 if(din_sms==1){
 	
-CordovaSMS.setDefault(null,null,"com.android.mms");
+CordovaSMS.setDefault(null,null,"messages");
 CordovaSMS.onDefaultSelected(function(result){
 if(true){
 if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
@@ -3443,9 +3387,25 @@ if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("b
 });//kontrol	
 }//0	
 });//click
+
+//----SMS DİNLEMEYE BAŞLA
+
+CordovaSMS.onDefaultSelected(function(result){
+//olumlu 
+if(true){if(SMS) SMS.startWatch(function(){alert("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+}//olumlu son
+//olumsuz
+if(false){
+if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
+}//olumsuz son
+});//Kontrol_son	
+
+
      
-
-
+/////Cordova mesaj dinleme
+  CordovaSMS.onSMS(function(sms){
+    alert('Cordova mesaj geldi: '+JSON.stringify(sms));
+  });
  }
 
     </script>
@@ -3469,7 +3429,7 @@ if(SMS) SMS.stoptWatch(function(){alert("Dinleme Durdu"); $('.sms_durum').css("b
 <div class="basla" id="basla">Başla</div>
 </div>         
 <div class="markabar"><div class="menu" v="0"></div>
-<div class="sms_durum"></div>
+<div class="sms_durum" durum="0"></div>
 <div class="marka">Mesaj Plus</div></div>
 
 <div class="orta">
@@ -3694,7 +3654,9 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 <div class="panel" name="yerel_sms">
-<div class="kutu" id="sms_liste" style="display:block; background:#0CF;"></div>
+<div class="kutu" id="sms_liste" style="display:block; background:#0CF;">
+<div class="sms_box">Sms okuma alanıdır.</div>
+</div>
 <div class="taban"><div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 <div class="sol_panel">
