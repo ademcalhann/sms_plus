@@ -3457,12 +3457,10 @@ function listSMS() {
 var filter = {
         		box : 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
         		
-        		// following 4 filters should NOT be used together, they are OR relationship
-        		read :1, // 0 for unread SMS, 1 for SMS already read
-        		
+        		     		
         		// following 2 filters can be used to list page up/down
         		indexFrom : 0, // start from index 0
-        		maxCount : 200, // count of SMS to return each time
+        		
         	};
 					  		    		
 if(SMS) SMS.listSMS(filter, function(data){
