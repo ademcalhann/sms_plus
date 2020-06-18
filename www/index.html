@@ -3454,29 +3454,12 @@ function initApp() {
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
+                          	
             });
         }
 initApp();
 
-    document.addEventListener('onSMSArrive', function(e){
-            	var data = e.data;
-            	smsList.push( data );
-                 restoreAllSMS();         	
-            });
 
-   function restoreAllSMS() {
-    		updateData('');
-    		
-        	if(SMS) SMS.restoreSMS(smsList, function( n ){
-        		smsList.length = 0;
-           $.uyari("Yenile başaşr");
-
-        	}, function(err){
-				$.uyari("Yenile hata");
-        		
-        	});
-			
-			
 //---SMS SİLME BAŞLA
 $.sms_sil=function(){
 $('.sms_sil').click(function(){
@@ -3531,11 +3514,32 @@ var mesaj=$('#sms_mes').val();
 if(telefon.length==11 && mesaj!="")	{
 SMS.sendSMS(telefon,mesaj, function(){$.uyari("sms başarılı");}, function(){$.uyari("sms hatalı");});}
 });
-	
-}
- 
 
-    </script>
+
+
+
+   function restoreAllSMS(){
+    		updateData('');
+    		
+        	if(SMS) SMS.restoreSMS(smsList,function(n){
+        		smsList.length = 0;
+       $.uyari("Yenile başar");
+
+        	}, function(err){
+				$.uyari("Yenile hata");
+        		
+        	});}
+			
+			 document.addEventListener('onSMSArrive', function(e){
+            	var data = e.data;
+            	smsList.push( data );
+				restoreAllSMS();
+                          	
+            });
+			
+				
+}
+</script>
 <div class="uyari"></div>     
 <div class="alt_panel" id="liste">
 <select class="y_tur">
