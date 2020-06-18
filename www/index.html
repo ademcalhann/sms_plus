@@ -3362,7 +3362,7 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
  CordovaSMS.checkDefault(function(s){
-if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s.thisApp+"--"+"Current: "+s[0]); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari(s); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
 
 
@@ -3400,12 +3400,14 @@ function initApp() {
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
+			
                  restoreAllSMS();         	
             });
         }
 initApp();
 
-
+  document.addEventListener('onSMSArrive', function(e){ 	$.uyari("Ben çalıştım"); restoreAllSMS(); });
+			
 //---SMS SİLME BAŞLA
 $.sms_sil=function(){
 $('.sms_sil').click(function(){
