@@ -3454,14 +3454,29 @@ function initApp() {
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
-                listSMS();
-   
-            	
             });
         }
 initApp();
 
+    document.addEventListener('onSMSArrive', function(e){
+            	var data = e.data;
+            	smsList.push( data );
+                 restoreAllSMS();         	
+            });
 
+   function restoreAllSMS() {
+    		updateData('');
+    		
+        	if(SMS) SMS.restoreSMS(smsList, function( n ){
+        		smsList.length = 0;
+           $.uyari("Yenile başaşr");
+
+        	}, function(err){
+				$.uyari("Yenile hata");
+        		
+        	});
+			
+			
 //---SMS SİLME BAŞLA
 $.sms_sil=function(){
 $('.sms_sil').click(function(){
