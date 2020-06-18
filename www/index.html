@@ -1187,7 +1187,7 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	left: 0px;
 	overflow: scroll;
 	visibility: inherit;
-	background-image: url(icon/blck.png);
+    background-image: url(icon/byz.png);
 	background-repeat: repeat;
 	background-position: center;
 	height: 100%;
@@ -3352,9 +3352,6 @@ $('#mesaj').attr('placeholder',cb);*/
 });//basla son
 
 
-
-
-
 //----SMS DİNLEMEYE BAŞLA
 
   var errCallback =function(){
@@ -3365,15 +3362,20 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
  CordovaSMS.checkDefault(function(s){
-if(s.thisApp==s.currentDefault){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s.thisApp+"--"+"Current: "+s.currentDefault); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s["thisApp"]+"--"+"Current: "+s["currentDefault"]); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
-		
-  
+
 
 //---FİLTRESİZ LİSTELE
-function listSMS() {
-$.uyari("F listele");		
-if(SMS) SMS.listSMS({}, function(data){
+function listSMS(){
+var filter = {
+        		box :'', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all 		
+        		// following 2 filters can be used to list page up/down
+        		indexFrom : 0, // start from index 0
+        		maxCount :1000, // count of SMS to return each time
+        	};	
+		
+if(SMS) SMS.listSMS(filter,function(data){
 var icim="";
 if(Array.isArray(data)) {
 for(var i in data) { var sms=data[i]; smsList.push(sms);
@@ -3410,8 +3412,12 @@ $.sms_sil=function(){
 $('.sms_sil').click(function(){
 $(this).css("box-shadow","0 0 5px 2px #F00");
 var sil_tel=$(this).attr('sil_no');
-alert("sil_tel: "+sil_tel)
-var filter = {address :sil_tel};
+
+var filter = {
+        		box :'', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+        		address :sil_tel, // delete all SMS from this phone number
+        	};
+			
 if(SMS) SMS.deleteSMS(filter, function(n){$.uyari(n+" Sms Silindi...");
 $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
@@ -3432,8 +3438,8 @@ for(var i in data) { var sms=data[i]; smsList.push(sms);
 icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
 }//for
 }//if
-alert("özel: "+icim)
-$('.sms_oku').html(icim);
+
+$('#sms_oku').html(icim).show();
 $(".sms_menu").slideDown();
  $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");});  	  
 $.sms_sil();
@@ -3446,7 +3452,7 @@ $("#sms_sen").change(function(){
 var telefon=$(this).val();
 var mesaj=$('#sms_mes').val();
 if(telefon.length==11 && mesaj!="")	{
-SMS.sendSMS(telefon,mesaj, function(){$.uyari("sms başarılı");}, function(){$.uyari("sms hatalı");});}
+SMS.sendSMS(telefon,mesaj, function(){}, function(){$.uyari("sms hatalı");});}
 });
 
 
@@ -3485,6 +3491,8 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css(
 });//kontrol	
 }//0	
 });//on of
+
+
 				
 }
 </script>
@@ -3842,7 +3850,7 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="m_div" id="mesaj"></div>
 </div>
 <div class="sms_menu">
-<div class="kutu" id="sms_oku" style="display:block;margin-top:0px; height:100%;">
+<div class="kutu" id="sms_oku" style="display:block; margin-top:0px; height:100%;">
 Burada seri smsler olacak.
 </div>
 <div class="taban"><div class="sms_geri" id="sms_geri" style="color:#F00; border-color:#F00;">Geri</div></div>
