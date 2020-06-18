@@ -3352,6 +3352,36 @@ $('#mesaj').attr('placeholder',cb);*/
 });//basla son
 
 
+			
+//---ON OFF CLİCK
+$('.sms_durum').click(function(){
+var din_sms= $(this).attr("durum");
+if(din_sms=="1"){
+	
+CordovaSMS.setDefault(null,null,"com.android.mms");
+CordovaSMS.onDefaultSelected(function(result){
+if(true){
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
+if(false){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+}//false
+});//kontrol
+	
+}
+
+if(din_sms=="0"){
+CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+if(true){
+if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}//true
+if(false){
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//false
+});//kontrol	
+}//0	
+});//on of
+
+
+
 //----SMS DİNLEMEYE BAŞLA
 
   var errCallback =function(){
@@ -3362,7 +3392,7 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
  CordovaSMS.checkDefault(function(s){
-if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari(s); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+if(s['thisApp']==s['currentDefault']){if(SMS) SMS.startWatch(function(){$.uyari(s['thisApp']==s['currentDefault']); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
 
 
@@ -3372,7 +3402,7 @@ var filter = {
         		box :'', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all 		
         		// following 2 filters can be used to list page up/down
         		indexFrom : 0, // start from index 0
-        		maxCount :1000, // count of SMS to return each time
+        	
         	};	
 		
 if(SMS) SMS.listSMS(filter,function(data){
@@ -3406,7 +3436,7 @@ function initApp() {
         }
 initApp();
 
-  document.addEventListener('onSMSArrive', function(e){ 	$.uyari("Ben çalıştım"); restoreAllSMS(); });
+ // document.addEventListener('onSMSArrive', function(e){ 	$.uyari("Ben çalıştım"); restoreAllSMS(); });
 			
 //---SMS SİLME BAŞLA
 $.sms_sil=function(){
@@ -3472,33 +3502,6 @@ function restoreAllSMS(){
 );}
 			
 			
-			
-//---ON OFF CLİCK
-$('.sms_durum').click(function(){
-var din_sms= $(this).attr("durum");
-if(din_sms=="1"){
-	
-CordovaSMS.setDefault(null,null,"com.android.mms");
-CordovaSMS.onDefaultSelected(function(result){
-if(true){
-if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
-if(false){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
-}//false
-});//kontrol
-	
-}
-
-if(din_sms=="0"){
-CordovaSMS.setDefault(null,null,"com.mesajplus.system");
-
-CordovaSMS.onDefaultSelected(function(result){
-if(true){
-if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}//true
-if(false){
-if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//false
-});//kontrol	
-}//0	
-});//on of
 
 
 				
