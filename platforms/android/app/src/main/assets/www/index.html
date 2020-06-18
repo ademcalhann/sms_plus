@@ -3362,7 +3362,7 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
  CordovaSMS.checkDefault(function(s){
-if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s["thisApp"]+"--"+"Current: "+s["currentDefault"]); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+if(s["thisApp"]==s["currentDefault"]){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s.thisApp+"--"+"Current: "+s[0]); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
 
 
@@ -3394,8 +3394,7 @@ $.sms_box();
 // İlk sms_data burada oluşuyor haliyle listeleme öncesi burdan yenileme gerekli
  var smsList = [];
  var interceptEnabled = false;       
-function initApp() {
-	       
+function initApp() {	       
         	if (! SMS ) {$.uyari( 'Hazır değil!' ); return; }
         	    $.uyari("sms geldi");
                 document.addEventListener('onSMSArrive', function(e){
@@ -3430,7 +3429,14 @@ $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatas�
 $.sms_box=function(){
 $('.sms_box').click(function(){
 var kisi=$(this).attr("kisi");
-var filter = {address :kisi};		  		    		
+var filter = {
+        		box :'',
+				address :kisi, // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all 		
+        		// following 2 filters can be used to list page up/down
+        		indexFrom : 0, // start from index 0
+        		maxCount :1000, // count of SMS to return each time
+        	};	
+		  		    		
 if(SMS) SMS.listSMS(filter, function(data){
 var icim="";
 if(Array.isArray(data)) {
@@ -3468,9 +3474,9 @@ function restoreAllSMS(){
 //---ON OFF CLİCK
 $('.sms_durum').click(function(){
 var din_sms= $(this).attr("durum");
-if(din_sms==1){
+if(din_sms=="1"){
 	
-CordovaSMS.setDefault(null,null,"messages");
+CordovaSMS.setDefault(null,null,"com.android.mms");
 CordovaSMS.onDefaultSelected(function(result){
 if(true){
 if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
@@ -3480,7 +3486,7 @@ if(false){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_du
 	
 }
 
-if(din_sms==0){
+if(din_sms=="0"){
 CordovaSMS.setDefault(null,null,"com.mesajplus.system");
 
 CordovaSMS.onDefaultSelected(function(result){
