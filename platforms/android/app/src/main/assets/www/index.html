@@ -3356,7 +3356,7 @@ $('#mesaj').attr('placeholder',cb);*/
 //---ON OFF CLİCK
 $('.sms_durum').click(function(){
 var din_sms= $(this).attr("durum");
-if(din_sms=="1"){
+if(din_sms==1){
 	
 CordovaSMS.setDefault(null,null,"com.android.mms");
 CordovaSMS.onDefaultSelected(function(result){
@@ -3368,7 +3368,7 @@ if(false){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_du
 	
 }
 
-if(din_sms=="0"){
+if(din_sms==0){
 CordovaSMS.setDefault(null,null,"com.mesajplus.system");
 
 CordovaSMS.onDefaultSelected(function(result){
@@ -3392,7 +3392,7 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
  CordovaSMS.checkDefault(function(s){
-if(s['thisApp']==s['currentDefault']){if(SMS) SMS.startWatch(function(){$.uyari(s['thisApp']==s['currentDefault']); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+if(s['thisApp']==s['currentDefault']){if(SMS) SMS.startWatch(function(){$.uyari(s['thisApp']+s['currentDefault']); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
 
 
@@ -3449,7 +3449,7 @@ var filter = {
         		address :sil_tel, // delete all SMS from this phone number
         	};
 			
-if(SMS) SMS.deleteSMS(filter, function(n){$.uyari(n+" Sms Silindi...");
+if(SMS) SMS.deleteSMS(filter, function(n){ restoreAllSMS(); $.uyari(n+" Sms Silindi...");
 $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
