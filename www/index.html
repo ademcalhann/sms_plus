@@ -3364,22 +3364,15 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
   };
 
 //--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
-  CordovaSMS.checkDefault(function(s){
-if(s.thisApp==s.currentDefault){if(SMS) SMS.startWatch(function(){$.uyari("this=current"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
+ CordovaSMS.checkDefault(function(s){
+if(s.thisApp==s.currentDefault){if(SMS) SMS.startWatch(function(){$.uyari("Biz:"+s.thisApp+"--"+"Current: "+s.currentDefault); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}},errCallback);
 
 		
-CordovaSMS.onDefaultSelected(function(result){
-if(true){
-if(SMS) SMS.stoptWatch(function(){$.uyari("cordova on select durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
-if(false){if(SMS) SMS.startWatch(function(){$.uyari("Cordova onselc dinliyo"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
-}//false
-});//kontrol		
-	
-     
+  
 
 //---FİLTRESİZ LİSTELE
 function listSMS() {
-$.uyari("listele");		
+$.uyari("F listele");		
 if(SMS) SMS.listSMS({}, function(data){
 var icim="";
 if(Array.isArray(data)) {
@@ -3417,11 +3410,10 @@ $.sms_sil=function(){
 $('.sms_sil').click(function(){
 $(this).css("box-shadow","0 0 5px 2px #F00");
 var sil_tel=$(this).attr('sil_no');
-
+alert("sil_tel: "+sil_tel)
 var filter = {address :sil_tel};
-if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
-$(".sms_box[kisi="+sil_tel+"]").slideUp();
-        	}, function(err){$.uyari("Silme Hatası !");
+if(SMS) SMS.deleteSMS(filter, function(n){$.uyari(n+" Sms Silindi...");
+$(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
 });};//---SMS SİLME SON
@@ -3434,13 +3426,13 @@ $('.sms_box').click(function(){
 var kisi=$(this).attr("kisi");
 var filter = {address :kisi};		  		    		
 if(SMS) SMS.listSMS(filter, function(data){
-alert("kişi: "+kisi);
 var icim="";
 if(Array.isArray(data)) {
 for(var i in data) { var sms=data[i]; smsList.push(sms);
 icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
 }//for
 }//if
+alert("özel: "+icim)
 $('.sms_oku').html(icim);
 $(".sms_menu").slideDown();
  $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");});  	  
@@ -3459,19 +3451,40 @@ SMS.sendSMS(telefon,mesaj, function(){$.uyari("sms başarılı");}, function(){$
 
 
 
+function restoreAllSMS(){
+        	if(SMS) SMS.restoreSMS(smsList,function(n){smsList.length = 0; listSMS();	
+              	}, function(err){$.uyari("Yenile hata");}
 
-   function restoreAllSMS(){
-        	if(SMS) SMS.restoreSMS(smsList,function(n){
-        		smsList.length = 0;
-       $.uyari("Yenile başar");
+);}
+			
+			
+			
+//---ON OFF CLİCK
+$('.sms_durum').click(function(){
+var din_sms= $(this).attr("durum");
+if(din_sms==1){
+	
+CordovaSMS.setDefault(null,null,"messages");
+CordovaSMS.onDefaultSelected(function(result){
+if(true){
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//true
+if(false){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+}//false
+});//kontrol
+	
+}
 
-        	}, function(err){
-				$.uyari("Yenile hata");
-        		
-        	});}
-			
-			
-			
+if(din_sms==0){
+CordovaSMS.setDefault(null,null,"com.mesajplus.system");
+
+CordovaSMS.onDefaultSelected(function(result){
+if(true){
+if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});}//true
+if(false){
+if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});}//false
+});//kontrol	
+}//0	
+});//on of
 				
 }
 </script>
