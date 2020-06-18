@@ -3156,57 +3156,10 @@ $.ajax({
 }else{$.uyari('Yetkiniz Bulunmuyor...');}});	//p_kaydetson
 }//index==7son
 //üye olma işlemleri
-if(index==10){ $.uye_ol(); }//üye olma son
-//---SMS SİLME BAŞLA
-$.sms_sil=function(){
-$('.sms_sil').click(function(){
-var sil_tel=$(this).attr('sil_no');
-
-if(SMS) SMS.deleteSMS({	address :sil_tel
-        	}, function( n ){
-        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
-        	}, function(err){
-        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
-        	});
-
-alert("Sil: "+sil_no)
-var filter = {address :sil_tel};
-if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
-$(".sms_box[kisi="+sil_tel+"]").slideUp();
-        	}, function(err){$.uyari("Silme Hatası !");
-			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
-				
-});};//---SMS SİLME SON
- 
- 
+if(index==10){ $.uye_ol(); }//üye olma son 
 if(index==11){		
 listSMS();		
 }//index==11
-
-//---BAĞIMSIZ SMS OKUMA KUYRUĞU
-$.sms_box=function(){
-$('.sms_box').click(function(){
-var kisi=$(this).attr("kisi");
-alert(kisi)
-function listSMS() {  
-	var filter = {address :kisi};		  		    		
-if(SMS) SMS.listSMS({}, function(data){
-
-var icim="";
-if(Array.isArray(data)) {
-for(var i in data) { var sms=data[i]; smsList.push(sms);
-icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
-}//for
-}//if
-$('.sms_oku').html(icim);
-$(".sms_menu").slideDown();
- $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");});  	  
-$.sms_sil();
-}, function(err){$.uyari("Kısa mesaj okuma hatası...");});
-
-}	
-});//sms_box
-};//sms_box
 
 //Zümreler==9 index
 if(index==8){
@@ -3433,12 +3386,11 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css(
 if(SMS) SMS.stoptWatch(function(){$.uyari("Dinleme Durdu"); $('.sms_durum').css("background-image","url(icon/pasif.png)").attr("durum","0");});
 }//olumsuz son
   };
- 
-  CordovaSMS.checkDefault(function(){
-	  if(true){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
-}//olumlu son
 
-	  },errCallback);
+//--CHECK ÇALIŞIYOR AMA HERŞEYE AKTİF DİYOR
+  CordovaSMS.checkDefault(function(){
+if(true){if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});
+}  },errCallback);
 
  
 function listSMS() {  
@@ -3465,10 +3417,10 @@ $.sms_box();
 
 }	
      
-//--Cordova mesaj geldi LİST SMS DENENİYOR
-CordovaSMS.onSMS(function(sms){function listSMS() {  
-$.uyari("Cordova sms geldi");	
-initApp();	  		    		
+
+//---FİLTRESİZ LİSTELE
+function listSMS() {
+		
 if(SMS) SMS.listSMS({}, function(data){
 var icim="";
 if(Array.isArray(data)) {
@@ -3481,7 +3433,7 @@ $.sms_sil();
 $.sms_box();
 }, function(err){$.uyari("Kısa mesaj okuma hatası...");});
 
-}	});
+}	
 
 
 
@@ -3493,15 +3445,63 @@ function initApp() {
         	if (! SMS ) {$.uyari( 'Hazır değil!' ); return; }
         	
                 document.addEventListener('onSMSArrive', function(e){
-				alert("phonegap sms geldi")	
             	var data = e.data;
             	smsList.push( data );
-            
+                listSMS();
             
             	
             });
         }
-initApp();	
+initApp();
+
+
+//---SMS SİLME BAŞLA
+$.sms_sil=function(){
+$('.sms_sil').click(function(){
+	$(this).css("box-shadow","0 0 5px 2px #F00");
+var sil_tel=$(this).attr('sil_no');
+var filter= {address :sil_tel};
+if(SMS) SMS.deleteSMS(filter, function( n ){
+        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	}, function(err){
+        	$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	});
+
+alert("Sil: "+sil_no)
+var filter = {address :sil_tel};
+if(SMS) SMS.deleteSMS(filter, function( n ){$.uyari(n+" Sms Silindi...");
+$(".sms_box[kisi="+sil_tel+"]").slideUp();
+        	}, function(err){$.uyari("Silme Hatası !");
+			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
+				
+});};//---SMS SİLME SON
+ 
+
+
+//---BAĞIMSIZ SMS OKUMA KUYRUĞU
+$.sms_box=function(){
+$('.sms_box').click(function(){
+var kisi=$(this).attr("kisi");
+function listSMS() {  
+	var filter = {address :kisi};		  		    		
+if(SMS) SMS.listSMS(filter, function(data){
+
+var icim="";
+if(Array.isArray(data)) {
+for(var i in data) { var sms=data[i]; smsList.push(sms);
+icim+="<div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_y'>"+ sms.body +"</div></div>";
+}//for
+}//if
+$('.sms_oku').html(icim);
+$(".sms_menu").slideDown();
+ $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");});  	  
+$.sms_sil();
+}, function(err){$.uyari("Kısa mesaj okuma hatası...");});
+
+}	
+});//sms_box
+};//sms_box
+	
 }
  
 
