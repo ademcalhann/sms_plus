@@ -3435,14 +3435,13 @@ function initApp() {
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
-			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF").delay(2000).css("box-shadow","0 0 5px 2px #FFF");};
+			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF");};
 				$.parla();
-				listSMS();    	
+				 restoreAllSMS(); 	
             });
         }
 initApp();
 
-//document.addEventListener('onSMSArrive', function(e){ 	$.uyari("Ben çalıştım"); restoreAllSMS(); });
 			
 //---SMS SİLME BAŞLA
 $.sms_sil=function(){
@@ -3455,7 +3454,7 @@ var filter = {
         		address :sil_tel, // delete all SMS from this phone number
         	};
 			
-if(SMS) SMS.deleteSMS(filter, function(n){ listSMS(); $.uyari(n+" Sms Silindi...");
+if(SMS) SMS.deleteSMS(filter, function(n){ restoreAllSMS(); $.uyari(n+" Sms Silindi...");
 $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
