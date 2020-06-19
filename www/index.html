@@ -3398,7 +3398,7 @@ if(SMS) SMS.stoptWatch(function(){$.uyari("phonegap Durdu"); $('.sms_durum').css
  CordovaSMS.checkDefault(function(s){
 s=s.split( '"' );
 if(s[3]==s[7]){if(SMS) SMS.startWatch(function(){$.uyari(s[3]+"-"+s[7]);
-if(SMS) SMS.startWatch(function(){$.uyari("Dinleme aktif"); $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});});}},errCallback);
+if(SMS) SMS.startWatch(function(){ $('.sms_durum').css("background-image","url(icon/aktif.png)").attr("durum","1");});});}},errCallback);
 
 
 //---FİLTRESİZ LİSTELE
@@ -3431,13 +3431,13 @@ $.sms_box();
  var interceptEnabled = false;       
 function initApp() {	       
         	if (! SMS ) {$.uyari( 'Hazır değil!' ); return; }
-        	    $.uyari("sms geldi");
+        	    $.uyari("arrive");
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
-			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF");};
+			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF").delay(2000).css("box-shadow","0 0 0px 0px #FFF");};
 				$.parla();
-				 restoreAllSMS(); 	
+				restoreAllSMS(); 	
             });
         }
 initApp();
@@ -3454,7 +3454,7 @@ var filter = {
         		address :sil_tel, // delete all SMS from this phone number
         	};
 			
-if(SMS) SMS.deleteSMS(filter, function(n){ restoreAllSMS(); $.uyari(n+" Sms Silindi...");
+if(SMS) SMS.deleteSMS(filter, function(n){ listSMS(); $.uyari(n+" Sms Silindi...");
 $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
@@ -3502,7 +3502,7 @@ SMS.sendSMS(telefon,mesaj, function(){}, function(){$.uyari("sms hatalı");});}
 
 
 function restoreAllSMS(){
-        	if(SMS) SMS.restoreSMS(smsList,function(n){smsList.length = 0; listSMS();	
+if(SMS) SMS.restoreSMS(smsList,function(n){smsList.length = 0; listSMS();	
               	}, function(err){$.uyari("Yenile hata");}
 
 );}
