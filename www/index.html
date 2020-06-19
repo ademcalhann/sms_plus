@@ -3435,9 +3435,9 @@ function initApp() {
                 document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	smsList.push( data );
-			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF").delay(2000).css("box-shadow","0 0 0px 0px #FFF");};
+			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF");};
 				$.parla();
-				restoreAllSMS(); 	
+				listSMS();	
             });
         }
 initApp();
@@ -3466,6 +3466,7 @@ $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatas�
 $.sms_box=function(){
 $('.sms_box').on("click",function(){
 var kisi=$(this).attr("kisi");
+$('#sms_send').attr("tel",kisi);
 $(".baslik[name='sms_kim']").html(kisi);
 var filter = {
         		box :'',
@@ -3485,18 +3486,19 @@ icim+="<div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_box' 
 
 $('#sms_oku').html(icim).show();
 $(".sms_menu").slideDown();
- $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html("");});  	  
+ $('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html(""); $('#sms_send').attr("tel","");
+});  	  
 $.sms_sil();
 }, function(err){$.uyari("Kısa mesaj okuma hatası...");});
 });//sms_box
 };//sms_box
 
 
-$("#sms_sen").change(function(){
-var telefon=$(this).val();
+$("#sms_send").click(function(){
+var telefon=$(this).attr("tel");
 var mesaj=$('#sms_mes').val();
 if(telefon.length==11 && mesaj!="")	{
-SMS.sendSMS(telefon,mesaj, function(){}, function(){$.uyari("sms hatalı");});}
+SMS.sendSMS(telefon,mesaj, function(){$.uyari("Mesaj Gönderildi !")}, function(){$.uyari("sms hatalı");});}
 });
 
 
@@ -3758,7 +3760,6 @@ Müdür yardımcısı veya siz  listelere sms gönderebilirsiniz.
 <div class="geri" id="geri" style="color:#F00; border-color:#F00;">Geri</div></div>
 </div>
 <div class="panel" name="yerel_sms">
-<div style="position:relative; margin-top:100px; height:50px;"><input type="text" placeholder="Telefon" id="sms_sen"><input type="text" placeholder="Mesaj" id="sms_mes"></div>
 <div class="kutu" id="sms_liste" style="display:block;margin-top:0px; height:100%;">
 <div class="sms_box">Sms okuma alanıdır.</div>
 </div>
@@ -3871,7 +3872,14 @@ Müdür yardımcısı listelere sms gönderebilir.
 <div class="kutu" id="sms_oku" style="display:block; margin-top:10px; height:100%;">
 Burada seri smsler olacak.
 </div>
-<div class="taban"><div class="sms_geri" id="sms_geri" style="color:#F00; border-color:#F00;">Geri</div></div>
+<div style="position:absolute; margin-top:-115px; height:50px; width:100%;">
+<textarea rows="4" style="width: 100%;
+    height: 25px;
+    position: fixed;
+    bottom: 44px;
+    padding-top: 10px;
+    border: solid 1px #FFF;" type="text" placeholder="Mesaj yazın ..." id="sms_mes"></textarea></div>
+<div class="taban"><div class="sms_geri" id="sms_geri" style="color:#F00; border-color:#F00;">Geri</div><div class="onayla" tel="" id="sms_send" >Gönder</div></div>
 </div>
 </body>
 </html>
