@@ -3454,7 +3454,7 @@ var filter = {
         		address :sil_tel, // delete all SMS from this phone number
         	};
 			
-if(SMS) SMS.deleteSMS(filter, function(n){restoreAllSMS(); $.uyari(n+" Sms Silindi...");
+if(SMS) SMS.deleteSMS(filter, function(n){$.uyari(n+" Sms Silindi...");
 $(".sms_box[kisi="+sil_tel+"]").slideUp();}, function(err){$.uyari("Silme Hatası !");
 			$(".sms_box[kisi="+sil_tel+"]").slideUp();  });
 				
@@ -3500,7 +3500,8 @@ var mesaj=$('#sms_mes').val();
 if(mesaj!=""){
 SMS.sendSMS(telefon,mesaj, function(){$.uyari("Mesaj Gönderildi !") 
 $('#sms_mes').val("");
-restoreAllSMS();
+listSMS();
+
 }, function(){$.uyari("sms hatalı");});}else{$.uyari("Boş sms gönderemezsiniz...");}
 });
 
