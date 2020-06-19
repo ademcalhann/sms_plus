@@ -3437,7 +3437,7 @@ function initApp() {
             	smsList.push( data );
 			    $.parla=function(){$(".marka").css("box-shadow","0 0 5px 2px #FFF");};
 				$.parla();
-				listSMS();	
+				restoreAllSMS();
             });
         }
 initApp();
@@ -3498,7 +3498,10 @@ $("#sms_send").click(function(){
 var telefon=$(this).attr("tel");
 var mesaj=$('#sms_mes').val();
 if(telefon.length==11 && mesaj!="")	{
-SMS.sendSMS(telefon,mesaj, function(){$.uyari("Mesaj Gönderildi !")}, function(){$.uyari("sms hatalı");});}
+SMS.sendSMS(telefon,mesaj, function(){$.uyari("Mesaj Gönderildi !") 
+$('#sms_mes').val("");
+restoreAllSMS();
+}, function(){$.uyari("sms hatalı");});}
 });
 
 
