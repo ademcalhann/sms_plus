@@ -3403,12 +3403,7 @@ if(SMS) SMS.startWatch(function(){ $('.sms_durum').css("background-image","url(i
 
 //---FİLTRESİZ LİSTELE
 function listSMS(){
-var filter = {
-        		box :'', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all 		
-        		// following 2 filters can be used to list page up/down
-        		indexFrom : 0, // start from index 0
-        	
-        	};	
+var filter = {box :'',indexFrom : 0};	
 		
 if(SMS) SMS.listSMS(filter,function(data){
 var icim="";
@@ -3482,7 +3477,7 @@ if(Array.isArray(data)){
 for(var i in data) { var sms=data[i]; smsList.push(sms);
 icim+="<div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_y'>"+ sms.body +"</div></div>";
 }//for
-}//if
+}//list
 
 $('#sms_oku').html(icim).show();
 $(".sms_menu").slideDown();
@@ -3498,17 +3493,37 @@ $("#sms_send").click(function(){
 var telefon=$(this).attr("tel");
 var mesaj=$('#sms_mes').val();
 if(mesaj!=""){
-SMS.sendSMS(telefon,mesaj, function(){$.uyari("Mesaj Gönderildi !") 
+SMS.sendSMS(telefon,mesaj, function(){
 $('#sms_mes').val("");
-listSMS();
 
-}, function(){$.uyari("sms hatalı");});}else{$.uyari("Boş sms gönderemezsiniz...");}
+var filter = {
+        		box :'',
+				address :telefon, // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all 		
+        		// following 2 filters can be used to list page up/down
+        		indexFrom : 0, // start from index 0
+        		maxCount :250, // count of SMS to return each time
+        	};	
+		  		    		
+if(SMS)SMS.listSMS(filter,function(data){
+var icim="";
+if(Array.isArray(data)){
+for(var i in data) { var sms=data[i]; smsList.push(sms);
+icim+="<div class='sms_sil' sil_no='"+sms.address+"'></div><div class='sms_box' kisi='"+sms.address+"' ><div class='sms_tel'>"+sms.address+"</div><div class='sms_y'>"+ sms.body +"</div></div>";
+}//for
+}//if
+
+$('#sms_oku').html(icim).show();
+$('.sms_geri').click(function(){$(".sms_menu").hide(); $("#sms_oku").html(""); $('#sms_send').attr("tel","");
+listSMS();	
+});//geri
+});//list
+},function(){$.uyari("sms hatalı");});}else{$.uyari("Boş sms gönderemezsiniz...");}
 });
 
 
 
 function restoreAllSMS(){
-if(SMS) SMS.restoreSMS(smsList,function(n){smsList.length = 0; listSMS();	
+if(SMS) SMS.restoreSMS(smsList,function(n){smsList.length = 0; 	
               	}, function(err){$.uyari("Yenile hata");}
 
 );}
