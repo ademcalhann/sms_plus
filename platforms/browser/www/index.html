@@ -68,7 +68,6 @@
 	width: 92%;
 	margin-top: 15px;
 	margin-bottom: 15px;
-	margin-left: 2%;
 	box-shadow: 0 0 5px 2px #FFF;
 	font-family: calibri;
 	padding-top: 20px;
@@ -763,7 +762,23 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	display: none;
 	overflow: scroll;
 }
-.alt_panel {
+.alt_panel{
+	width: 100%;
+	position: fixed;
+	z-index: 3;
+	left: 0px;
+	overflow: scroll;
+	visibility: visible;
+	background-image: url(icon/byz.png);
+	background-repeat: repeat;
+	background-position: center;
+    bottom:0px;
+	display: none;
+	height: 180px;
+	padding-bottom:80px;
+}
+
+.no_sms {
 	width:100%;
 	position: fixed;
 	z-index: 3;
@@ -1755,7 +1770,7 @@ $.fotograf=function(){
 $('.resim,.profil').on("click",function(){
 	var adi=$(this).attr('name');
 	var url='https://mesajplus.com/resim/buyuk/'+adi;
-	var image='<img src="'+url+'" width="90%" height="auto"  style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px white; border-radius:20px;"/>';
+	var image='<img src="'+url+'" width="90%" height="auto"  style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px white; border-radius:8px;"/>';
 	$('.kapa[name=fotograf]').html(image).show();
 	$('.yayiny').slideDown();
 	 $('.ic_kapat').click(function () { $('.yayiny').fadeOut(); $('.kapa[name=fotograf]').html(''); });		
@@ -1901,7 +1916,7 @@ $.uyari(cevap.veri);
 //SMS PANELİ AÇMA PROGRAMI
 $.panel_ac=function(){
 $('#gonder').click(function(){
-$('#sms_panel').slideDown();
+$('.no_sms').slideDown();
 //smsm islemi basla
 });};
 $.c_box();//ilk geldiğinde çalıştırdık
@@ -2284,7 +2299,7 @@ $('.uyari').click(function(){$(this).hide();});
 //----PANEL KAPAT
 $.geri=function(){
 	 $('.geri').click(function(){
-	 $('.panel,.alt_panel,.y_panel').hide();
+	 $('.panel,.alt_panel,.y_panel,.no_sms').hide();
 	 $('.orta').slideDown();
 	 $('#yoklama').html('');
 	 $('.y_ogrenci').remove();
@@ -2293,7 +2308,7 @@ $.geri=function(){
 $.geri();
 //altpanel kapat
 $.alt_kapat=function(){$('.alt_kapat').click(function(){
-	$('.alt_panel,#sms_panel2').slideUp();});}
+	$('.alt_panel,#sms_panel2,.no_sms').slideUp();});}
 $.alt_kapat();	
 
 //ÜYELERİN GİRİŞ YAPMA ALANI
@@ -2386,7 +2401,7 @@ $('#basla').attr('sms_tur','yoklama');
 
 $(this).css({"background-color":"#106b80","color":"#FFF"});
 $('.sinif').css({"box-shadow":"0 0 0px 0px #0D596D"});
-$('.kutu,.alt_panel').hide();
+$('.kutu,.alt_panel,.no_sms').hide();
 var kul_id=$('.kul').attr('id');
 var okul_id=$('.kul').attr('okul_id');	
 $.ajax({
@@ -2438,8 +2453,7 @@ $('.orta,.panel').css('height',yuksekx);
 
 //-----STATİK YOKLAMA GUNLUK BLOK GİRİŞİ
 $('.yoklama').click(function(){
-$('#sms_panel').hide();
-$('.alt_panel').hide();	
+$('.alt_panel,.no_sms').hide();	
 $(this).css({"box-shadow":"inset 0 0 3px 2px #0D596D"});
 $('.sinif').css({"box-shadow":"0 0 0px 0px #0D596D"});
 $.gunluk_yoklama();});//statik son
@@ -2990,7 +3004,7 @@ $('#selectelemanid option:selected').removeAttr('selected');
 $('.ogrenci[isaret=1]').remove();
 $('.listex,#yoklama').html('');	
 $('#yok_isim').val('');
-$('.panel,.alt_panel').hide();
+$('.panel,.alt_panel,.no_sms').hide();
 $('.orta').slideDown();	
 }});//ajax ve cevap	
 }//else
@@ -3028,14 +3042,16 @@ $('.marka').click(function(){location.reload();});
 <div class="onayla" id="kaydet">Kaydet</div>
 </div></div> 
 
-<div class="alt_panel" id="sms_panel">
+<div class="no_sms" id="sms_panel">
 <div class="alt_kapat" id="alt_kapat">Kapat</div>
-<div class="u2" style="height:auto;     margin-top: 45px;">Google Play politikaları gereği sms çok özel veri kapsamındadır bu nedenle Mesaj Plus ile sms göndere bilmek için SMS Terminali içeren versiyonunu yüklemelisiniz.<hr>
-Sms Terminali tüm bu özelliklere ek sadece velilere sms göndermenizi sağlayacak.<hr>
+<div class="u2" style="height:auto;     margin-top: 45px;">Google Play politikaları gereği SMS çok özel veri kapsamındadır. Bu nedenle Mesaj Plus ile sms gönderebilmek için <a style="color:#dbdc82;"> SMS Terminali</a> içeren versiyonu yüklemelisiniz.<hr>
+<a style="color:#dbdc82;">Sms Terminali</a> de ücretsizdir ve  tüm bu özelliklere ek sadece velilere sms göndermenizi sağlar.<hr>
 İstediğiniz zaman tekrar Google Play ile normal versiyona geçebilirsiniz.<hr>
+Tek yapmanız gereken aşağıdaki linkten uygulamayı indirdikten sonra yükleme esnasında <a style="color:#dbdc82;">Yükleme İzni</a>ne onay vermeniz.<hr>
 <details style="margin-top:10px;">
     <summary style="color:#dbdc82; line-height:25px;"><a style="color:#0C9;">Sms Terminali</a> Neden Google Play'de yok ?</summary>
-    <p class="u2" style="height:auto;">Google Play sms terminali özelliğini içeren programların Tam Sms Yetkili olmasını istiyor, bu durumda programın aşırı yorulmasına neden oluyor. Öğretmenlerin veliye sms göndermek istememesi ihtimali de göz önüne alındığında Sms Terminali'nin sadece isteyen kullanıcılar tarafından yüklenmesi daha anlamlıdır.. Sonuç olarak Sms Terminalini harici olarak yüklemeniz çok daha mantıklı görünüyor.</p>
+    <p class="u2" style="height:auto;">Google Play sms terminali özelliğini içeren programların Tam Sms Yetkili olmasını istiyor, bu durumda programın aşırı yorulmasına neden oluyor. Öğretmenlerin veliye sms göndermek istememesi ihtimali de göz önüne alındığında Sms Terminali'nin sadece isteyen kullanıcılar tarafından yüklenmesi daha anlamlıdır.. Sonuç olarak Sms Terminalini harici olarak yüklemeniz çok daha işlevsel görünmektedir.
+    </p>
 </details>
 <img  style="border-radius:5px;" src="https://mesajplus.com/play.png" onclick="window.location='https://mesajplus.com/sms_terminali.apk'" alt="Sms Terminali İndir"/>
 
@@ -3182,7 +3198,7 @@ Sms Terminali tüm bu özelliklere ek sadece velilere sms göndermenizi sağlaya
 <div class="kutu" name="yardim" style="display:block; margin-top:0px; height:100%; padding-bottom:35px;">
 <div class="baslik">Yardım</div>
   <img class="kullanici" placeholder="Sistem Yöneticisi" id="1" m_alan="1" src="https://mesajplus.com/resim/buyuk/b4v95.jpg"  alt="Adem Çalhan" height="auto" style="margin-left:5%; margin-top:25px; box-shadow: 0 0 5px 2px #3F9; border-radius:5px; float:left; margin-right:10px; width:90px; height:auto;">
-  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu. Gelişmiş  özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;"> MP Terminali</a>'nin de programa entegre edilmesiyle artık sınıfta kolayca alınan yoklama analiz ve sentez yapabilen program zekası sayesinde eokula aktarılabilir hale geldi. </p>
+  <p class="aciklama"><a style="color:#0C9;">Mesaj Plus</a> uygulaması öncelikle okullarda anlık ve ücretsiz sms göndermek amacıyla kuruldu. Gelişmiş  özellikleri ve maliyetinin rakiplerine göre neredeyse sıfır olması <a style="color:#0C9;">Mesaj Plus</a> uygulamasının tüm sektörlerde çalışabileceği fikrini doğurdu. Birden fazla sektörün iş birliği içinde ortak çalışabilmesi ayrıca zümreler oluşturmasıyla <a style="color:#0C9;">Mesaj Plus</a> bir sms programından çok daha fazlası oldu.<a style="color:#0C9;"> Sms Terminali</a>'nin de programa entegre edilmesiyle artık sınıfta kolayca alınan yoklama analiz ve sentez yapabilen program zekası sayesinde e-okula aktarılabilir hale geldi. </p>
 <details style="margin-top:10px;">
     <summary style="color:#dbdc82; line-height:25px;">Üyelikten sonra yapmam gereken işlem var mı ?</summary>
     <p class="u2" style="height:auto;">En önemli nokta telefonunuzun ayarlar menüsünden <a style="color:#0C9;">Mesaj Plus</a> uygulamasına girip izinler kısmındaki izinleri  açmanız gereklidir. Android işletim sistemi uygulamaların sms göndermesine (2019 Yenilenen Protokol Kuralları) sadece bu şekilde izin verir.En kısa sürede Sistem Yöneticisi sizinle iletişim kurup tam kurulum işlemleri için çalışmaya başlayacaktır. Bu sırada siz sistemi denemek için öğrenci ve personel ekleyerek sms gönderebilirsiniz.</p>
@@ -3311,17 +3327,7 @@ Sistemi tanımanız için yapılan ön üyeliktir.<hr><p>Deneme amaçlı öğret
         
        
 </div>
-<div class="ut">
-<div class="baslik">Sms Terminal İzinleri</div>
-<div class="dikkat" name="d_term1" style="display:block;"><label>Birinci adım, yenilenen <a style="color:#0F0">Android Gizlilik Kuralları</a> gereği Mesaj Plus uygulamasına <a style="color:#0F0">Sms Gönderme İzni</a> vermeniz gerekir. Şimdi butona tıklayıp gelen uyarıda <a style="color:#0F0">Var</a>'a dokunun. </label>
-<div class="evet"  name="terminal1">1. Adım </div>
-</div>
 
-<div class="dikkat" name="d_term2">İkinci adım, Mesaj Plus <a style="color:#0F0">Varsayılan Sms Uygulaması</a> özelliğini iptal etmeliyiz. Çünkü  Mesaj Plus'ın sms okumak gibi bir amacı yoktur. Butona dokunum tekrar <a style="color:#0F0">Mesajlar</a> uygulamasını seçin. Bu adımı mutlaka tamamlamalısınız, aksi taktirde size gelen smsleri göremezsiniz !
-<div class="evet"  name="terminal2" style="margin-top:50px;">2. Adım</div>
-</div>
-<div class="dikkat" name="d_term3">Tebrikler herşey yolunda artık <a style="color:#0F0">Mesaj Plus</a> ile sms gönderebilirsiniz.İşlemin bu kadar uzun olmasının nedeni smslerinizi okumamak için gösterdiğimiz garettir. Bu sayede smsleriniz sizin, mutlu kullanıcılar ise bizim oluyor ✔</div>
-</div>
 <div class="alti" id="style-3">
 <div class="uzun2" style="width:690px;">
 <div class="ux" style="color:cyan; width:90px; border-color:cyan;">Hesabım</div>
