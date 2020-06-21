@@ -416,6 +416,7 @@ background: linear-gradient(56deg, rgba(7,7,11,0.9528186274509804) 0%, rgba(12,9
 	border-radius: 50%;
 	background-image: url(icon/x.png);
     background-size:contain;
+	float:right;
 }
 .msayi {
 	height: 12px;
@@ -2277,15 +2278,21 @@ $.y_sil=function(){
 $('.sil').click(function(){
 //if(z_kont<16){}else{$.uyari('Yetkiniz Bulunmuyor...');}	
 var yok_id=$(this).attr('id');	
+var kul_id=$('.kul').attr('id');
 $.ajax({
 			type: "POST",
 			url: "https://mesajplus.com/yoklama.php",
-			data:({"yok_id":yok_id}),
+			data:({"yok_id":yok_id,
+			       "sil_ben":kul_id}),
 			dataType: "json",
 			success: function(cevap){
+if(cevap.veri){
 $('.d_daire[id='+yok_id+']').slideUp();	
 $('.b_daire[id='+yok_id+']').slideUp();	
-$.uyari(cevap.veri);			
+$.uyari(cevap.veri);
+}
+if(cevap.hata){$.uyari(cevap.hata);}				
+			
 }});//ajax ve cevap
 });//yoklama sil son
 };		
